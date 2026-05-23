@@ -122,7 +122,32 @@
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
   .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
   .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .bg-surface-container-lowest { background-color: #141210 !important; }
+  .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .bg-primary-fixed { background-color: #3a1800 !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30, .dark .border-outline-variant\/20 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-on-background { color: #e6e4df !important; }
+  .dark .text-outline { color: #6e5c56 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .text-secondary { color: #95bac8 !important; }
+  .dark .skeleton { background: #2e2c2a; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark input, .dark textarea, .dark select { background-color: #2a2826 !important; color: #e6e4df !important; border-color: #503c32 !important; }
+  .dark #toast { background: #e6e4df; color: #1c1a18; }
+  #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(60px); background: #1b1c19; color: #fbf9f4; border-radius: 9999px; padding: 0.5rem 1.25rem; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0; transition: opacity 0.25s, transform 0.3s; z-index: 9999; pointer-events: none; white-space: nowrap; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
 
@@ -139,8 +164,10 @@
         <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <div class="flex items-center gap-6">
-      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <button id="search-btn" class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
       <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
     </div>
   </div>
@@ -180,15 +207,15 @@
       </div>
       <div class="flex-1 overflow-hidden h-6">
         <div class="ticker-scroll whitespace-nowrap">
-          <span class="font-body-md text-on-secondary-container italic mr-12">"Resilience is not a fixed state, but a fluid one." — Anonymous</span>
-          <span class="font-body-md text-on-secondary-container italic mr-12">"My bed is a sanctuary, my pen is a sword." — Anonymous</span>
-          <span class="font-body-md text-on-secondary-container italic mr-12">"Advocacy starts with the radical act of resting." — Anonymous</span>
-          <span class="font-body-md text-on-secondary-container italic mr-12">"We are not invisible; we are just seen differently." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"The sweetness that turns bitter, awoken to their chatter." — Chelsey Miguel, Bitter Sweet</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Well, what can I do? I can muster nothing but laughter." — Chelsey Miguel, Bitter Sweet</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"How I wish I could hold her." — Chelsey Miguel, Belated</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Even though you are surrounded by bleakness, I'm unable to comprehend your laughter." — Chelsey Miguel, Aftertaste</span>
           <!-- Duplicate for seamless loop -->
-          <span class="font-body-md text-on-secondary-container italic mr-12">"Resilience is not a fixed state, but a fluid one." — Anonymous</span>
-          <span class="font-body-md text-on-secondary-container italic mr-12">"My bed is a sanctuary, my pen is a sword." — Anonymous</span>
-          <span class="font-body-md text-on-secondary-container italic mr-12">"Advocacy starts with the radical act of resting." — Anonymous</span>
-          <span class="font-body-md text-on-secondary-container italic mr-12">"We are not invisible; we are just seen differently." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"The sweetness that turns bitter, awoken to their chatter." — Chelsey Miguel, Bitter Sweet</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Well, what can I do? I can muster nothing but laughter." — Chelsey Miguel, Bitter Sweet</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"How I wish I could hold her." — Chelsey Miguel, Belated</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Even though you are surrounded by bleakness, I'm unable to comprehend your laughter." — Chelsey Miguel, Aftertaste</span>
         </div>
       </div>
     </div>
@@ -261,7 +288,7 @@
 
       <div class="bg-tertiary-container/20 p-6 rounded-xl text-on-tertiary-container space-y-4 border border-tertiary-container/30">
         <h4 class="font-headline-md text-headline-md">Get Involved</h4>
-        <p class="font-body-md text-body-md opacity-90">You don't need perfect writing — just share what you're comfortable with. Your story, in your words, is enough.</p>
+        <p class="font-body-md text-body-md opacity-90">You don't need perfect writing just share what you're comfortable with. Your story, in your words, is enough.</p>
         <a class="inline-flex items-center text-primary font-bold gap-2 group hover:gap-3 transition-all" href="./submit.html">
           Share your story <span class="material-symbols-outlined">arrow_forward</span>
         </a>
@@ -421,6 +448,22 @@ import { initSearch } from './js/search.js';
 updateNavForAuth();
 initSearch();
 
+// Dark mode toggle
+(function() {
+  const btn = document.getElementById('dark-mode-btn');
+  function syncBtn() {
+    const isDark = document.documentElement.classList.contains('dark');
+    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+    syncBtn();
+  });
+})();
+
 const cardColors = [
   { bg: 'bg-secondary-container', icon: 'hub', iconColor: 'text-on-secondary-container' },
   { bg: 'bg-tertiary-container', icon: 'gesture', iconColor: 'text-on-tertiary-container' },
@@ -446,7 +489,7 @@ function getCategoryIcon(category) {
 
 function articleCard(article, idx) {
   const color = cardColors[idx % cardColors.length];
-  const byline = 'Anonymous';
+  const byline = article.byline || 'Anonymous';
   const date = article.published_at
     ? new Date(article.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     : '';
@@ -519,7 +562,7 @@ function renderGrid(articles) {
 
 function articleCardList(article, idx) {
   const color = cardColors[idx % cardColors.length];
-  const byline = 'Anonymous';
+  const byline = article.byline || 'Anonymous';
   const date = article.published_at
     ? new Date(article.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     : '';

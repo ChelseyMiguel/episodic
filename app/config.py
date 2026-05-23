@@ -24,8 +24,8 @@ class Settings(BaseSettings):
     # Email (SendGrid)
     # Leave SENDGRID_API_KEY empty in development — emails will log to console instead.
     SENDGRID_API_KEY: str = ""
-    EMAIL_FROM: str = "noreply@episodic.org"
-    EMAIL_FROM_NAME: str = "Episodic"
+    EMAIL_FROM: str = "episodicmagazine@gmail.com"
+    EMAIL_FROM_NAME: str = "Episodic Magazine"
     # Used to build links inside emails (confirmation URLs, unsubscribe links, etc.)
     APP_BASE_URL: str = "http://localhost:8000"
 

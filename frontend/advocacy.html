@@ -110,7 +110,24 @@
     white-space: nowrap;
     direction: ltr;
   }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30, .dark .border-outline-variant\/20 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-on-background { color: #e6e4df !important; }
+  .dark .text-outline { color: #6e5c56 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
 </style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
 
@@ -127,8 +144,10 @@
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <div class="flex items-center gap-6">
-      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
       <a href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
     </div>
   </div>
@@ -167,7 +186,7 @@
   <!-- Mission Statement -->
   <section class="bg-surface-container-low py-16 md:py-24">
     <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center max-w-2xl mx-auto">
-      <p class="font-headline-md text-headline-md text-on-surface leading-relaxed">Episodic is a youth-led space where chronic illness and disability meet storytelling, advocacy, and community. We are just getting started — and we are building this with you.</p>
+      <p class="font-headline-md text-headline-md text-on-surface leading-relaxed">Episodic is a youth-led space where chronic illness and disability meet storytelling, advocacy, and community. We are just getting started and we are building this with you.</p>
     </div>
   </section>
 
@@ -269,7 +288,7 @@
           <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary leading-tight">Personal Mission</h2>
           <div class="space-y-5 font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
             <p>Everyone has their own lived experiences with chronic illness. Whether you are navigating those challenges yourself or grieving loved ones affected by them, I believe storytelling can become a powerful form of healing and closure of one's experience.</p>
-            <p class="text-on-surface font-semibold italic border-l-4 border-primary pl-5">"Hi, I'm Chelsey — a STEM enthusiast and advocate from Maui, Hawaiʻi. I am passionate about empowering youth to recognize the value and strength of their voices."</p>
+            <p class="text-on-surface font-semibold italic border-l-4 border-primary pl-5">"Hi, I'm Chelsey a STEM enthusiast and advocate from Maui, Hawaiʻi. I am passionate about empowering youth to recognize the value and strength of their voices."</p>
             <p>My hope is that this platform fosters a compassionate community where people can share their experiences openly, find comfort in one another's stories, and remind each other that no one has to go through illness alone.</p>
           </div>
           <a href="./submit.html" class="mt-2 self-start inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:shadow-xl hover:brightness-110 transition-all active:scale-95">
@@ -332,6 +351,22 @@
 <script type="module">
   import { initSearch } from './js/search.js';
   initSearch();
+
+  // Dark mode toggle
+  (function() {
+    const btn = document.getElementById('dark-mode-btn');
+    function syncBtn() {
+      const isDark = document.documentElement.classList.contains('dark');
+      btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+      btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    syncBtn();
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+      syncBtn();
+    });
+  })();
 
   document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
     e.preventDefault();

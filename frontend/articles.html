@@ -36,7 +36,25 @@
   .filter-chip { cursor: pointer; padding: 0.375rem 1rem; border-radius: 9999px; border: 1px solid #dac1ba; color: #54433e; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; transition: all 0.2s; }
   .filter-chip.active { background: #944931; color: #ffffff; border-color: #944931; }
   .filter-chip:not(.active):hover { border-color: #944931; color: #944931; }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer { background-color: #1a1816 !important; }
+  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-outline { color: #6e5c56 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark .filter-chip { border-color: #503c32; color: #b8a8a2; }
+  .dark .filter-chip.active { background: #944931; color: #fff; border-color: #944931; }
 </style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="font-body-md text-body-md">
 
@@ -52,8 +70,10 @@
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <div class="flex items-center gap-6">
-      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
       <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
     </div>
   </div>
@@ -153,13 +173,29 @@ import { initSearch } from './js/search.js';
 updateNavForAuth();
 initSearch();
 
+// Dark mode toggle
+(function() {
+  const btn = document.getElementById('dark-mode-btn');
+  function syncBtn() {
+    const isDark = document.documentElement.classList.contains('dark');
+    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+    syncBtn();
+  });
+})();
+
 const colorBlocks = ['bg-primary-container', 'bg-secondary-container', 'bg-tertiary-container'];
 let allArticles = [];
 let activeCategory = 'all';
 
 function articleCard(article, idx) {
   const color = colorBlocks[idx % 3];
-  const byline = 'Anonymous';
+  const byline = article.byline || 'Anonymous';
   const cwBadge = article.content_warnings && article.content_warnings.length
     ? `<span class="text-xs font-label-md bg-error-container text-on-error-container px-2 py-0.5 rounded-full">CW</span>`
     : '';

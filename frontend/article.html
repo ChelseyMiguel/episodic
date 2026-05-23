@@ -130,7 +130,54 @@
   .article-body h2, .article-body h3 { font-family: 'Literata', serif; font-size: 1.5em; font-weight: 600; color: #944931; margin: 2em 0 0.75em; }
   .article-body blockquote { margin: 2em 0; padding: 2rem 3rem; background: #f5f3ee; border-radius: 0.75rem; border-left: 8px solid #bc8694; font-style: italic; color: #48212d; }
   .blurred-content { filter: blur(6px); pointer-events: none; user-select: none; }
+
+  /* ── Dark mode overrides ── */
+  .dark body { background-color: #1c1a18; color: #e6e4df; }
+  .dark { background-color: #1c1a18; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-lowest { background-color: #141210 !important; }
+  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-primary-container\/10 { background-color: rgba(148,73,49,0.15) !important; }
+  .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30, .dark .border-outline-variant\/20 { border-color: rgba(80,60,50,0.6) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-on-background { color: #e6e4df !important; }
+  .dark .text-outline { color: #6e5c56 !important; }
+  .dark .article-body { color: #e0ddd8; }
+  .dark .article-body blockquote { background: #2a2826; color: #d4c8c2; }
+  .dark .skeleton { background: #2e2c2a; }
+  .dark .rounded-xl { border-color: rgba(80,60,50,0.3); }
+  .dark a.text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark nav a.text-on-surface-variant:hover { color: #ffb59e !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .text-secondary { color: #95bac8 !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark input, .dark textarea { background-color: #2a2826 !important; color: #e6e4df !important; border-color: #503c32 !important; }
+  .dark .reaction-circle { background-color: #2a2826 !important; }
+  .dark [data-reaction].active .reaction-circle { background-color: rgba(255,181,158,0.15) !important; }
+
+  /* ── Reaction button ── */
+  [data-reaction].active .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  [data-reaction] .reaction-count { min-width: 1em; display: block; text-align: center; transition: all 0.2s; }
+
+  /* ── Toast ── */
+  #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(60px); background: #1b1c19; color: #fbf9f4; border-radius: 9999px; padding: 0.5rem 1.25rem; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0; transition: opacity 0.25s, transform 0.3s; z-index: 9999; pointer-events: none; white-space: nowrap; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
+
+<script>
+  // Restore dark mode before paint to avoid flash
+  (function() {
+    if (localStorage.getItem('episodic_dark_mode') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  })();
+</script>
 </head>
 <body class="bg-background text-on-surface font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
 
@@ -152,7 +199,11 @@
         <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" data-dark-toggle title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+        <span class="material-symbols-outlined">dark_mode</span>
+      </button>
       <button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
         <span class="material-symbols-outlined">search</span>
       </button>
@@ -195,27 +246,32 @@
   <!-- Actual article content (hidden until loaded) -->
   <div id="article-main" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-gutter">
 
-    <!-- Left Sidebar: Accessibility & Social (Sticky) -->
-    <aside class="hidden lg:flex lg:col-span-1 flex-col gap-8 sticky top-24 h-fit">
-      <div class="flex flex-col gap-4">
-        <span class="text-caption font-caption text-outline uppercase tracking-widest">Tools</span>
-        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant hover:border-primary transition-all active:scale-95"
-          onclick="document.body.classList.toggle('text-xl')" title="Toggle Larger Text">
-          <span class="material-symbols-outlined">format_size</span>
+    <!-- Left Sidebar: Tools & Social (Sticky) -->
+    <aside class="hidden lg:flex lg:col-span-1 flex-col gap-6 sticky top-24 h-fit">
+      <div class="flex flex-col gap-3">
+        <span class="text-caption font-caption text-outline uppercase tracking-widest text-[10px]">Tools</span>
+        <!-- Text Size -->
+        <button id="font-size-btn" title="Toggle larger text" aria-label="Toggle larger text"
+          class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:border-primary transition-all active:scale-95">
+          <span class="material-symbols-outlined text-[20px]">format_size</span>
         </button>
-        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant hover:border-primary transition-all active:scale-95"
-          onclick="document.documentElement.classList.toggle('dark')" title="Toggle High Contrast / Dark Mode">
-          <span class="material-symbols-outlined">contrast</span>
+        <!-- Text to Speech -->
+        <button id="tts-btn" title="Read aloud" aria-label="Read aloud"
+          class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:border-primary transition-all active:scale-95">
+          <span class="material-symbols-outlined text-[20px]">record_voice_over</span>
         </button>
       </div>
-      <div class="flex flex-col gap-4">
-        <span class="text-caption font-caption text-outline uppercase tracking-widest">Share</span>
-        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all"
-          onclick="navigator.share ? navigator.share({title: document.title, url: location.href}) : navigator.clipboard.writeText(location.href)">
-          <span class="material-symbols-outlined">share</span>
+      <div class="flex flex-col gap-3">
+        <span class="text-caption font-caption text-outline uppercase tracking-widest text-[10px]">Save</span>
+        <!-- Bookmark -->
+        <button id="bookmark-btn" title="Bookmark" aria-label="Bookmark this story"
+          class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:border-primary transition-all active:scale-95">
+          <span class="material-symbols-outlined text-[20px]">bookmark</span>
         </button>
-        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all" title="Bookmark">
-          <span class="material-symbols-outlined">bookmark</span>
+        <!-- Share -->
+        <button id="share-btn" title="Share" aria-label="Share this story"
+          class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:border-primary transition-all active:scale-95">
+          <span class="material-symbols-outlined text-[20px]">share</span>
         </button>
       </div>
     </aside>
@@ -239,7 +295,7 @@
       <div class="flex flex-wrap items-center gap-4 mb-6">
         <span id="article-category-chip" class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md"></span>
         <span id="article-read-time" class="text-outline font-label-md text-label-md flex items-center gap-1">
-          <span class="material-symbols-outlined text-[18px]">schedule</span> — min read
+          <span class="material-symbols-outlined text-[18px]">schedule</span> min read
         </span>
         <span id="article-date" class="text-outline font-label-md text-label-md"></span>
       </div>
@@ -286,30 +342,34 @@
       <!-- Interaction Bar -->
       <div class="mt-16 p-6 border-y border-outline-variant bg-surface-container-lowest flex flex-col items-center gap-6">
         <span class="font-label-md text-label-md text-outline uppercase tracking-widest">How did this story resonate with you?</span>
-        <div class="flex gap-8">
-          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
-            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+        <div class="flex gap-6 md:gap-8 flex-wrap justify-center">
+          <button data-reaction="moved" class="group flex flex-col items-center gap-1 hover:scale-110 transition-transform active:scale-95">
+            <div class="reaction-circle w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
               <span class="material-symbols-outlined text-primary text-[28px]">favorite</span>
             </div>
             <span class="text-caption font-label-md text-on-surface-variant">Moved</span>
+            <span class="reaction-count text-caption font-caption text-outline text-[12px]" data-count></span>
           </button>
-          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
-            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+          <button data-reaction="seen" class="group flex flex-col items-center gap-1 hover:scale-110 transition-transform active:scale-95">
+            <div class="reaction-circle w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
               <span class="material-symbols-outlined text-primary text-[28px]">visibility</span>
             </div>
             <span class="text-caption font-label-md text-on-surface-variant">Seen</span>
+            <span class="reaction-count text-caption font-caption text-outline text-[12px]" data-count></span>
           </button>
-          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
-            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+          <button data-reaction="powerful" class="group flex flex-col items-center gap-1 hover:scale-110 transition-transform active:scale-95">
+            <div class="reaction-circle w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
               <span class="material-symbols-outlined text-primary text-[28px]">bolt</span>
             </div>
             <span class="text-caption font-label-md text-on-surface-variant">Powerful</span>
+            <span class="reaction-count text-caption font-caption text-outline text-[12px]" data-count></span>
           </button>
-          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
-            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+          <button data-reaction="informed" class="group flex flex-col items-center gap-1 hover:scale-110 transition-transform active:scale-95">
+            <div class="reaction-circle w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
               <span class="material-symbols-outlined text-primary text-[28px]">lightbulb</span>
             </div>
             <span class="text-caption font-label-md text-on-surface-variant">Informed</span>
+            <span class="reaction-count text-caption font-caption text-outline text-[12px]" data-count></span>
           </button>
         </div>
       </div>
@@ -435,6 +495,9 @@
   </div>
 </footer>
 
+<!-- Toast notification -->
+<div id="toast" role="status" aria-live="polite"></div>
+
 <script>
   // Reading progress bar
   window.addEventListener('scroll', () => {
@@ -451,6 +514,8 @@ import { updateNavForAuth } from './js/auth.js';
 
 updateNavForAuth();
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
 function formatDate(dateStr) {
   if (!dateStr) return '';
   return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -461,6 +526,224 @@ function calcReadTime(text) {
   const words = text.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(words / 200));
 }
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// ── Dark Mode ─────────────────────────────────────────────────────────────────
+
+function updateDarkBtn() {
+  const isDark = document.documentElement.classList.contains('dark');
+  const btn = document.getElementById('dark-mode-btn');
+  if (!btn) return;
+  const icon = btn.querySelector('.material-symbols-outlined');
+  icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+  btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+}
+updateDarkBtn(); // sync on load
+
+document.getElementById('dark-mode-btn').addEventListener('click', () => {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+  updateDarkBtn();
+});
+
+// Font size toggle
+document.getElementById('font-size-btn').addEventListener('click', () => {
+  const bodyEl = document.getElementById('article-body');
+  const isLarge = bodyEl.style.fontSize === '21px';
+  bodyEl.style.fontSize = isLarge ? '' : '21px';
+  bodyEl.style.lineHeight = isLarge ? '' : '2';
+  document.getElementById('font-size-btn').classList.toggle('text-primary', !isLarge);
+  showToast(isLarge ? 'Text size reset' : 'Larger text on');
+});
+
+// ── Text-to-Speech ────────────────────────────────────────────────────────────
+
+let ttsSpeaking = false;
+let ttsUtterance = null;
+
+document.getElementById('tts-btn').addEventListener('click', () => {
+  const btn = document.getElementById('tts-btn');
+  const icon = btn.querySelector('.material-symbols-outlined');
+
+  if (ttsSpeaking) {
+    window.speechSynthesis.cancel();
+    ttsSpeaking = false;
+    icon.textContent = 'record_voice_over';
+    btn.title = 'Read aloud';
+    btn.classList.remove('text-primary', 'border-primary');
+    showToast('Reading stopped');
+    return;
+  }
+
+  const titleText = document.getElementById('article-title').textContent || '';
+  const bodyText = document.getElementById('article-body').innerText || '';
+  const fullText = (titleText + '. ' + bodyText).trim();
+
+  if (!fullText || !window.speechSynthesis) {
+    showToast('Text-to-speech not supported in this browser');
+    return;
+  }
+
+  ttsUtterance = new SpeechSynthesisUtterance(fullText);
+  ttsUtterance.rate = 0.92;
+  ttsUtterance.pitch = 1;
+
+  ttsUtterance.onend = () => {
+    ttsSpeaking = false;
+    icon.textContent = 'record_voice_over';
+    btn.title = 'Read aloud';
+    btn.classList.remove('text-primary', 'border-primary');
+  };
+  ttsUtterance.onerror = () => {
+    ttsSpeaking = false;
+    icon.textContent = 'record_voice_over';
+    btn.classList.remove('text-primary', 'border-primary');
+  };
+
+  window.speechSynthesis.speak(ttsUtterance);
+  ttsSpeaking = true;
+  icon.textContent = 'stop_circle';
+  btn.title = 'Stop reading';
+  btn.classList.add('text-primary', 'border-primary');
+  showToast('Reading aloud... tap again to stop');
+});
+
+// ── Reactions (localStorage) ──────────────────────────────────────────────────
+
+function getReactions(slug) {
+  try {
+    const stored = localStorage.getItem(`episodic_reactions_${slug}`);
+    if (stored) return JSON.parse(stored);
+  } catch (_) {}
+  return { moved: 0, seen: 0, powerful: 0, informed: 0, myReaction: null };
+}
+
+function saveReactions(slug, data) {
+  localStorage.setItem(`episodic_reactions_${slug}`, JSON.stringify(data));
+}
+
+function updateReactionUI(data) {
+  document.querySelectorAll('[data-reaction]').forEach(btn => {
+    const type = btn.dataset.reaction;
+    const count = data[type] || 0;
+    const isActive = data.myReaction === type;
+
+    const countEl = btn.querySelector('[data-count]');
+    if (countEl) countEl.textContent = count > 0 ? count : '';
+
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (isActive) {
+      icon.style.fontVariationSettings = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+      btn.classList.add('active');
+      btn.querySelector('.reaction-circle').style.backgroundColor = 'rgba(148,73,49,0.12)';
+    } else {
+      icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+      btn.classList.remove('active');
+      btn.querySelector('.reaction-circle').style.backgroundColor = '';
+    }
+  });
+}
+
+function initReactions(slug) {
+  const data = getReactions(slug);
+  updateReactionUI(data);
+
+  document.querySelectorAll('[data-reaction]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.reaction;
+      const r = getReactions(slug);
+
+      if (r.myReaction === type) {
+        // un-react
+        r[type] = Math.max(0, (r[type] || 0) - 1);
+        r.myReaction = null;
+        showToast('Reaction removed');
+      } else {
+        // remove old, add new
+        if (r.myReaction) {
+          r[r.myReaction] = Math.max(0, (r[r.myReaction] || 0) - 1);
+        }
+        r[type] = (r[type] || 0) + 1;
+        r.myReaction = type;
+        const labels = { moved: 'Moved', seen: 'Seen', powerful: 'Powerful', informed: 'Informed' };
+        showToast(`Marked as "${labels[type]}"`);
+      }
+
+      saveReactions(slug, r);
+      updateReactionUI(r);
+    });
+  });
+}
+
+// ── Bookmark (localStorage) ───────────────────────────────────────────────────
+
+function getBookmarks() {
+  try { return JSON.parse(localStorage.getItem('episodic_bookmarks') || '[]'); }
+  catch (_) { return []; }
+}
+
+function updateBookmarkBtn(slug) {
+  const btn = document.getElementById('bookmark-btn');
+  if (!btn) return;
+  const isBookmarked = getBookmarks().includes(slug);
+  const icon = btn.querySelector('.material-symbols-outlined');
+  icon.style.fontVariationSettings = isBookmarked
+    ? "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24"
+    : "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+  btn.title = isBookmarked ? 'Remove bookmark' : 'Bookmark this story';
+  if (isBookmarked) {
+    btn.classList.add('text-primary', 'border-primary');
+  } else {
+    btn.classList.remove('text-primary', 'border-primary');
+  }
+}
+
+function initBookmark(slug) {
+  updateBookmarkBtn(slug);
+  document.getElementById('bookmark-btn').addEventListener('click', () => {
+    let bookmarks = getBookmarks();
+    const idx = bookmarks.indexOf(slug);
+    if (idx >= 0) {
+      bookmarks.splice(idx, 1);
+      showToast('Bookmark removed');
+    } else {
+      bookmarks.push(slug);
+      showToast('Story bookmarked!');
+    }
+    localStorage.setItem('episodic_bookmarks', JSON.stringify(bookmarks));
+    updateBookmarkBtn(slug);
+  });
+}
+
+// ── Share ─────────────────────────────────────────────────────────────────────
+
+function initShare() {
+  document.getElementById('share-btn').addEventListener('click', async () => {
+    const title = document.getElementById('article-title').textContent || document.title;
+    const url = window.location.href;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+      } catch (_) { /* user cancelled */ }
+    } else {
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast('Link copied to clipboard!');
+      } catch (_) {
+        showToast('Copy this link: ' + url);
+      }
+    }
+  });
+}
+
+// ── Related Stories ───────────────────────────────────────────────────────────
 
 function relatedCard(article, colorClass) {
   const cat = article.category || 'Essay';
@@ -490,6 +773,8 @@ async function loadRelated(currentSlug) {
   }
 }
 
+// ── Load Article ──────────────────────────────────────────────────────────────
+
 async function loadArticle() {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get('slug');
@@ -501,6 +786,11 @@ async function loadArticle() {
     err.classList.remove('hidden');
     return;
   }
+
+  // Wire share + bookmark now (slug known)
+  initShare();
+  initBookmark(slug);
+  initReactions(slug);
 
   try {
     const article = await api.articles.get(slug);
@@ -582,11 +872,19 @@ async function loadArticle() {
       ).join('');
     }
 
-    // Author bio
-    const isAnon = true;
-    const authorName = isAnon ? 'Anonymous' : (article.contributor_name || article.author || 'Anonymous');
+    // Author byline -- use derived byline from API (safe, already resolves anonymous/named)
+    const authorName = article.byline || 'Anonymous';
     document.getElementById('author-name').textContent = authorName;
-    if (article.contributor_bio || article.bio) {
+
+    // Chelsey-specific bio on the article page
+    if (authorName === 'Chelsey Miguel') {
+      document.getElementById('author-bio').textContent =
+        'Chelsey is the founder of Episodic Magazine and a STEM enthusiast from Maui, Hawaiʻi. She writes about living with lupus, navigating high school with a chronic illness, and finding community through words.';
+      // Replace icon with headshot
+      const bioSection = document.getElementById('author-bio-section');
+      const avatarEl = bioSection.querySelector('.rounded-full');
+      avatarEl.innerHTML = '<img src="./assets/chelsey-headshot.jpg" alt="Chelsey Miguel" class="w-full h-full object-cover rounded-full" />';
+    } else if (article.contributor_bio || article.bio) {
       document.getElementById('author-bio').textContent = article.contributor_bio || article.bio;
     }
 
@@ -605,16 +903,15 @@ async function loadArticle() {
   }
 }
 
-// Reflection submit (show success state, log intent)
+// ── Reflection submit ─────────────────────────────────────────────────────────
 document.getElementById('reflection-btn').addEventListener('click', () => {
   const text = document.getElementById('reflection-text').value.trim();
   if (!text) return;
   document.getElementById('reflection-form').classList.add('hidden');
   document.getElementById('reflection-success').classList.remove('hidden');
-  console.log('Reflection submitted:', text);
 });
 
-// Newsletter subscribe
+// ── Newsletter subscribe ──────────────────────────────────────────────────────
 document.getElementById('newsletter-btn').addEventListener('click', async () => {
   const email = document.getElementById('newsletter-email').value.trim();
   const errEl = document.getElementById('newsletter-error');
