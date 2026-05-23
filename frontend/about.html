@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About | Episodic Magazine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {"primary":"#944931","on-primary":"#ffffff","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","primary-fixed-dim":"#ffb59e","on-primary-fixed-variant":"#76321c","primary-container":"#d67d61","on-primary-container":"#551905","secondary":"#4c616c","on-secondary":"#ffffff","secondary-container":"#cce3f0","on-secondary-container":"#506670","tertiary":"#80515e","on-tertiary":"#ffffff","tertiary-container":"#bc8694","on-tertiary-container":"#48212d","surface":"#fbf9f4","surface-container-low":"#f5f3ee","surface-container":"#f0eee9","surface-container-high":"#eae8e3","surface-container-highest":"#e4e2dd","surface-container-lowest":"#ffffff","on-surface":"#1b1c19","on-surface-variant":"#54433e","outline":"#87736d","outline-variant":"#dac1ba","background":"#fbf9f4","on-background":"#1b1c19"},
+      fontFamily: {"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-md":["Literata"],"label-md":["Plus Jakarta Sans"],"caption":["Plus Jakarta Sans"],"display-lg":["Literata"],"headline-lg":["Literata"]},
+      fontSize: {"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}]},
+      spacing: {"margin-desktop":"64px","margin-mobile":"20px","container-max":"1280px","gutter":"24px","unit":"8px"}
+    }}
+  }
+</script>
+<style>
+  body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+  .reading-progress-bar { height: 3px; background: #bc8694; position: fixed; top: 0; left: 0; z-index: 100; transition: width 0.1s ease-out; width: 0%; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { opacity: 0; }
+  .fade-up.visible { animation: fadeUp 0.7s ease forwards; }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .bg-surface-container-lowest { background-color: #141210 !important; }
+  .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .bg-primary-container { background-color: #5c2a18 !important; }
+  .dark .bg-tertiary-container { background-color: #4a2e35 !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-on-background { color: #e6e4df !important; }
+  .dark .text-outline { color: #6e5c56 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+</style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+
+<div class="reading-progress-bar" id="progress-bar"></div>
+
+<!-- Nav -->
+<header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
+  <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
+    <div class="flex items-center gap-12">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0">
+        <img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" />
+      </a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <a href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="relative py-24 md:py-32 overflow-hidden px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-container-max mx-auto">
+      <div class="max-w-4xl fade-up">
+        <span class="font-label-md text-label-md text-primary uppercase tracking-widest mb-6 block">Our Story</span>
+        <h1 class="font-display-lg text-display-lg md:text-[72px] md:leading-[1.05] mb-8 text-on-surface">
+          A sanctuary for the <span class="italic text-primary">resilient</span>, the poetic, and the chronically bold.
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          Episodic is more than a magazine. It is a living record of lives shaped by illness, documented with the precision of a literary journal and the heart of a grassroots movement.
+        </p>
+      </div>
+    </div>
+    <!-- Decorative -->
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-primary-fixed opacity-10 -z-10 translate-x-1/2 -skew-x-12 pointer-events-none"></div>
+  </section>
+
+  <!-- Our Why -->
+  <section class="py-16 md:py-24 bg-surface-container-low">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Photo -->
+        <div class="fade-up order-2 lg:order-1">
+          <div class="relative">
+            <div class="w-full h-[480px] rounded-2xl overflow-hidden">
+              <img src="./assets/chelsey-science.jpg" alt="Chelsey at a science fair presenting her research"
+                class="w-full h-full object-cover object-top" />
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-4 -right-4 bg-surface rounded-xl p-4 shadow-lg border border-outline-variant/30 max-w-[180px]">
+              <p class="font-label-md text-label-md text-primary">Chelsey Miguel</p>
+              <p class="font-caption text-caption text-on-surface-variant">Founder &amp; Editor-in-Chief</p>
+            </div>
+          </div>
+        </div>
+        <!-- Text -->
+        <div class="fade-up order-1 lg:order-2 space-y-6">
+          <h2 class="font-headline-lg text-headline-lg">Our Why</h2>
+          <p class="font-body-lg text-body-lg leading-relaxed text-on-surface">
+            In a world that often views chronic illness as a tragedy to be fixed or a burden to be hidden, we choose to see it as a vantage point. Episodic's mission is to amplify the voices of those navigating fluctuating health, turning lived experience into art, advocacy, and community.
+          </p>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            We believe that illness does not pause a life. It creates a different kind of life. One that is episodic, rhythmic, and deeply profound. Through honest storytelling and thoughtful curation, we bridge the gap between the clinical and the human.
+          </p>
+          <a href="./advocacy.html" class="inline-flex items-center gap-2 font-label-md text-label-md text-primary border-b border-primary pb-1 hover:opacity-70 transition-all">
+            Read our Advocacy work
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial Values -->
+  <section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface">
+    <div class="max-w-container-max mx-auto">
+      <div class="mb-12 fade-up">
+        <h2 class="font-headline-lg text-headline-lg">Editorial Values</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-2">The pillars that uphold every page we publish.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        <div class="fade-up group">
+          <div class="h-40 bg-primary-container rounded-xl mb-6 flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+            <span class="material-symbols-outlined text-5xl text-on-primary-container opacity-40">edit_note</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md mb-3">Authenticity</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant">We don't sugarcoat the "bad days," nor do we romanticize the struggle. We seek the raw, unpolished truth of what it means to live in a body that demands attention.</p>
+        </div>
+        <div class="fade-up group">
+          <div class="h-40 bg-secondary-container rounded-xl mb-6 flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+            <span class="material-symbols-outlined text-5xl text-on-secondary-container opacity-40">accessibility_new</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md mb-3">Accessibility</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant">Design is an act of care. From cognitive load to physical interaction, our digital space is built for everyone, regardless of their current capacity.</p>
+        </div>
+        <div class="fade-up group">
+          <div class="h-40 bg-tertiary-container rounded-xl mb-6 flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+            <span class="material-symbols-outlined text-5xl text-on-tertiary-container opacity-40">self_improvement</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md mb-3">Resilience</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant">Resilience isn't just about "getting through it." It's about the creativity and wisdom found in adaptation. We celebrate the art of the pivot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder's Letter -->
+  <section class="py-24 bg-surface-container-highest relative overflow-hidden">
+    <div class="max-w-3xl mx-auto px-margin-mobile relative z-10 fade-up">
+      <div class="bg-surface p-8 md:p-14 rounded-2xl shadow-sm border border-outline-variant/20">
+        <span class="material-symbols-outlined text-primary text-5xl mb-6 block opacity-20" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;">format_quote</span>
+        <h2 class="font-headline-lg text-headline-lg mb-8 italic">A Letter from the Founder</h2>
+        <div class="font-body-lg text-body-lg text-on-surface space-y-5 leading-relaxed">
+          <p>
+            "When I started Episodic, I was searching for a space that felt like me. I didn't want a medical journal, and I didn't want a support group. I wanted a gallery. A place where my poems and my advocacy could coexist with the reality of my medical charts."
+          </p>
+          <p>
+            "I was recently diagnosed with lupus and found myself grieving the version of myself I used to be, the girl who could sprint effortlessly, who raised her hand without hesitation, who showed up every day. This magazine is my way of saying that your experience has value, not in spite of your illness, but because of the perspective it grants you."
+          </p>
+          <p>
+            "Thank you for being part of this. We are just getting started."
+          </p>
+        </div>
+        <div class="mt-10 flex items-center gap-5">
+          <img src="./assets/chelsey-headshot.jpg" alt="Chelsey Miguel"
+            class="w-16 h-16 rounded-full object-cover border-4 border-surface-container-low" />
+          <div>
+            <p class="font-label-md text-label-md text-on-surface">Chelsey Miguel</p>
+            <p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest">Founder &amp; Editor-in-Chief</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute left-0 bottom-0 w-full h-1/2 bg-primary opacity-5 -skew-y-3 origin-bottom-left pointer-events-none"></div>
+  </section>
+
+  <!-- About Chelsey -->
+  <section class="py-24 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-container-max mx-auto">
+      <div class="fade-up mb-12">
+        <h2 class="font-headline-lg text-headline-lg">About the Founder</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-2">The person behind the pages.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <div class="fade-up space-y-5 font-body-lg text-body-lg text-on-surface leading-relaxed">
+          <p>
+            Chelsey Miguel is a STEM enthusiast, writer, and disability advocate from Maui, Hawaiʻi. She founded Episodic Magazine after being diagnosed with lupus during high school, a diagnosis that changed not just her health, but her understanding of what it means to show up fully in a world not built for unpredictable bodies.
+          </p>
+          <p>
+            As a Native Hawaiian and Pacific Islander, Chelsey knows firsthand how chronic illness intersects with identity, community, and access. Her writing spans poetry, personal essay, and op-ed, all rooted in the belief that lived experience is its own form of expertise.
+          </p>
+          <p>
+            She has worked with the Hawaii Department of Education to advocate for stronger chronic illness accommodations under Section 504, and her op-ed on the subject was published in <em>Honolulu Civil Beat</em>.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-4">
+            <a href="./articles.html" class="inline-flex items-center gap-2 font-label-md text-label-md text-primary border border-primary px-5 py-2 rounded-full hover:bg-primary hover:text-on-primary transition-all">
+              Read her work
+            </a>
+            <a href="./advocacy.html" class="inline-flex items-center gap-2 font-label-md text-label-md text-on-surface-variant border border-outline-variant px-5 py-2 rounded-full hover:border-primary hover:text-primary transition-all">
+              Advocacy
+            </a>
+          </div>
+        </div>
+        <div class="fade-up grid grid-cols-2 gap-4">
+          <div class="rounded-2xl overflow-hidden aspect-[4/5]">
+            <img src="./assets/chelsey-headshot.jpg" alt="Chelsey Miguel" class="w-full h-full object-cover" />
+          </div>
+          <div class="rounded-2xl overflow-hidden aspect-[4/5] mt-8">
+            <img src="./assets/chelsey-science.jpg" alt="Chelsey presenting at a science fair" class="w-full h-full object-cover object-top" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats / Impact -->
+  <section class="py-16 bg-surface-container-low px-margin-mobile md:px-margin-desktop fade-up">
+    <div class="max-w-container-max mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="space-y-2">
+          <p class="font-display-lg text-[40px] leading-none text-primary font-bold">7</p>
+          <p class="font-label-md text-label-md text-on-surface-variant">Pieces Published</p>
+        </div>
+        <div class="space-y-2">
+          <p class="font-display-lg text-[40px] leading-none text-primary font-bold">1</p>
+          <p class="font-label-md text-label-md text-on-surface-variant">Issue Released</p>
+        </div>
+        <div class="space-y-2">
+          <p class="font-display-lg text-[40px] leading-none text-primary font-bold">1</p>
+          <p class="font-label-md text-label-md text-on-surface-variant">Op-Ed in Civil Beat</p>
+        </div>
+        <div class="space-y-2">
+          <p class="font-display-lg text-[40px] leading-none text-primary font-bold">100%</p>
+          <p class="font-label-md text-label-md text-on-surface-variant">Youth-Led</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 px-margin-mobile md:px-margin-desktop text-center fade-up">
+    <div class="max-w-2xl mx-auto space-y-6">
+      <h2 class="font-headline-lg text-headline-lg">Want to be part of this?</h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant">Episodic is for everyone navigating chronic illness — whether you write, draw, photograph, or just have something to say. You don't need perfect words. Just your truth.</p>
+      <div class="flex flex-wrap justify-center gap-4 pt-4">
+        <a href="./submit.html" class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">
+          Submit Your Work
+        </a>
+        <a href="./resources.html" class="border border-outline text-on-surface-variant px-8 py-3 rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-all">
+          Browse Resources
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant/20 mt-8">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-2">
+      <img src="./assets/logo.png" alt="Episodic" class="h-10 w-auto" />
+      <p class="font-body-md text-on-surface-variant">A Living Literary Magazine.</p>
+      <p class="font-caption text-caption text-outline">© 2026 Episodic Magazine. Created for the community, by the community.</p>
+    </div>
+    <nav class="flex flex-wrap gap-x-8 gap-y-3">
+      <a href="./privacy.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Privacy Policy</a>
+      <a href="./accessibility.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Accessibility</a>
+      <a href="./resources.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Resources</a>
+      <a href="./submit.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Submit Work</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // Reading progress
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('progress-bar').style.width = (height > 0 ? (winScroll/height)*100 : 0) + '%';
+  });
+
+  // Dark mode
+  (function() {
+    const btn = document.getElementById('dark-mode-btn');
+    function syncBtn() {
+      const isDark = document.documentElement.classList.contains('dark');
+      btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+      btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    syncBtn();
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+      syncBtn();
+    });
+  })();
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
