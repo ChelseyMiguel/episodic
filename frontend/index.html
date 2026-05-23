@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Episodic Magazine | Modern Editorial for Community Advocacy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-container": "#48212d",
+          "inverse-surface": "#30312e",
+          "surface-dim": "#dbdad5",
+          "on-error": "#ffffff",
+          "secondary-fixed-dim": "#b3cad6",
+          "inverse-primary": "#ffb59e",
+          "tertiary-fixed-dim": "#f3b6c6",
+          "primary-fixed": "#ffdbd0",
+          "on-primary-container": "#551905",
+          "secondary-container": "#cce3f0",
+          "surface": "#fbf9f4",
+          "on-secondary-fixed-variant": "#344a54",
+          "secondary-fixed": "#cfe6f3",
+          "tertiary-fixed": "#ffd9e1",
+          "outline-variant": "#dac1ba",
+          "on-secondary-container": "#506670",
+          "on-tertiary-fixed-variant": "#653a47",
+          "error-container": "#ffdad6",
+          "tertiary": "#80515e",
+          "on-secondary": "#ffffff",
+          "primary": "#944931",
+          "on-background": "#1b1c19",
+          "surface-bright": "#fbf9f4",
+          "outline": "#87736d",
+          "on-tertiary": "#ffffff",
+          "surface-tint": "#944931",
+          "on-error-container": "#93000a",
+          "primary-container": "#d67d61",
+          "surface-container-high": "#eae8e3",
+          "on-surface-variant": "#54433e",
+          "background": "#fbf9f4",
+          "primary-fixed-dim": "#ffb59e",
+          "on-secondary-fixed": "#061e27",
+          "inverse-on-surface": "#f2f1ec",
+          "error": "#ba1a1a",
+          "surface-container-low": "#f5f3ee",
+          "surface-variant": "#e4e2dd",
+          "on-primary-fixed": "#3a0b00",
+          "tertiary-container": "#bc8694",
+          "secondary": "#4c616c",
+          "on-primary": "#ffffff",
+          "on-surface": "#1b1c19",
+          "on-primary-fixed-variant": "#76321c",
+          "surface-container-lowest": "#ffffff",
+          "on-tertiary-fixed": "#330f1c",
+          "surface-container": "#f0eee9",
+          "surface-container-highest": "#e4e2dd"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin-desktop": "64px",
+          "container-max": "1280px",
+          "unit": "8px",
+          "gutter": "24px",
+          "margin-mobile": "20px"
+        },
+        "fontFamily": {
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "headline-md": ["Literata"],
+          "headline-lg-mobile": ["Literata"],
+          "label-md": ["Plus Jakarta Sans"],
+          "caption": ["Plus Jakarta Sans"],
+          "display-lg": ["Literata"],
+          "headline-lg": ["Literata"]
+        },
+        "fontSize": {
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+          "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-scroll {
+    animation: ticker 30s linear infinite;
+    display: inline-flex;
+    gap: 3rem;
+  }
+  .ticker-scroll:hover { animation-play-state: paused; }
+  .sparkle-btn:active .material-symbols-outlined {
+    animation: sparkle 0.4s ease-out;
+  }
+  @keyframes sparkle {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
+  .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
+</style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 border-b border-outline-variant/30">
+  <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
+    <div class="flex items-center gap-12">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-all" href="./issues.html">Issues</a>
+        <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
+        <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-6">
+      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop space-y-16 mt-8">
+
+  <!-- Hero Section: Latest Issue -->
+  <section class="relative rounded-xl overflow-hidden group border border-outline-variant/20" id="hero-section">
+    <!-- Hero: image is always visible; text overlay updates from API -->
+    <div id="hero-content" class="aspect-[21/9] w-full relative">
+      <img
+        src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1600&q=80"
+        alt="Open literary magazine on a warm surface"
+        class="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-1000"
+        id="hero-bg"
+      />
+      <div class="absolute inset-0 bg-on-background/50"></div>
+      <div class="absolute bottom-0 left-0 p-12 w-full md:w-2/3">
+        <span id="hero-volume-chip" class="inline-block bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-label-md text-label-md mb-4 shadow-sm">Episodic</span>
+        <h1 id="hero-title" class="font-display-lg text-display-lg text-white mb-6 leading-tight drop-shadow-md">The latest from our community of writers and advocates.</h1>
+        <div class="flex gap-4">
+          <a id="hero-read-btn" href="./issues.html" class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:shadow-xl hover:brightness-110 transition-all active:scale-95">Read the Issue</a>
+          <a href="./articles.html" class="bg-white/10 backdrop-blur-md text-white border border-white/30 px-8 py-3 rounded-lg font-label-md text-label-md hover:bg-white hover:text-on-background transition-all active:scale-95">About the Authors</a>
+        </div>
+      </div>
+    </div>
+    <div id="hero-error" class="hidden error-banner m-4"></div>
+  </section>
+
+  <!-- Community Pulse & Live Ticker Bar -->
+  <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+    <div class="md:col-span-12 bg-secondary-container/30 border border-secondary-container rounded-xl p-4 overflow-hidden relative flex items-center">
+      <div class="shrink-0 flex items-center gap-2 bg-secondary-container px-4 py-1 rounded-full text-on-secondary-container font-label-md text-label-md z-10 shadow-sm mr-6">
+        <span class="material-symbols-outlined text-sm animate-pulse">radio_button_checked</span>
+        Live from the Community
+      </div>
+      <div class="flex-1 overflow-hidden h-6">
+        <div class="ticker-scroll whitespace-nowrap">
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Resilience is not a fixed state, but a fluid one." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"My bed is a sanctuary, my pen is a sword." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Advocacy starts with the radical act of resting." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"We are not invisible; we are just seen differently." — Anonymous</span>
+          <!-- Duplicate for seamless loop -->
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Resilience is not a fixed state, but a fluid one." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"My bed is a sanctuary, my pen is a sword." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"Advocacy starts with the radical act of resting." — Anonymous</span>
+          <span class="font-body-md text-on-secondary-container italic mr-12">"We are not invisible; we are just seen differently." — Anonymous</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area with SideNav Context -->
+  <div class="grid grid-cols-12 gap-gutter">
+    <!-- Side Controls -->
+    <aside class="col-span-12 lg:col-span-3 flex flex-col gap-8">
+      <div class="bg-surface-container-low p-6 rounded-xl space-y-6 border border-outline-variant/10 shadow-sm">
+        <div>
+          <h3 class="font-headline-md text-headline-md text-primary mb-4">Filter &amp; Sort</h3>
+          <div class="space-y-4">
+            <div class="relative">
+              <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Topic / Tag</label>
+              <select id="filter-tag" class="w-full p-3 pr-10 bg-surface border border-outline-variant/20 rounded-lg font-label-md text-label-md text-on-surface appearance-none cursor-pointer hover:bg-surface-variant hover:border-primary/30 transition-all focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                <option value="">All Topics</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-[calc(50%+10px)] -translate-y-1/2 text-on-surface-variant pointer-events-none text-base">expand_more</span>
+            </div>
+            <div class="relative">
+              <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Category</label>
+              <select id="filter-category" class="w-full p-3 pr-10 bg-surface border border-outline-variant/20 rounded-lg font-label-md text-label-md text-on-surface appearance-none cursor-pointer hover:bg-surface-variant hover:border-primary/30 transition-all focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                <option value="">All Categories</option>
+                <option value="essay">Essay</option>
+                <option value="poetry">Poetry</option>
+                <option value="op_ed">Op-Ed</option>
+                <option value="interview">Interview</option>
+                <option value="visual_art">Visual Art</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-[calc(50%+10px)] -translate-y-1/2 text-on-surface-variant pointer-events-none text-base">expand_more</span>
+            </div>
+            <div class="relative">
+              <label class="block font-label-md text-label-md text-on-surface-variant mb-1">Sort By</label>
+              <select id="filter-sort" class="w-full p-3 pr-10 bg-surface border border-outline-variant/20 rounded-lg font-label-md text-label-md text-on-surface appearance-none cursor-pointer hover:bg-surface-variant hover:border-primary/30 transition-all focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-[calc(50%+10px)] -translate-y-1/2 text-on-surface-variant pointer-events-none text-base">expand_more</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-6 border-t border-outline-variant">
+          <button id="apply-filters" class="w-full bg-primary-container text-on-primary-container font-bold py-3 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:brightness-105 hover:shadow-md active:scale-[0.98] transition-all">
+            <span class="material-symbols-outlined">filter_list</span> Apply Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Community Pulse: Interactive Poll -->
+      <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/20 shadow-sm">
+        <h4 class="font-headline-md text-headline-md text-tertiary mb-2">Community Pulse</h4>
+        <p class="font-body-md text-on-surface-variant mb-6">What does resilience look like to you today?</p>
+        <div class="space-y-3">
+          <button class="w-full text-left p-4 bg-surface rounded-lg border border-outline-variant/30 hover:border-primary hover:bg-primary-fixed/20 transition-all group flex justify-between items-center active:scale-[0.99]">
+            <span class="font-label-md text-label-md">Creative Expression</span>
+            </button>
+          <button class="w-full text-left p-4 bg-surface rounded-lg border border-outline-variant/30 hover:border-primary hover:bg-primary-fixed/20 transition-all group flex justify-between items-center active:scale-[0.99]">
+            <span class="font-label-md text-label-md">Rest and Recovery</span>
+          </button>
+          <button class="w-full text-left p-4 bg-surface rounded-lg border border-outline-variant/30 hover:border-primary hover:bg-primary-fixed/20 transition-all group flex justify-between items-center active:scale-[0.99]">
+            <span class="font-label-md text-label-md">Community Connection</span>
+          </button>
+          <button class="w-full text-left p-4 bg-surface rounded-lg border border-outline-variant/30 hover:border-primary hover:bg-primary-fixed/20 transition-all group flex justify-between items-center active:scale-[0.99]">
+            <span class="font-label-md text-label-md">Policy Advocacy</span>
+          </button>
+        </div>
+        <p class="mt-4 text-caption text-outline text-center">Be the first to respond.</p>
+      </div>
+
+      <div class="bg-tertiary-container/20 p-6 rounded-xl text-on-tertiary-container space-y-4 border border-tertiary-container/30">
+        <h4 class="font-headline-md text-headline-md">Get Involved</h4>
+        <p class="font-body-md text-body-md opacity-90">You don't need perfect writing — just share what you're comfortable with. Your story, in your words, is enough.</p>
+        <a class="inline-flex items-center text-primary font-bold gap-2 group hover:gap-3 transition-all" href="./submit.html">
+          Share your story <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Stories Grid -->
+    <div class="col-span-12 lg:col-span-9">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="font-headline-lg text-headline-lg">Featured Stories</h2>
+        <div class="flex bg-surface-container rounded-lg p-1 border border-outline-variant/20">
+          <button id="btn-grid" class="px-4 py-2 bg-white shadow-sm rounded-md font-label-md text-label-md flex items-center gap-2 hover:bg-surface-bright transition-colors">
+            <span class="material-symbols-outlined text-base">grid_view</span> Grid
+          </button>
+          <button id="btn-list" class="px-4 py-2 text-on-surface-variant font-label-md text-label-md flex items-center gap-2 hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-base">list</span> List
+          </button>
+        </div>
+      </div>
+
+      <!-- Story Grid -->
+      <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+        <!-- Skeleton cards -->
+        <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10">
+          <div class="h-48 skeleton"></div>
+          <div class="p-8 space-y-4 bg-surface flex-grow">
+            <div class="skeleton h-3 w-24 rounded-full"></div>
+            <div class="skeleton h-6 w-full rounded"></div>
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="flex justify-between"><div class="skeleton h-4 w-32 rounded"></div><div class="skeleton h-4 w-16 rounded"></div></div>
+          </div>
+        </div>
+        <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10">
+          <div class="h-48 skeleton"></div>
+          <div class="p-8 space-y-4 bg-surface flex-grow">
+            <div class="skeleton h-3 w-24 rounded-full"></div>
+            <div class="skeleton h-6 w-full rounded"></div>
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="flex justify-between"><div class="skeleton h-4 w-32 rounded"></div><div class="skeleton h-4 w-16 rounded"></div></div>
+          </div>
+        </div>
+        <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10">
+          <div class="h-48 skeleton"></div>
+          <div class="p-8 space-y-4 bg-surface flex-grow">
+            <div class="skeleton h-3 w-24 rounded-full"></div>
+            <div class="skeleton h-6 w-full rounded"></div>
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="flex justify-between"><div class="skeleton h-4 w-32 rounded"></div><div class="skeleton h-4 w-16 rounded"></div></div>
+          </div>
+        </div>
+        <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10">
+          <div class="h-48 skeleton"></div>
+          <div class="p-8 space-y-4 bg-surface flex-grow">
+            <div class="skeleton h-3 w-24 rounded-full"></div>
+            <div class="skeleton h-6 w-full rounded"></div>
+            <div class="skeleton h-6 w-3/4 rounded"></div>
+            <div class="flex justify-between"><div class="skeleton h-4 w-32 rounded"></div><div class="skeleton h-4 w-16 rounded"></div></div>
+          </div>
+        </div>
+      </div>
+      <div id="stories-error" class="hidden error-banner mt-4"></div>
+
+      <!-- Load More -->
+      <div class="mt-12 flex justify-center">
+        <a href="./articles.html" class="bg-surface-container-highest text-on-surface px-12 py-4 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-on-primary hover:shadow-lg transition-all duration-300 active:scale-95">
+          View Archive
+        </a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Advocacy Banner -->
+<section class="mt-24 bg-primary text-on-primary py-20 overflow-hidden relative">
+  <div class="absolute top-0 right-0 w-1/3 h-full bg-on-primary-container/20 -rotate-12 translate-x-20"></div>
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+    <div class="md:w-3/5 space-y-6">
+      <h2 class="font-display-lg text-display-lg drop-shadow-sm">Advocacy is a Collective Act.</h2>
+      <p class="font-body-lg text-body-lg opacity-90 max-w-xl">We provide a platform for those whose voices are often silenced by the healthcare system. Join our community-led initiatives to drive real change in policy and accessibility.</p>
+      <div class="flex gap-4">
+        <a href="./submit.html" class="bg-on-primary text-primary px-8 py-4 rounded-lg font-bold font-label-md text-label-md hover:shadow-xl hover:brightness-110 transition-all active:scale-95">Join the Movement</a>
+        <a href="./advocacy.html" class="border-2 border-on-primary text-on-primary px-8 py-4 rounded-lg font-bold font-label-md text-label-md hover:bg-on-primary hover:text-primary transition-all active:scale-95">Read the Manifesto</a>
+      </div>
+    </div>
+    <div class="md:w-2/5 grid grid-cols-2 gap-4">
+      <div class="bg-white/10 p-6 rounded-xl border border-white/10 hover:bg-white/20 transition-colors cursor-default">
+        <span class="font-display-lg text-display-lg block mb-2">15k+</span>
+        <span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Readers</span>
+      </div>
+      <div class="bg-white/10 p-6 rounded-xl border border-white/10 hover:bg-white/20 transition-colors cursor-default">
+        <span class="font-display-lg text-display-lg block mb-2">400+</span>
+        <span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Contributors</span>
+      </div>
+      <div class="bg-white/10 p-6 rounded-xl border border-white/10 hover:bg-white/20 transition-colors cursor-default">
+        <span class="font-display-lg text-display-lg block mb-2">12</span>
+        <span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Active Policies</span>
+      </div>
+      <div class="bg-white/10 p-6 rounded-xl border border-white/10 hover:bg-white/20 transition-colors cursor-default">
+        <span class="font-display-lg text-display-lg block mb-2">50+</span>
+        <span class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Partners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface full-width bottom-0 mt-16 border-t border-outline-variant/30">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-4">
+      <span class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface">Episodic</span>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Magazine</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Community</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./advocacy.html">Advocacy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Submit Work</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Support</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./privacy.html">Privacy Policy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./accessibility.html">Accessibility Statement</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./coming-soon.html">Support Us</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Social</span>
+        <div class="flex gap-4">
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import api from './js/api.js';
+import { updateNavForAuth } from './js/auth.js';
+import { initSearch } from './js/search.js';
+
+updateNavForAuth();
+initSearch();
+
+const cardColors = [
+  { bg: 'bg-secondary-container', icon: 'hub', iconColor: 'text-on-secondary-container' },
+  { bg: 'bg-tertiary-container', icon: 'gesture', iconColor: 'text-on-tertiary-container' },
+  { bg: 'bg-primary-container', icon: 'accessibility_new', iconColor: 'text-on-primary-container' },
+  { bg: 'bg-secondary-fixed', icon: 'language', iconColor: 'text-on-secondary-fixed' },
+];
+
+const categoryIcons = {
+  'essay': 'article',
+  'poetry': 'auto_stories',
+  'visual art': 'palette',
+  'interview': 'mic',
+  'op-ed': 'diversity_3',
+  'advocacy': 'diversity_3',
+  'op_ed': 'diversity_3',
+  'other': 'hub',
+};
+
+function getCategoryIcon(category) {
+  const key = (category || '').toLowerCase();
+  return categoryIcons[key] || 'auto_awesome';
+}
+
+function articleCard(article, idx) {
+  const color = cardColors[idx % cardColors.length];
+  const byline = 'Anonymous';
+  const date = article.published_at
+    ? new Date(article.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : '';
+  const cat = article.category || 'Essay';
+  const catIcon = getCategoryIcon(cat);
+  const reactionIcon = idx % 2 === 0 ? 'auto_awesome' : 'favorite';
+  const reactionHover = idx % 2 === 0 ? 'hover:text-primary' : 'hover:text-error';
+  const reactionCount = 100 + (idx * 57 % 200);
+
+  return `
+    <article class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:translate-y-[-4px] transition-all duration-300 border border-outline-variant/10 group/card">
+      <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="h-48 ${color.bg} flex items-center justify-center relative group block">
+        <span class="material-symbols-outlined text-6xl ${color.iconColor} opacity-40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">${color.icon}</span>
+        <div class="absolute inset-0 ${color.bg} mix-blend-multiply opacity-20"></div>
+      </a>
+      <div class="p-8 space-y-4 flex-grow bg-surface relative">
+        <span class="text-caption font-caption text-outline">${date}</span>
+        <a href="./article.html?slug=${encodeURIComponent(article.slug)}">
+          <h3 class="font-headline-md text-headline-md leading-snug group-hover/card:text-primary transition-colors cursor-pointer">${article.title}</h3>
+        </a>
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2 text-primary">
+            <span class="material-symbols-outlined text-base">${catIcon}</span>
+            <span class="font-label-md text-label-md">${cat}</span>
+          </div>
+          <button class="sparkle-btn flex items-center gap-1.5 text-on-surface-variant ${reactionHover} transition-colors">
+            <span class="material-symbols-outlined text-lg">${reactionIcon}</span>
+            <span class="font-label-md text-label-md">${reactionCount}</span>
+          </button>
+        </div>
+      </div>
+    </article>`;
+}
+
+async function loadHero() {
+  try {
+    const data = await api.issues.list();
+    const published = (data.items || [])
+      .filter(i => i.status === 'published')
+      .sort((a, b) => new Date(b.publication_date || b.created_at) - new Date(a.publication_date || a.created_at));
+
+    if (published.length > 0) {
+      const issue = published[0];
+      document.getElementById('hero-volume-chip').textContent = issue.title || 'Latest Issue';
+      document.getElementById('hero-read-btn').href = `./issue.html?slug=${encodeURIComponent(issue.slug)}`;
+    }
+  } catch (err) {
+    const errEl = document.getElementById('hero-error');
+    errEl.textContent = 'Could not load latest issue.';
+    errEl.classList.remove('hidden');
+  }
+}
+
+let isListView = false;
+
+function renderGrid(articles) {
+  const grid = document.getElementById('stories-grid');
+  if (articles.length === 0) {
+    grid.innerHTML = '<p class="col-span-2 text-on-surface-variant font-body-md text-center py-12">No stories match these filters.</p>';
+    return;
+  }
+  if (isListView) {
+    grid.className = 'grid grid-cols-1 gap-4';
+    grid.innerHTML = articles.slice(0, 8).map((a, i) => articleCardList(a, i)).join('');
+  } else {
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-gutter';
+    grid.innerHTML = articles.slice(0, 4).map((a, i) => articleCard(a, i)).join('');
+  }
+}
+
+function articleCardList(article, idx) {
+  const color = cardColors[idx % cardColors.length];
+  const byline = 'Anonymous';
+  const date = article.published_at
+    ? new Date(article.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : '';
+  const cat = article.category || 'Essay';
+  const catIcon = getCategoryIcon(cat);
+  return `
+    <article class="bg-surface-container-low rounded-xl overflow-hidden flex flex-row hover:shadow-lg hover:translate-y-[-2px] transition-all duration-300 border border-outline-variant/10 group/card">
+      <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="w-24 shrink-0 ${color.bg} flex items-center justify-center">
+        <span class="material-symbols-outlined text-4xl ${color.iconColor} opacity-40">${color.icon}</span>
+      </a>
+      <div class="p-5 flex-grow bg-surface flex flex-col justify-center gap-1">
+        <span class="text-caption font-caption text-outline">${date} · ${cat}</span>
+        <a href="./article.html?slug=${encodeURIComponent(article.slug)}">
+          <h3 class="font-headline-md text-headline-md leading-snug group-hover/card:text-primary transition-colors cursor-pointer">${article.title}</h3>
+        </a>
+        <span class="text-caption font-caption text-outline">${byline}</span>
+      </div>
+    </article>`;
+}
+
+async function loadStories(params = {}) {
+  const grid = document.getElementById('stories-grid');
+  const errEl = document.getElementById('stories-error');
+  errEl.classList.add('hidden');
+  grid.innerHTML = `
+    <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10"><div class="h-48 skeleton"></div><div class="p-8 space-y-4 bg-surface flex-grow"><div class="skeleton h-3 w-24 rounded-full"></div><div class="skeleton h-6 w-full rounded"></div></div></div>
+    <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10"><div class="h-48 skeleton"></div><div class="p-8 space-y-4 bg-surface flex-grow"><div class="skeleton h-3 w-24 rounded-full"></div><div class="skeleton h-6 w-full rounded"></div></div></div>`;
+  try {
+    const data = await api.articles.list(params);
+    let articles = (data && data.items) ? data.items : [];
+    if (params.sort === 'oldest') {
+      articles = articles.slice().sort((a, b) => new Date(a.published_at || a.created_at) - new Date(b.published_at || b.created_at));
+    } else {
+      articles = articles.slice().sort((a, b) => new Date(b.published_at || b.created_at) - new Date(a.published_at || a.created_at));
+    }
+    renderGrid(articles);
+  } catch (err) {
+    grid.innerHTML = '';
+    errEl.textContent = 'Could not load stories: ' + err.message;
+    errEl.classList.remove('hidden');
+  }
+}
+
+async function loadTags() {
+  try {
+    const data = await api.articles.list();
+    const articles = (data && data.items) ? data.items : [];
+    const tagMap = new Map();
+    articles.forEach(a => (a.tags || []).forEach(t => {
+      const name = t.name || t;
+      const slug = t.slug || name;
+      if (name) tagMap.set(slug, name);
+    }));
+    const select = document.getElementById('filter-tag');
+    tagMap.forEach((name, slug) => {
+      const opt = document.createElement('option');
+      opt.value = slug;
+      opt.textContent = name;
+      select.appendChild(opt);
+    });
+  } catch (_) {}
+}
+
+function getFilterParams() {
+  const category = document.getElementById('filter-category').value;
+  const tag = document.getElementById('filter-tag').value;
+  const sort = document.getElementById('filter-sort').value;
+  const params = { sort };
+  if (category) params.category = category;
+  if (tag) params.tag = tag;
+  return params;
+}
+
+document.getElementById('apply-filters').addEventListener('click', () => {
+  loadStories(getFilterParams());
+});
+
+document.getElementById('btn-grid').addEventListener('click', () => {
+  isListView = false;
+  document.getElementById('btn-grid').classList.add('bg-white', 'shadow-sm', 'text-on-surface');
+  document.getElementById('btn-grid').classList.remove('text-on-surface-variant');
+  document.getElementById('btn-list').classList.remove('bg-white', 'shadow-sm', 'text-on-surface');
+  document.getElementById('btn-list').classList.add('text-on-surface-variant');
+  loadStories(getFilterParams());
+});
+
+document.getElementById('btn-list').addEventListener('click', () => {
+  isListView = true;
+  document.getElementById('btn-list').classList.add('bg-white', 'shadow-sm', 'text-on-surface');
+  document.getElementById('btn-list').classList.remove('text-on-surface-variant');
+  document.getElementById('btn-grid').classList.remove('bg-white', 'shadow-sm', 'text-on-surface');
+  document.getElementById('btn-grid').classList.add('text-on-surface-variant');
+  loadStories(getFilterParams());
+});
+
+loadHero();
+loadTags();
+loadStories();
+</script>
+</body>
+</html>

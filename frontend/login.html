@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In | Episodic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-container-high": "#eae8e3","surface-dim": "#dbdad5","tertiary-container": "#bc8694","surface-container-highest": "#e4e2dd","background": "#fbf9f4","surface-container-lowest": "#ffffff","primary-fixed-dim": "#ffb59e","secondary-fixed-dim": "#b3cad6","on-secondary-container": "#506670","surface-tint": "#944931","on-secondary-fixed-variant": "#344a54","tertiary-fixed": "#ffd9e1","surface": "#fbf9f4","on-primary-fixed-variant": "#76321c","on-primary-fixed": "#3a0b00","outline": "#87736d","primary": "#944931","secondary-fixed": "#cfe6f3","on-tertiary": "#ffffff","on-surface-variant": "#54433e","primary-container": "#d67d61","secondary-container": "#cce3f0","on-primary": "#ffffff","surface-variant": "#e4e2dd","on-surface": "#1b1c19","on-secondary-fixed": "#061e27","inverse-primary": "#ffb59e","primary-fixed": "#ffdbd0","on-error-container": "#93000a","on-error": "#ffffff","error-container": "#ffdad6","error": "#ba1a1a","surface-container-low": "#f5f3ee","surface-container": "#f0eee9","inverse-surface": "#30312e","on-tertiary-fixed": "#330f1c","on-tertiary-container": "#48212d","on-background": "#1b1c19","on-tertiary-fixed-variant": "#653a47","secondary": "#4c616c","tertiary": "#80515e","inverse-on-surface": "#f2f1ec","outline-variant": "#dac1ba","on-primary-container": "#551905","tertiary-fixed-dim": "#f3b6c6","on-secondary": "#ffffff","surface-bright": "#fbf9f4"
+        },
+        "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
+        "spacing": {"max-width-layout": "1280px","max-width-content": "800px","margin-desktop": "64px","margin-mobile": "20px","unit": "8px","gutter": "24px"},
+        "fontFamily": {"body-lg": ["Plus Jakarta Sans"],"body-md": ["Plus Jakarta Sans"],"headline-md": ["Literata"],"headline-lg-mobile": ["Literata"],"label-md": ["Plus Jakarta Sans"],"caption": ["Plus Jakarta Sans"],"display-lg": ["Literata"],"headline-lg": ["Literata"]},
+        "fontSize": {"body-lg": ["18px", {"lineHeight": "28px","fontWeight": "400"}],"body-md": ["16px", {"lineHeight": "24px","fontWeight": "400"}],"headline-md": ["24px", {"lineHeight": "32px","fontWeight": "600"}],"headline-lg-mobile": ["28px", {"lineHeight": "36px","fontWeight": "600"}],"label-md": ["14px", {"lineHeight": "20px","letterSpacing": "0.05em","fontWeight": "600"}],"caption": ["12px", {"lineHeight": "16px","fontWeight": "500"}],"display-lg": ["48px", {"lineHeight": "56px","letterSpacing": "-0.02em","fontWeight": "700"}],"headline-lg": ["32px", {"lineHeight": "40px","fontWeight": "600"}]}
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; }
+  .bento-card { background: #ffffff; border: 1px solid #dac1ba; transition: transform 0.3s ease, border-color 0.3s ease; }
+  .bento-card:hover { border-color: #944931; }
+  .form-input { border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #dac1ba; background: transparent; transition: border-color 0.3s ease; width: 100%; }
+  .form-input:focus { outline: none; border-bottom: 1px solid #944931; box-shadow: none; }
+  .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
+  .tab-btn { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; padding: 0.75rem 1.5rem; border-bottom: 2px solid transparent; color: #54433e; transition: all 0.2s; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; }
+  .tab-btn.active { color: #944931; border-bottom-color: #944931; }
+  .tab-btn:not(.active):hover { color: #944931; }
+</style>
+</head>
+<body class="font-body-md text-body-md">
+
+<header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
+  <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
+    <div class="flex items-center gap-12">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-6">
+      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
+    </div>
+  </div>
+</header>
+
+<main class="pt-12 pb-24 px-margin-mobile md:px-margin-desktop flex items-start justify-center min-h-screen">
+  <div class="w-full max-w-md">
+
+    <!-- Logo / heading -->
+    <div class="text-center mb-10">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-12 w-auto" /></a>
+      <p class="font-body-md text-on-surface-variant mt-2">A space for your stories.</p>
+    </div>
+
+    <div class="bento-card rounded-xl overflow-hidden">
+      <!-- Tabs -->
+      <div class="flex border-b border-outline-variant/30">
+        <button class="tab-btn active flex-1" id="tab-signin" onclick="switchTab('signin')">Sign In</button>
+        <button class="tab-btn flex-1" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
+      </div>
+
+      <!-- Sign In panel -->
+      <div id="panel-signin" class="p-8">
+        <form id="signin-form" class="space-y-8" novalidate>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-primary" for="signin-email">Email Address</label>
+            <input id="signin-email" type="email" autocomplete="email" required placeholder="name@example.com" class="form-input py-2 text-body-md font-jakarta" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-primary" for="signin-password">Password</label>
+            <input id="signin-password" type="password" autocomplete="current-password" required placeholder="Your password" class="form-input py-2 text-body-md font-jakarta" />
+          </div>
+          <div id="signin-error" class="hidden error-banner"></div>
+          <button type="submit" id="signin-btn" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
+            Sign In
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </form>
+        <p class="text-center font-body-md text-on-surface-variant mt-6 text-sm">
+          Don't have an account?
+          <button onclick="switchTab('signup')" class="text-primary hover:underline font-label-md bg-none border-none cursor-pointer">Create one</button>
+        </p>
+      </div>
+
+      <!-- Sign Up panel -->
+      <div id="panel-signup" class="p-8 hidden">
+        <form id="signup-form" class="space-y-8" novalidate>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-primary" for="signup-name">Display Name</label>
+            <input id="signup-name" type="text" autocomplete="name" required placeholder="How you'd like to be known" class="form-input py-2 text-body-md font-jakarta" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-primary" for="signup-email">Email Address</label>
+            <input id="signup-email" type="email" autocomplete="email" required placeholder="name@example.com" class="form-input py-2 text-body-md font-jakarta" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-primary" for="signup-password">Password</label>
+            <input id="signup-password" type="password" autocomplete="new-password" required placeholder="Choose a secure password" class="form-input py-2 text-body-md font-jakarta" />
+          </div>
+          <div id="signup-error" class="hidden error-banner"></div>
+          <button type="submit" id="signup-btn" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
+            Create Account
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </form>
+        <p class="text-center font-body-md text-on-surface-variant mt-6 text-sm">
+          Already have an account?
+          <button onclick="switchTab('signin')" class="text-primary hover:underline font-label-md bg-none border-none cursor-pointer">Sign in</button>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="w-full py-8 px-margin-mobile md:px-margin-desktop bg-surface-container-low border-t border-outline-variant/30">
+  <div class="max-w-max-width-layout mx-auto text-center">
+    <p class="font-body-md text-on-surface-variant text-sm">© Episodic. A Living Literary Magazine.</p>
+  </div>
+</footer>
+
+<script type="module">
+import api from './js/api.js';
+import { isLoggedIn, setToken, setUser, updateNavForAuth } from './js/auth.js';
+
+// Redirect if already logged in
+if (isLoggedIn()) {
+  window.location.href = './dashboard.html';
+}
+
+updateNavForAuth();
+
+function switchTab(tab) {
+  const signinTab = document.getElementById('tab-signin');
+  const signupTab = document.getElementById('tab-signup');
+  const signinPanel = document.getElementById('panel-signin');
+  const signupPanel = document.getElementById('panel-signup');
+
+  if (tab === 'signin') {
+    signinTab.classList.add('active');
+    signupTab.classList.remove('active');
+    signinPanel.classList.remove('hidden');
+    signupPanel.classList.add('hidden');
+  } else {
+    signupTab.classList.add('active');
+    signinTab.classList.remove('active');
+    signupPanel.classList.remove('hidden');
+    signinPanel.classList.add('hidden');
+  }
+}
+
+// Expose switchTab globally for onclick attributes
+window.switchTab = switchTab;
+
+// Check URL param for tab
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('tab') === 'signup') switchTab('signup');
+
+function getReturnUrl() {
+  const returnTo = urlParams.get('returnTo');
+  return returnTo ? decodeURIComponent(returnTo) : './dashboard.html';
+}
+
+// Sign In
+document.getElementById('signin-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errEl = document.getElementById('signin-error');
+  const btn = document.getElementById('signin-btn');
+  errEl.classList.add('hidden');
+
+  const email = document.getElementById('signin-email').value.trim();
+  const password = document.getElementById('signin-password').value;
+
+  if (!email || !password) {
+    errEl.textContent = 'Please enter your email and password.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Signing in…';
+
+  try {
+    const result = await api.auth.login(email, password);
+    const token = result.access_token || result.token;
+    const user = result.user || { email, display_name: result.display_name };
+    setToken(token);
+    setUser(user);
+    window.location.href = getReturnUrl();
+  } catch (err) {
+    errEl.textContent = err.status === 401
+      ? 'Incorrect email or password. Please try again.'
+      : 'Sign in failed: ' + err.message;
+    errEl.classList.remove('hidden');
+    btn.disabled = false;
+    btn.innerHTML = 'Sign In <span class="material-symbols-outlined text-sm">arrow_forward</span>';
+  }
+});
+
+// Sign Up
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errEl = document.getElementById('signup-error');
+  const btn = document.getElementById('signup-btn');
+  errEl.classList.add('hidden');
+
+  const displayName = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+  const password = document.getElementById('signup-password').value;
+
+  if (!displayName || !email || !password) {
+    errEl.textContent = 'Please fill in all fields.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  if (password.length < 8) {
+    errEl.textContent = 'Password must be at least 8 characters.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating account…';
+
+  try {
+    const result = await api.auth.signup(email, password, displayName);
+    const token = result.access_token || result.token;
+    const user = result.user || { email, display_name: displayName };
+    setToken(token);
+    setUser(user);
+    window.location.href = './dashboard.html';
+  } catch (err) {
+    errEl.textContent = err.status === 409
+      ? 'An account with this email already exists.'
+      : 'Account creation failed: ' + err.message;
+    errEl.classList.remove('hidden');
+    btn.disabled = false;
+    btn.innerHTML = 'Create Account <span class="material-symbols-outlined text-sm">arrow_forward</span>';
+  }
+});
+</script>
+</body>
+</html>

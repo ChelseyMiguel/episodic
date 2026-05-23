@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Issue | Episodic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-container-high": "#eae8e3","surface-dim": "#dbdad5","tertiary-container": "#bc8694","surface-container-highest": "#e4e2dd","background": "#fbf9f4","surface-container-lowest": "#ffffff","primary-fixed-dim": "#ffb59e","secondary-fixed-dim": "#b3cad6","on-secondary-container": "#506670","surface-tint": "#944931","on-secondary-fixed-variant": "#344a54","tertiary-fixed": "#ffd9e1","surface": "#fbf9f4","on-primary-fixed-variant": "#76321c","on-primary-fixed": "#3a0b00","outline": "#87736d","primary": "#944931","secondary-fixed": "#cfe6f3","on-tertiary": "#ffffff","on-surface-variant": "#54433e","primary-container": "#d67d61","secondary-container": "#cce3f0","on-primary": "#ffffff","surface-variant": "#e4e2dd","on-surface": "#1b1c19","on-secondary-fixed": "#061e27","inverse-primary": "#ffb59e","primary-fixed": "#ffdbd0","on-error-container": "#93000a","on-error": "#ffffff","error-container": "#ffdad6","error": "#ba1a1a","surface-container-low": "#f5f3ee","surface-container": "#f0eee9","inverse-surface": "#30312e","on-tertiary-fixed": "#330f1c","on-tertiary-container": "#48212d","on-background": "#1b1c19","on-tertiary-fixed-variant": "#653a47","secondary": "#4c616c","tertiary": "#80515e","inverse-on-surface": "#f2f1ec","outline-variant": "#dac1ba","on-primary-container": "#551905","tertiary-fixed-dim": "#f3b6c6","on-secondary": "#ffffff","surface-bright": "#fbf9f4"
+        },
+        "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
+        "spacing": {"max-width-layout": "1280px","max-width-content": "800px","margin-desktop": "64px","margin-mobile": "20px","unit": "8px","gutter": "24px"},
+        "fontFamily": {"body-lg": ["Plus Jakarta Sans"],"body-md": ["Plus Jakarta Sans"],"headline-md": ["Literata"],"headline-lg-mobile": ["Literata"],"label-md": ["Plus Jakarta Sans"],"caption": ["Plus Jakarta Sans"],"display-lg": ["Literata"],"headline-lg": ["Literata"]},
+        "fontSize": {"body-lg": ["18px", {"lineHeight": "28px","fontWeight": "400"}],"body-md": ["16px", {"lineHeight": "24px","fontWeight": "400"}],"headline-md": ["24px", {"lineHeight": "32px","fontWeight": "600"}],"headline-lg-mobile": ["28px", {"lineHeight": "36px","fontWeight": "600"}],"label-md": ["14px", {"lineHeight": "20px","letterSpacing": "0.05em","fontWeight": "600"}],"caption": ["12px", {"lineHeight": "16px","fontWeight": "500"}],"display-lg": ["48px", {"lineHeight": "56px","letterSpacing": "-0.02em","fontWeight": "700"}],"headline-lg": ["32px", {"lineHeight": "40px","fontWeight": "600"}]}
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; }
+  .bento-card { background: #ffffff; border: 1px solid #dac1ba; transition: transform 0.3s ease, border-color 0.3s ease; }
+  .bento-card:hover { border-color: #944931; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
+  .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
+</style>
+</head>
+<body class="font-body-md text-body-md">
+
+<header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
+  <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
+    <div class="flex items-center gap-12">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./issues.html">Issues</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-6">
+      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+    </div>
+  </div>
+</header>
+
+<main class="pt-8 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+
+  <div id="issue-error" class="hidden error-banner mb-8"></div>
+
+  <!-- Skeleton -->
+  <div id="issue-skeleton">
+    <div class="skeleton h-4 w-32 mb-6 rounded-full"></div>
+    <div class="skeleton h-4 w-24 mb-4 rounded-full"></div>
+    <div class="skeleton h-12 w-2/3 mb-4"></div>
+    <div class="skeleton h-5 w-full mb-2"></div>
+    <div class="skeleton h-5 w-4/5 mb-12"></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mt-12">
+      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
+      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
+      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Issue content -->
+  <div id="issue-content" class="hidden">
+
+    <!-- Back link -->
+    <div class="mb-8">
+      <a href="./issues.html" class="font-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        Back to Issues
+      </a>
+    </div>
+
+    <!-- Issue header -->
+    <header class="mb-16 max-w-max-width-content">
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span id="theme-chip" class="font-label-md text-xs text-secondary border border-outline-variant rounded-full px-3 py-1"></span>
+        <span id="pub-date" class="font-label-md text-xs text-on-surface-variant"></span>
+      </div>
+      <h1 id="issue-title" class="font-headline-md font-bold text-on-surface mb-6" style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1;"></h1>
+      <p id="issue-description" class="font-body-lg text-on-surface-variant mb-8"></p>
+      <div id="editors-letter" class="hidden bg-surface-container rounded-xl p-8 border border-outline-variant/30">
+        <span class="font-label-md text-secondary uppercase tracking-widest text-xs block mb-4">Editor's Letter</span>
+        <div id="editors-letter-body" class="font-body-lg text-on-surface-variant" style="font-family: 'Literata', serif; font-style: italic; line-height: 1.8;"></div>
+      </div>
+    </header>
+
+    <!-- Articles in this issue -->
+    <section>
+      <h2 class="font-headline-md text-headline-lg text-on-surface mb-8">In This Issue</h2>
+      <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+        <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
+        <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
+        <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
+      </div>
+      <div id="articles-empty" class="hidden text-center py-16">
+        <span class="material-symbols-outlined text-4xl text-outline mb-3 block">article</span>
+        <p class="font-body-md text-on-surface-variant">No stories published in this issue yet.</p>
+      </div>
+      <div id="articles-error" class="hidden error-banner mt-4"></div>
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-4">
+      <span class="font-headline-md text-headline-md text-on-surface">Episodic</span>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Magazine</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Community</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./advocacy.html">Advocacy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Submit Work</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Support</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Privacy Policy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Accessibility Statement</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Support Us</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Social</span>
+        <div class="flex gap-4">
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import api from './js/api.js';
+import { updateNavForAuth } from './js/auth.js';
+
+updateNavForAuth();
+
+const colorBlocks = ['bg-primary-container', 'bg-secondary-container', 'bg-tertiary-container'];
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+}
+
+function articleCard(article, idx) {
+  const color = colorBlocks[idx % 3];
+  const byline = 'Anonymous';
+  return `
+    <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="bento-card rounded-xl overflow-hidden block group">
+      <div class="${color} h-36 w-full flex items-end p-4">
+        <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">${article.category || 'Essay'}</span>
+      </div>
+      <div class="p-6">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">${article.title}</h3>
+        <p class="font-body-md text-on-surface-variant line-clamp-3 mb-4">${article.excerpt || ''}</p>
+        <span class="font-label-md text-secondary text-sm">${byline}</span>
+      </div>
+    </a>`;
+}
+
+async function loadIssue() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  if (!slug) {
+    document.getElementById('issue-skeleton').innerHTML = '';
+    const err = document.getElementById('issue-error');
+    err.textContent = 'No issue specified. Please go back to issues.';
+    err.classList.remove('hidden');
+    return;
+  }
+
+  try {
+    const issue = await api.issues.get(slug);
+
+    document.title = `${issue.title} | Episodic`;
+
+    document.getElementById('issue-skeleton').classList.add('hidden');
+    document.getElementById('issue-content').classList.remove('hidden');
+
+    // Theme chip
+    document.getElementById('theme-chip').textContent = issue.theme || issue.status || 'Issue';
+    document.getElementById('pub-date').textContent = formatDate(issue.published_at || issue.created_at);
+
+    // Title & description
+    document.getElementById('issue-title').textContent = issue.title;
+    document.getElementById('issue-description').textContent = issue.theme_description || issue.description || '';
+
+    // Editor's letter
+    if (issue.editors_letter) {
+      const letterEl = document.getElementById('editors-letter');
+      letterEl.classList.remove('hidden');
+      document.getElementById('editors-letter-body').textContent = issue.editors_letter;
+    }
+
+    // Load articles for this issue
+    await loadArticles(issue.id);
+
+  } catch (err) {
+    document.getElementById('issue-skeleton').classList.add('hidden');
+    const errEl = document.getElementById('issue-error');
+    errEl.textContent = 'Could not load issue: ' + err.message;
+    errEl.classList.remove('hidden');
+  }
+}
+
+async function loadArticles(issueId) {
+  try {
+    const _artData = await api.articles.list({ issue_id: issueId });
+    const articles = (_artData && _artData.items) ? _artData.items : [];
+    const grid = document.getElementById('articles-grid');
+    const emptyEl = document.getElementById('articles-empty');
+
+    if (articles.length === 0) {
+      grid.innerHTML = '';
+      emptyEl.classList.remove('hidden');
+      return;
+    }
+
+    grid.innerHTML = articles.map((a, i) => articleCard(a, i)).join('');
+  } catch (err) {
+    document.getElementById('articles-grid').innerHTML = '';
+    const errEl = document.getElementById('articles-error');
+    errEl.textContent = 'Could not load articles: ' + err.message;
+    errEl.classList.remove('hidden');
+  }
+}
+
+loadIssue();
+</script>
+</body>
+</html>

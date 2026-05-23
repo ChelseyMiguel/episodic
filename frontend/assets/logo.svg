@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="260" height="64" role="img" aria-label="Episodic">
+  <defs>
+    <style>
+      .leaf { fill: #d4756a; }
+      .stem { fill: none; stroke: #d4756a; stroke-width: 1.6; stroke-linecap: round; }
+      .word { font-family: 'Literata', Georgia, 'Times New Roman', serif; font-size: 36px; fill: #1b1c19; font-weight: 300; letter-spacing: -0.01em; }
+      .dot  { fill: #1b1c19; }
+    </style>
+  </defs>
+
+  <!-- Main curving stem up from e-baseline -->
+  <path class="stem" d="M 53 50 C 50 42, 44 34, 40 22 C 37 12, 42 4, 50 6"/>
+
+  <!-- Small lower-left branch -->
+  <path class="stem" d="M 45 36 C 38 32, 33 28, 32 22"/>
+
+  <!-- Top-center leaf (tallest) -->
+  <path class="leaf" d="M 50 6 C 46 0, 38 -2, 40 8 C 42 16, 52 14, 50 6 Z"/>
+  <!-- Top-right leaf -->
+  <path class="leaf" d="M 52 10 C 58 2, 66 4, 62 12 C 58 18, 50 16, 52 10 Z"/>
+  <!-- Mid-left leaf -->
+  <path class="leaf" d="M 44 20 C 36 14, 28 18, 32 26 C 35 32, 46 28, 44 20 Z"/>
+  <!-- Small lower-left leaf -->
+  <path class="leaf" d="M 38 30 C 30 26, 24 30, 28 38 C 30 42, 40 38, 38 30 Z"/>
+  <!-- Tiny bud at top-left -->
+  <ellipse class="leaf" cx="44" cy="5" rx="4" ry="6" transform="rotate(-30 44 5)"/>
+
+  <!-- Curling stem tail at base (the vine curl of the 'e') -->
+  <path class="stem" d="M 53 50 C 56 54, 60 56, 62 53 C 64 50, 62 46, 58 47"/>
+
+  <!-- Wordmark text -->
+  <text class="word" x="56" y="52">episodic.</text>
+</svg>

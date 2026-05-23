@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Article | Episodic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-container": "#48212d",
+          "inverse-surface": "#30312e",
+          "surface-dim": "#dbdad5",
+          "on-error": "#ffffff",
+          "secondary-fixed-dim": "#b3cad6",
+          "inverse-primary": "#ffb59e",
+          "tertiary-fixed-dim": "#f3b6c6",
+          "primary-fixed": "#ffdbd0",
+          "on-primary-container": "#551905",
+          "secondary-container": "#cce3f0",
+          "surface": "#fbf9f4",
+          "on-secondary-fixed-variant": "#344a54",
+          "secondary-fixed": "#cfe6f3",
+          "tertiary-fixed": "#ffd9e1",
+          "outline-variant": "#dac1ba",
+          "on-secondary-container": "#506670",
+          "on-tertiary-fixed-variant": "#653a47",
+          "error-container": "#ffdad6",
+          "tertiary": "#80515e",
+          "on-secondary": "#ffffff",
+          "primary": "#944931",
+          "on-background": "#1b1c19",
+          "surface-bright": "#fbf9f4",
+          "outline": "#87736d",
+          "on-tertiary": "#ffffff",
+          "surface-tint": "#944931",
+          "on-error-container": "#93000a",
+          "primary-container": "#d67d61",
+          "surface-container-high": "#eae8e3",
+          "on-surface-variant": "#54433e",
+          "background": "#fbf9f4",
+          "primary-fixed-dim": "#ffb59e",
+          "on-secondary-fixed": "#061e27",
+          "inverse-on-surface": "#f2f1ec",
+          "error": "#ba1a1a",
+          "surface-container-low": "#f5f3ee",
+          "surface-variant": "#e4e2dd",
+          "on-primary-fixed": "#3a0b00",
+          "tertiary-container": "#bc8694",
+          "secondary": "#4c616c",
+          "on-primary": "#ffffff",
+          "on-surface": "#1b1c19",
+          "on-primary-fixed-variant": "#76321c",
+          "surface-container-lowest": "#ffffff",
+          "on-tertiary-fixed": "#330f1c",
+          "surface-container": "#f0eee9",
+          "surface-container-highest": "#e4e2dd"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin-desktop": "64px",
+          "container-max": "1280px",
+          "unit": "8px",
+          "gutter": "24px",
+          "margin-mobile": "20px"
+        },
+        "fontFamily": {
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "headline-md": ["Literata"],
+          "headline-lg-mobile": ["Literata"],
+          "label-md": ["Plus Jakarta Sans"],
+          "caption": ["Plus Jakarta Sans"],
+          "display-lg": ["Literata"],
+          "headline-lg": ["Literata"]
+        },
+        "fontSize": {
+          "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+          "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .progress-bar {
+    height: 4px;
+    width: 0%;
+    background-color: #bc8694;
+    transition: width 0.3s ease;
+  }
+  .marginalia-trigger:hover + .marginalia-content,
+  .marginalia-content:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .marginalia-content {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
+  .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
+  .article-body { font-family: 'Literata', serif; font-size: 18px; line-height: 1.8; color: #1b1c19; }
+  .article-body p { margin-bottom: 1.5em; }
+  .article-body h2, .article-body h3 { font-family: 'Literata', serif; font-size: 1.5em; font-weight: 600; color: #944931; margin: 2em 0 0.75em; }
+  .article-body blockquote { margin: 2em 0; padding: 2rem 3rem; background: #f5f3ee; border-radius: 0.75rem; border-left: 8px solid #bc8694; font-style: italic; color: #48212d; }
+  .blurred-content { filter: blur(6px); pointer-events: none; user-select: none; }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- Reading Progress Bar -->
+<div class="fixed top-0 left-0 w-full z-[60] bg-transparent h-1">
+  <div class="progress-bar" id="progress-bar-inner"></div>
+</div>
+
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant/30 top-0 sticky z-50">
+  <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
+    <div class="flex items-center gap-8">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="./issues.html">Issues</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./poetry.html">Poetry</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="./submit.html">Submit</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">search</span>
+      </button>
+      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-90 transition-all">Latest Issue</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+
+  <!-- Global error -->
+  <div id="article-error" class="hidden error-banner mb-8 max-w-3xl mx-auto"></div>
+
+  <!-- Loading skeleton (3-col layout shape) -->
+  <div id="article-skeleton" class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <div class="hidden lg:block lg:col-span-1"></div>
+    <div class="lg:col-span-7 lg:col-start-2 space-y-6">
+      <div class="skeleton h-8 w-48 rounded-full"></div>
+      <div class="skeleton h-14 w-full rounded"></div>
+      <div class="skeleton h-14 w-3/4 rounded"></div>
+      <div class="skeleton h-5 w-64 rounded"></div>
+      <div class="skeleton h-64 w-full rounded-xl mt-8"></div>
+      <div class="space-y-4 mt-8">
+        <div class="skeleton h-5 w-full rounded"></div>
+        <div class="skeleton h-5 w-full rounded"></div>
+        <div class="skeleton h-5 w-5/6 rounded"></div>
+        <div class="skeleton h-5 w-full rounded"></div>
+        <div class="skeleton h-5 w-4/5 rounded"></div>
+      </div>
+    </div>
+    <div class="lg:col-span-3 lg:col-start-10 space-y-4">
+      <div class="skeleton h-6 w-32 rounded"></div>
+      <div class="skeleton h-32 w-full rounded-lg"></div>
+      <div class="skeleton h-5 w-3/4 rounded"></div>
+      <div class="skeleton h-32 w-full rounded-lg mt-6"></div>
+      <div class="skeleton h-5 w-3/4 rounded"></div>
+    </div>
+  </div>
+
+  <!-- Actual article content (hidden until loaded) -->
+  <div id="article-main" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+
+    <!-- Left Sidebar: Accessibility & Social (Sticky) -->
+    <aside class="hidden lg:flex lg:col-span-1 flex-col gap-8 sticky top-24 h-fit">
+      <div class="flex flex-col gap-4">
+        <span class="text-caption font-caption text-outline uppercase tracking-widest">Tools</span>
+        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant hover:border-primary transition-all active:scale-95"
+          onclick="document.body.classList.toggle('text-xl')" title="Toggle Larger Text">
+          <span class="material-symbols-outlined">format_size</span>
+        </button>
+        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant hover:border-primary transition-all active:scale-95"
+          onclick="document.documentElement.classList.toggle('dark')" title="Toggle High Contrast / Dark Mode">
+          <span class="material-symbols-outlined">contrast</span>
+        </button>
+      </div>
+      <div class="flex flex-col gap-4">
+        <span class="text-caption font-caption text-outline uppercase tracking-widest">Share</span>
+        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all"
+          onclick="navigator.share ? navigator.share({title: document.title, url: location.href}) : navigator.clipboard.writeText(location.href)">
+          <span class="material-symbols-outlined">share</span>
+        </button>
+        <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all" title="Bookmark">
+          <span class="material-symbols-outlined">bookmark</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Article Column -->
+    <article class="lg:col-span-7 lg:col-start-2 relative">
+
+      <!-- Content Warning Banner -->
+      <div id="cw-banner" class="hidden mb-8 bg-surface-container rounded-xl p-6 border border-outline-variant cursor-pointer" role="button" tabindex="0">
+        <div class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-secondary mt-0.5">warning</span>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface mb-1">Content note</p>
+            <p id="cw-list" class="font-body-md text-body-md text-on-surface-variant mb-3"></p>
+            <p class="font-label-md text-label-md text-primary">Click to continue reading</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metadata row -->
+      <div class="flex flex-wrap items-center gap-4 mb-6">
+        <span id="article-category-chip" class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md"></span>
+        <span id="article-read-time" class="text-outline font-label-md text-label-md flex items-center gap-1">
+          <span class="material-symbols-outlined text-[18px]">schedule</span> — min read
+        </span>
+        <span id="article-date" class="text-outline font-label-md text-label-md"></span>
+      </div>
+
+      <!-- Headline -->
+      <h1 id="article-title" class="font-headline-lg text-headline-lg md:text-[48px] md:leading-[56px] text-on-surface mb-8"></h1>
+
+      <!-- Lead paragraph / excerpt -->
+      <div id="article-excerpt-wrap" class="hidden mb-12">
+        <p id="article-excerpt" class="font-body-lg text-body-lg text-on-surface-variant italic border-l-4 border-primary-container pl-6"></p>
+      </div>
+
+      <!-- Hero image -->
+      <figure id="article-hero-figure" class="mb-12 hidden">
+        <div class="aspect-[16/9] w-full rounded-xl overflow-hidden bg-primary-container/20">
+          <img id="article-hero-img" class="w-full h-full object-cover" alt="" />
+        </div>
+      </figure>
+      <!-- Placeholder gradient if no image -->
+      <figure id="article-hero-placeholder" class="mb-12">
+        <div class="aspect-[16/9] w-full rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #ffdbd0 0%, #cce3f0 50%, #ffd9e1 100%);"></div>
+      </figure>
+
+      <!-- Article body -->
+      <div id="body-wrapper">
+        <div id="article-body" class="article-body mb-12 relative">
+          <!-- Body injected here -->
+          <!-- Marginalia examples (decorative, will appear if body has content) -->
+          <span class="absolute -right-8 top-12 group cursor-help hidden lg:block">
+            <span class="material-symbols-outlined text-primary/40 marginalia-trigger hover:text-primary transition-colors text-[20px]">info</span>
+            <span class="marginalia-content absolute left-full ml-4 top-0 w-48 p-4 bg-surface-container border border-outline-variant rounded-lg text-caption font-caption text-on-surface-variant shadow-lg z-10">
+              A living magazine for those navigating the healthcare system.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div id="tags-section" class="hidden flex flex-wrap gap-2 mb-8 pt-8 border-t border-outline-variant/30">
+        <span class="font-label-md text-label-md text-on-surface-variant mr-2">Tags:</span>
+        <div id="tags-list" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Interaction Bar -->
+      <div class="mt-16 p-6 border-y border-outline-variant bg-surface-container-lowest flex flex-col items-center gap-6">
+        <span class="font-label-md text-label-md text-outline uppercase tracking-widest">How did this story resonate with you?</span>
+        <div class="flex gap-8">
+          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
+            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+              <span class="material-symbols-outlined text-primary text-[28px]">favorite</span>
+            </div>
+            <span class="text-caption font-label-md text-on-surface-variant">Moved</span>
+          </button>
+          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
+            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+              <span class="material-symbols-outlined text-primary text-[28px]">visibility</span>
+            </div>
+            <span class="text-caption font-label-md text-on-surface-variant">Seen</span>
+          </button>
+          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
+            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+              <span class="material-symbols-outlined text-primary text-[28px]">bolt</span>
+            </div>
+            <span class="text-caption font-label-md text-on-surface-variant">Powerful</span>
+          </button>
+          <button class="group flex flex-col items-center gap-2 hover:scale-110 transition-transform">
+            <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+              <span class="material-symbols-outlined text-primary text-[28px]">lightbulb</span>
+            </div>
+            <span class="text-caption font-label-md text-on-surface-variant">Informed</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Share Your Voice CTA -->
+      <section class="mt-12 p-8 bg-primary-container/10 rounded-xl border border-primary-container/20" id="reflection-section">
+        <h4 class="font-headline-md text-headline-md text-primary mb-3">Share Your Voice</h4>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6">How does this story resonate with your own experience? We invite short reflections (up to 100 words) to be featured in our upcoming "Reader's Circle" issue.</p>
+        <div id="reflection-form" class="flex flex-col gap-4">
+          <textarea id="reflection-text" class="w-full bg-surface-container-lowest border-outline-variant rounded-lg p-4 focus:ring-primary focus:border-primary font-body-md" placeholder="Write your reflection here..." rows="3"></textarea>
+          <button id="reflection-btn" class="self-end bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-all shadow-sm">Submit Reflection</button>
+        </div>
+        <div id="reflection-success" class="hidden text-center py-4">
+          <span class="material-symbols-outlined text-3xl text-secondary block mb-2">favorite</span>
+          <p class="font-body-md text-on-surface-variant">Thank you for sharing your voice.</p>
+        </div>
+      </section>
+
+      <!-- Author Bio -->
+      <section class="mt-20 pt-12 border-t border-outline-variant" id="author-bio-section">
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 bg-surface-container-highest flex items-center justify-center">
+            <span class="material-symbols-outlined text-4xl text-outline">person</span>
+          </div>
+          <div class="flex-1">
+            <h4 id="author-name" class="font-headline-md text-headline-md text-on-surface mb-2">Anonymous</h4>
+            <p id="author-bio" class="font-body-md text-body-md text-on-surface-variant mb-4"></p>
+            <a href="./articles.html" class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">arrow_back</span> More stories
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+    <!-- Right Sidebar -->
+    <aside class="lg:col-span-3 lg:col-start-10 space-y-12">
+
+      <!-- Related Stories -->
+      <div>
+        <h5 class="font-label-md text-label-md text-outline uppercase tracking-widest mb-6 border-b border-outline-variant pb-2">Related Stories</h5>
+        <div id="related-stories" class="space-y-8">
+          <!-- Skeleton -->
+          <div>
+            <div class="skeleton h-32 w-full rounded-t-lg mb-3"></div>
+            <div class="skeleton h-3 w-16 rounded mb-2"></div>
+            <div class="skeleton h-5 w-full rounded"></div>
+            <div class="skeleton h-5 w-3/4 rounded mt-1"></div>
+          </div>
+          <div>
+            <div class="skeleton h-32 w-full rounded-t-lg mb-3"></div>
+            <div class="skeleton h-3 w-16 rounded mb-2"></div>
+            <div class="skeleton h-5 w-full rounded"></div>
+            <div class="skeleton h-5 w-3/4 rounded mt-1"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Callout -->
+      <div class="p-6 bg-surface-container rounded-xl">
+        <h5 class="font-headline-md text-headline-md text-on-surface mb-3">Join the Community</h5>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6">Receive curated essays and advocacy updates twice a month.</p>
+        <div id="newsletter-form-wrap">
+          <input id="newsletter-email" class="w-full bg-transparent border-0 border-b border-outline mb-4 focus:ring-0 focus:border-primary px-0 text-on-surface font-body-md" placeholder="Your email address" type="email"/>
+          <button id="newsletter-btn" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all">Subscribe</button>
+          <div id="newsletter-error" class="hidden error-banner mt-3 text-xs"></div>
+        </div>
+        <div id="newsletter-success" class="hidden text-center py-2">
+          <span class="material-symbols-outlined text-2xl text-secondary block mb-1">check_circle</span>
+          <p class="font-body-md text-body-md text-on-surface-variant text-sm">You're subscribed!</p>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- end article-main -->
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-highest mt-16 full-width border-t border-outline-variant/30">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-4">
+      <span class="font-headline-md text-headline-md text-on-surface">Episodic</span>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Magazine</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Community</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./advocacy.html">Advocacy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Submit Work</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Support</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Privacy Policy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Accessibility Statement</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Support Us</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Social</span>
+        <div class="flex gap-4">
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reading progress bar
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    document.getElementById('progress-bar-inner').style.width = scrolled + '%';
+  });
+</script>
+
+<script type="module">
+import api from './js/api.js';
+import { updateNavForAuth } from './js/auth.js';
+
+updateNavForAuth();
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function calcReadTime(text) {
+  if (!text) return 1;
+  const words = text.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+function relatedCard(article, colorClass) {
+  const cat = article.category || 'Essay';
+  return `
+    <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="group cursor-pointer block">
+      <div class="h-32 w-full ${colorClass} rounded-t-lg mb-3 overflow-hidden flex items-center justify-center">
+        <span class="material-symbols-outlined text-4xl opacity-40 text-on-surface">article</span>
+      </div>
+      <span class="text-caption font-caption text-tertiary uppercase">${cat}</span>
+      <h6 class="font-headline-md text-[18px] leading-[24px] text-on-surface group-hover:text-primary transition-colors mt-1 line-clamp-2">${article.title}</h6>
+    </a>`;
+}
+
+async function loadRelated(currentSlug) {
+  try {
+    const articles = await api.articles.list();
+    const others = ((articles && articles.items) ? articles.items : []).filter(a => a.slug !== currentSlug).slice(0, 2);
+    const relEl = document.getElementById('related-stories');
+    const colors = ['bg-secondary-container', 'bg-primary-container'];
+    if (others.length === 0) {
+      relEl.innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant">No related stories found.</p>';
+    } else {
+      relEl.innerHTML = others.map((a, i) => relatedCard(a, colors[i % 2])).join('');
+    }
+  } catch (_) {
+    document.getElementById('related-stories').innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant">Could not load related stories.</p>';
+  }
+}
+
+async function loadArticle() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+
+  if (!slug) {
+    document.getElementById('article-skeleton').classList.add('hidden');
+    const err = document.getElementById('article-error');
+    err.textContent = 'No article specified. Please go back to stories.';
+    err.classList.remove('hidden');
+    return;
+  }
+
+  try {
+    const article = await api.articles.get(slug);
+
+    document.title = `${article.title} | Episodic`;
+
+    // Hide skeleton, show article
+    document.getElementById('article-skeleton').classList.add('hidden');
+    const mainEl = document.getElementById('article-main');
+    mainEl.classList.remove('hidden');
+    mainEl.classList.add('grid');
+
+    // Category chip
+    document.getElementById('article-category-chip').textContent = article.category || 'Essay';
+
+    // Date
+    document.getElementById('article-date').textContent = formatDate(article.published_at || article.created_at);
+
+    // Title
+    document.getElementById('article-title').textContent = article.title;
+
+    // Excerpt / lead
+    if (article.excerpt) {
+      document.getElementById('article-excerpt').textContent = article.excerpt;
+      document.getElementById('article-excerpt-wrap').classList.remove('hidden');
+    }
+
+    // Hero image
+    if (article.cover_image || article.image) {
+      const imgSrc = article.cover_image || article.image;
+      document.getElementById('article-hero-img').src = imgSrc;
+      document.getElementById('article-hero-img').alt = article.title;
+      document.getElementById('article-hero-figure').classList.remove('hidden');
+      document.getElementById('article-hero-placeholder').classList.add('hidden');
+    }
+
+    // Body
+    const bodyEl = document.getElementById('article-body');
+    let bodyText = '';
+    if (article.body_html) {
+      bodyEl.innerHTML = article.body_html;
+      bodyText = article.body_html;
+    } else if (article.body) {
+      const html = article.body.split('\n\n').filter(Boolean).map(p => `<p>${p}</p>`).join('');
+      bodyEl.innerHTML = html;
+      bodyText = article.body;
+    } else {
+      bodyEl.innerHTML = '<p class="text-on-surface-variant italic">No content available.</p>';
+    }
+
+    // Read time
+    const mins = calcReadTime(bodyText);
+    document.getElementById('article-read-time').innerHTML =
+      `<span class="material-symbols-outlined text-[18px]">schedule</span> ${mins} min read`;
+
+    // Content warnings
+    const cws = article.content_warnings;
+    if (cws && cws.length > 0) {
+      const cwBanner = document.getElementById('cw-banner');
+      document.getElementById('cw-list').textContent = cws.join(', ');
+      cwBanner.classList.remove('hidden');
+      bodyEl.classList.add('blurred-content');
+
+      function dismissCW() {
+        cwBanner.classList.add('hidden');
+        bodyEl.classList.remove('blurred-content');
+      }
+      cwBanner.addEventListener('click', dismissCW);
+      cwBanner.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') dismissCW(); });
+    }
+
+    // Tags
+    if (article.tags && article.tags.length > 0) {
+      const tagsSection = document.getElementById('tags-section');
+      tagsSection.classList.remove('hidden');
+      tagsSection.classList.add('flex');
+      document.getElementById('tags-list').innerHTML = article.tags.map(t =>
+        `<span class="font-label-md text-label-md text-xs text-secondary border border-outline-variant rounded-full px-3 py-1">${t.name || t}</span>`
+      ).join('');
+    }
+
+    // Author bio
+    const isAnon = true;
+    const authorName = isAnon ? 'Anonymous' : (article.contributor_name || article.author || 'Anonymous');
+    document.getElementById('author-name').textContent = authorName;
+    if (article.contributor_bio || article.bio) {
+      document.getElementById('author-bio').textContent = article.contributor_bio || article.bio;
+    }
+
+    // Related stories
+    loadRelated(slug);
+
+  } catch (err) {
+    document.getElementById('article-skeleton').classList.add('hidden');
+    const errEl = document.getElementById('article-error');
+    if (err.status === 404 || err.message?.includes('404')) {
+      errEl.innerHTML = `<strong>Article not found.</strong> This story may have been moved or removed. <a href="./articles.html" class="underline font-semibold">Browse all stories</a>`;
+    } else {
+      errEl.textContent = 'Could not load article: ' + err.message;
+    }
+    errEl.classList.remove('hidden');
+  }
+}
+
+// Reflection submit (show success state, log intent)
+document.getElementById('reflection-btn').addEventListener('click', () => {
+  const text = document.getElementById('reflection-text').value.trim();
+  if (!text) return;
+  document.getElementById('reflection-form').classList.add('hidden');
+  document.getElementById('reflection-success').classList.remove('hidden');
+  console.log('Reflection submitted:', text);
+});
+
+// Newsletter subscribe
+document.getElementById('newsletter-btn').addEventListener('click', async () => {
+  const email = document.getElementById('newsletter-email').value.trim();
+  const errEl = document.getElementById('newsletter-error');
+  errEl.classList.add('hidden');
+  if (!email || !email.includes('@')) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  try {
+    await api.newsletter.subscribe(email);
+    document.getElementById('newsletter-form-wrap').classList.add('hidden');
+    document.getElementById('newsletter-success').classList.remove('hidden');
+  } catch (err) {
+    errEl.textContent = 'Could not subscribe: ' + err.message;
+    errEl.classList.remove('hidden');
+  }
+});
+
+loadArticle();
+</script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Advocacy | Episodic Magazine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-container": "#48212d",
+          "inverse-surface": "#30312e",
+          "surface-dim": "#dbdad5",
+          "on-error": "#ffffff",
+          "secondary-fixed-dim": "#b3cad6",
+          "inverse-primary": "#ffb59e",
+          "tertiary-fixed-dim": "#f3b6c6",
+          "primary-fixed": "#ffdbd0",
+          "on-primary-container": "#551905",
+          "secondary-container": "#cce3f0",
+          "surface": "#fbf9f4",
+          "on-secondary-fixed-variant": "#344a54",
+          "secondary-fixed": "#cfe6f3",
+          "tertiary-fixed": "#ffd9e1",
+          "outline-variant": "#dac1ba",
+          "on-secondary-container": "#506670",
+          "on-tertiary-fixed-variant": "#653a47",
+          "error-container": "#ffdad6",
+          "tertiary": "#80515e",
+          "on-secondary": "#ffffff",
+          "primary": "#944931",
+          "on-background": "#1b1c19",
+          "surface-bright": "#fbf9f4",
+          "outline": "#87736d",
+          "on-tertiary": "#ffffff",
+          "surface-tint": "#944931",
+          "on-error-container": "#93000a",
+          "primary-container": "#d67d61",
+          "surface-container-high": "#eae8e3",
+          "on-surface-variant": "#54433e",
+          "background": "#fbf9f4",
+          "primary-fixed-dim": "#ffb59e",
+          "on-secondary-fixed": "#061e27",
+          "inverse-on-surface": "#f2f1ec",
+          "error": "#ba1a1a",
+          "surface-container-low": "#f5f3ee",
+          "surface-variant": "#e4e2dd",
+          "on-primary-fixed": "#3a0b00",
+          "tertiary-container": "#bc8694",
+          "secondary": "#4c616c",
+          "on-primary": "#ffffff",
+          "on-surface": "#1b1c19",
+          "on-primary-fixed-variant": "#76321c",
+          "surface-container-lowest": "#ffffff",
+          "on-tertiary-fixed": "#330f1c",
+          "surface-container": "#f0eee9",
+          "surface-container-highest": "#e4e2dd"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin-desktop": "64px",
+          "container-max": "1280px",
+          "unit": "8px",
+          "gutter": "24px",
+          "margin-mobile": "20px"
+        },
+        "fontFamily": {
+          "body-lg": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "headline-md": ["Literata"],
+          "headline-lg-mobile": ["Literata"],
+          "label-md": ["Plus Jakarta Sans"],
+          "caption": ["Plus Jakarta Sans"],
+          "display-lg": ["Literata"],
+          "headline-lg": ["Literata"]
+        },
+        "fontSize": {
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+          "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+          "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- Nav Header -->
+<header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
+  <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
+    <div class="flex items-center gap-12">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
+        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-6">
+      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+      <a href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+    </div>
+  </div>
+</header>
+
+<main class="pt-8">
+
+  <!-- Hero: Voices of Change -->
+  <section class="px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+      <div class="lg:col-span-7">
+        <span class="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-md text-label-md mb-6">Voices of Change</span>
+        <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background mb-8 leading-tight">Beyond the Diagnosis: Reclaiming Autonomy in Chronic Care.</h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl">A seminal exploration of how systemic healthcare gaps are being filled by patient-led grassroots movements, and the radical act of storytelling as survival.</p>
+        <div class="flex flex-wrap gap-4">
+          <button class="min-h-[44px] px-8 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:brightness-110 transition-all">Read the Essay</button>
+          <a href="./coming-soon.html" class="inline-block min-h-[44px] px-8 border-2 border-outline text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-all leading-[40px]">Support the Author</a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative group">
+        <div class="aspect-[4/5] bg-secondary-container rounded-2xl overflow-hidden shadow-lg">
+          <img
+            alt="Chelsey, founder of Episodic"
+            class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+            src="./assets/chelsey-headshot.jpg"
+          />
+        </div>
+        <div class="absolute -bottom-6 -left-6 bg-surface-bright p-6 rounded-xl border border-outline-variant/30 shadow-lg max-w-[240px] hidden md:block">
+          <p class="font-caption text-caption text-primary mb-1">Author Spotlight</p>
+          <p class="font-headline-md text-headline-md text-on-surface">Chelsey, Founder</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Statement -->
+  <section class="bg-surface-container-low py-16 md:py-24">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center max-w-2xl mx-auto">
+      <p class="font-headline-md text-headline-md text-on-surface leading-relaxed">Episodic is a youth-led space where chronic illness and disability meet storytelling, advocacy, and community. We are just getting started — and we are building this with you.</p>
+    </div>
+  </section>
+
+  <!-- Action Center -->
+  <section class="px-margin-mobile md:px-margin-desktop py-24 bg-background">
+    <div class="max-w-container-max mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+        <div class="max-w-xl">
+          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Action Center</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">Tangible resources designed to empower your voice. From legislative guides to community organizing frameworks, we provide the tools for change.</p>
+        </div>
+        <button class="flex items-center gap-2 text-primary font-label-md text-label-md group hover:gap-3 transition-all">
+          View All Resources <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+        <!-- Card 1: Comprehensive Guide (wide) -->
+        <div class="md:col-span-2 group overflow-hidden rounded-xl border border-outline-variant/30 hover:shadow-lg transition-all duration-500">
+          <div class="h-64 bg-secondary-container overflow-hidden">
+            <img
+              alt="Resource Guide"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa_w06nW697swWuh2f0j9PwFchoofqeF4D1fvgWgxiqE15LB_Ery1NsmOLZC1sZyUIAzzF2K2Zk4HJeoEmDZsREZXi97LBp9JJZ4pGiHIHgHXWaTM12mkLyVEoXXwgPEK3nDV3dClnYMm0UfXDo3O7n6e5F9Sz39nbPATjxbMfQlq3msWI6qZNpn2FaFNRSXMpwIFWzM2hgiTJSN3ETF4CJot4ix3whhTDNc8GKkUKm5gsPVopMCNqk9o7n5mgsdztCHKLSZ-04nK9"
+            />
+          </div>
+          <div class="p-8 bg-surface-container-lowest">
+            <span class="text-secondary font-label-md text-label-md mb-2 block">Comprehensive Guide</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Navigating Insurance Appeals: A Patient Handbook</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">A step-by-step breakdown of the appeals process, including letter templates and legal rights for chronic illness patients.</p>
+            <a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md border-b border-primary/20 pb-1" href="#">Download PDF</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Petition -->
+        <div class="group overflow-hidden rounded-xl bg-tertiary-container text-on-tertiary-container flex flex-col justify-between p-8 hover:shadow-lg transition-all">
+          <div>
+            <span class="material-symbols-outlined text-4xl mb-6 block">edit_square</span>
+            <h3 class="font-headline-md text-headline-md mb-4">Urgent: Support House Bill 402</h3>
+            <p class="font-body-md text-body-md mb-8 opacity-90">Join 5,000 others in demanding equitable access to innovative telehealth solutions for rural communities.</p>
+          </div>
+          <a href="./coming-soon.html" class="block w-full min-h-[44px] bg-on-tertiary-container text-tertiary-container rounded-lg font-label-md text-label-md hover:bg-white transition-colors text-center leading-[44px]">Sign Petition</a>
+        </div>
+
+        <!-- Card 3: Community Circles -->
+        <div class="group overflow-hidden rounded-xl border border-outline-variant/30 hover:shadow-lg transition-all duration-500">
+          <div class="h-48 bg-primary-container"></div>
+          <div class="p-8 bg-surface-container-lowest -mt-12 mx-4 rounded-lg shadow-sm border border-outline-variant/10 mb-8">
+            <span class="material-symbols-outlined text-primary mb-4 block">groups</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Community Circles</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-4">Launch or join a local advocacy chapter in your city.</p>
+            <a class="text-primary font-label-md text-label-md" href="./coming-soon.html">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Card 4: Legislative Tracker (wide) -->
+        <div class="md:col-span-2 group overflow-hidden rounded-xl border border-outline-variant/30 flex flex-col md:flex-row hover:shadow-lg transition-all duration-500">
+          <div class="md:w-1/2 p-8 bg-surface-container-low flex flex-col justify-center">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Legislative Tracker</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">Real-time monitoring of healthcare-related bills moving through parliament. Stay informed on what matters most.</p>
+            <a href="./coming-soon.html" class="inline-block min-h-[44px] px-6 border-2 border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all leading-[40px]">Open Tracker</a>
+          </div>
+          <div class="md:w-1/2 bg-surface-dim overflow-hidden min-h-[200px]">
+            <img
+              alt="Policy Building"
+              class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 transition-all duration-1000"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOCS6dM-JjYLm-Q1OliNFWckaCf3MWkt8SulUCxRWlkvjIj8APkZQEZVu-jHmp9cxOLYe67H4JXTPJfD-sAIPGbTOL0iAkmRMYsyYIW9VQjJnqXQVoIMuG0wkMm2RBnfWydEjsjFY_lkAxtbEdnRLXSvFWqrahjWvP2kn5YQeYZZM_qgls8gHU-dzOZz7whgrJbFUrNnQ5jl_nQReL0X5wOSkma4WyDxQ7Sq8nTWPGyyXfAN1dVgDS1p1C3-w47r5Tu-W6LI9PMd1X"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About the Creator / Personal Mission -->
+  <section class="px-margin-mobile md:px-margin-desktop py-24">
+    <div class="max-w-container-max mx-auto">
+      <div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/20 flex flex-col md:flex-row">
+
+        <!-- Photo -->
+        <div class="md:w-2/5 relative min-h-[400px]">
+          <img
+            src="./assets/chelsey-headshot.jpg"
+            alt="Chelsey, founder of Episodic"
+            class="absolute inset-0 w-full h-full object-cover object-top"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-on-background/50 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-surface-container-low/30"></div>
+        </div>
+
+        <!-- Bio text -->
+        <div class="md:w-3/5 p-10 md:p-16 flex flex-col justify-center gap-6">
+          <div class="flex items-center gap-3">
+            <span class="inline-block px-4 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-md text-label-md">About the Creator</span>
+            <span class="material-symbols-outlined text-tertiary" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">favorite</span>
+          </div>
+          <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary leading-tight">Personal Mission</h2>
+          <div class="space-y-5 font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            <p>Everyone has their own lived experiences with chronic illness. Whether you are navigating those challenges yourself or grieving loved ones affected by them, I believe storytelling can become a powerful form of healing and closure of one's experience.</p>
+            <p class="text-on-surface font-semibold italic border-l-4 border-primary pl-5">"Hi, I'm Chelsey — a STEM enthusiast and advocate from Maui, Hawaiʻi. I am passionate about empowering youth to recognize the value and strength of their voices."</p>
+            <p>My hope is that this platform fosters a compassionate community where people can share their experiences openly, find comfort in one another's stories, and remind each other that no one has to go through illness alone.</p>
+          </div>
+          <a href="./submit.html" class="mt-2 self-start inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:shadow-xl hover:brightness-110 transition-all active:scale-95">
+            Share Your Story <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="px-margin-mobile md:px-margin-desktop py-24 mb-24">
+    <div class="max-w-container-max mx-auto bg-primary text-on-primary rounded-3xl p-12 md:p-24 text-center">
+      <h2 class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-8 max-w-3xl mx-auto">Be the first to hear about new calls to action and community breakthroughs.</h2>
+      <form id="newsletter-form" class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+        <input
+          class="flex-grow bg-white/10 border-b-2 border-white/30 text-white placeholder:text-white/60 p-4 focus:border-white focus:outline-none transition-all"
+          placeholder="your@email.com"
+          type="email"
+          required
+        />
+        <button class="bg-white text-primary px-10 py-4 rounded-lg font-label-md text-label-md hover:bg-primary-fixed-dim transition-colors" type="submit">Join the Movement</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-start gap-gutter max-w-container-max mx-auto border-t border-outline-variant/20 bg-surface-container-low">
+  <div class="flex flex-col gap-6">
+    <img src="./assets/logo.png" alt="Episodic" class="h-16 w-auto" />
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">© Episodic. A Living Literary Magazine. Nurturing the intersection of art and advocacy.</p>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+    <div class="flex flex-col gap-4">
+      <p class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Magazine</p>
+      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./issues.html">Issues</a>
+      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./poetry.html">Poetry</a>
+      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./articles.html">Archive</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Support</p>
+      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./submit.html">Submit</a>
+      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./advocacy.html">Advocacy</a>
+      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./accessibility.html">Accessibility</a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <p class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Legal</p>
+      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./privacy.html">Privacy</a>
+      <div class="flex gap-4 mt-2">
+        <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">share</span>
+        <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">mail</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { initSearch } from './js/search.js';
+  initSearch();
+
+  document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type=email]').value;
+    try {
+      await fetch('http://localhost:8000/api/v1/newsletter/subscribe', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email})
+      });
+      e.target.innerHTML = '<p class="text-on-primary font-body-md">Thank you! Check your inbox.</p>';
+    } catch {}
+  });
+</script>
+
+</body>
+</html>
