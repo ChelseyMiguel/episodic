@@ -146,6 +146,7 @@
   .dark #toast { background: #e6e4df; color: #1c1a18; }
   #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(60px); background: #1b1c19; color: #fbf9f4; border-radius: 9999px; padding: 0.5rem 1.25rem; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0; transition: opacity 0.25s, transform 0.3s; z-index: 9999; pointer-events: none; white-space: nowrap; }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>

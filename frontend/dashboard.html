@@ -213,7 +213,7 @@
 import api from './js/api.js';
 import { requireAuth, getUser, logout } from './js/auth.js';
 
-// Auth guard — redirects to login if not logged in
+// Auth guard redirects to login if not logged in
 requireAuth();
 
 window.handleLogout = function() {
@@ -253,7 +253,7 @@ function statusBadge(status) {
 }
 
 function formatDate(dateStr) {
-  if (!dateStr) return '—';
+  if (!dateStr) return '';
   return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
@@ -322,7 +322,7 @@ async function loadContributorStatus() {
     document.getElementById('apply-section').classList.add('hidden');
   } catch (err) {
     if (err.status === 404) {
-      // Not yet a contributor — show apply form
+      // Not yet a contributor show apply form
       document.getElementById('apply-section').classList.remove('hidden');
     }
     // Other errors: silently ignore contributor section
