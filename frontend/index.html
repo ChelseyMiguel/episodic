@@ -421,7 +421,6 @@
 </footer>
 
 <script type="module">
-import api from './js/api.js';
 import { updateNavForAuth } from './js/auth.js';
 import { initSearch } from './js/search.js';
 
@@ -475,15 +474,16 @@ function articleCard(article, idx) {
     : '';
   const cat = article.category || 'Essay';
   const catIcon = getCategoryIcon(cat);
+  const href = article.href || `./article.html?slug=${encodeURIComponent(article.slug)}`;
   return `
     <article class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:translate-y-[-4px] transition-all duration-300 border border-outline-variant/10 group/card">
-      <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="h-48 ${color.bg} flex items-center justify-center relative group block">
+      <a href="${href}" class="h-48 ${color.bg} flex items-center justify-center relative group block">
         <span class="material-symbols-outlined text-6xl ${color.iconColor} opacity-40 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">${color.icon}</span>
         <div class="absolute inset-0 ${color.bg} mix-blend-multiply opacity-20"></div>
       </a>
       <div class="p-8 space-y-4 flex-grow bg-surface relative">
         <span class="text-caption font-caption text-outline">${date}</span>
-        <a href="./article.html?slug=${encodeURIComponent(article.slug)}">
+        <a href="${href}">
           <h3 class="font-headline-md text-headline-md leading-snug group-hover/card:text-primary transition-colors cursor-pointer">${article.title}</h3>
         </a>
         <div class="flex items-center gap-2 text-primary">
@@ -494,22 +494,7 @@ function articleCard(article, idx) {
     </article>`;
 }
 
-async function loadHero() {
-  try {
-    const data = await api.issues.list();
-    const published = (data.items || [])
-      .filter(i => i.status === 'published')
-      .sort((a, b) => new Date(b.publication_date || b.created_at) - new Date(a.publication_date || a.created_at));
-
-    if (published.length > 0) {
-      const issue = published[0];
-      document.getElementById('hero-volume-chip').textContent = issue.title || 'Latest Issue';
-      document.getElementById('hero-read-btn').href = `./issue.html?slug=${encodeURIComponent(issue.slug)}`;
-    }
-  } catch (_) {
-    // API unavailable — hero keeps its static defaults, no error shown
-  }
-}
+// Hero uses static HTML defaults — no API needed
 
 let isListView = false;
 
@@ -554,47 +539,30 @@ function articleCardList(article, idx) {
     </article>`;
 }
 
-async function loadStories(params = {}) {
-  const grid = document.getElementById('stories-grid');
-  const errEl = document.getElementById('stories-error');
-  errEl.classList.add('hidden');
-  grid.innerHTML = `
-    <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10"><div class="h-48 skeleton"></div><div class="p-8 space-y-4 bg-surface flex-grow"><div class="skeleton h-3 w-24 rounded-full"></div><div class="skeleton h-6 w-full rounded"></div></div></div>
-    <div class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col border border-outline-variant/10"><div class="h-48 skeleton"></div><div class="p-8 space-y-4 bg-surface flex-grow"><div class="skeleton h-3 w-24 rounded-full"></div><div class="skeleton h-6 w-full rounded"></div></div></div>`;
-  try {
-    const data = await api.articles.list(params);
-    let articles = (data && data.items) ? data.items : [];
-    if (params.sort === 'oldest') {
-      articles = articles.slice().sort((a, b) => new Date(a.published_at || a.created_at) - new Date(b.published_at || b.created_at));
-    } else {
-      articles = articles.slice().sort((a, b) => new Date(b.published_at || b.created_at) - new Date(a.published_at || a.created_at));
-    }
-    renderGrid(articles);
-  } catch (err) {
-    grid.innerHTML = '';
-    errEl.textContent = 'Could not load stories: ' + err.message;
-    errEl.classList.remove('hidden');
-  }
-}
+// All stories rendered from static data — no API, no fetch, no errors
+const STATIC_HOME_ARTICLES = [
+  { slug: 'blissful-moments',      title: 'Blissful Moments Like These',  category: 'Visual Art', byline: 'Chelsey Miguel', href: './article-blissful-moments.html',  published_at: '2026-05-01' },
+  { slug: 'dresses-i-couldnt-try', title: "Dresses I Couldn't Really Try", category: 'Visual Art', byline: 'Chelsey Miguel', href: './article-dresses.html',           published_at: '2026-05-01' },
+  { slug: 'beyond-the-diagnosis',  title: 'Beyond the Diagnosis',          category: 'Op-Ed',     byline: 'Chelsey Miguel', href: './article-beyond-diagnosis.html',   published_at: '2026-05-01' },
+  { slug: 'bitter-sweet',          title: 'Bitter Sweet',                  category: 'Poetry',    byline: 'Chelsey Miguel', href: './article.html?slug=bitter-sweet',  published_at: '2026-04-01' },
+  { slug: 'belated',               title: 'Belated',                       category: 'Poetry',    byline: 'Chelsey Miguel', href: './article.html?slug=belated',       published_at: '2026-04-01' },
+  { slug: 'aftertaste',            title: 'Aftertaste',                    category: 'Poetry',    byline: 'Chelsey Miguel', href: './article.html?slug=aftertaste',    published_at: '2026-04-01' },
+  { slug: 'im-here-to-mend',       title: "I'm Here to Mend",              category: 'Poetry',    byline: 'Chelsey Miguel', href: './issue-resilient-rhymes.html',     published_at: '2026-04-01' },
+  { slug: 'reboot',                title: 'Reboot',                        category: 'Poetry',    byline: 'Chelsey Miguel', href: './issue-resilient-rhymes.html',     published_at: '2026-04-01' },
+];
 
-async function loadTags() {
-  try {
-    const data = await api.articles.list();
-    const articles = (data && data.items) ? data.items : [];
-    const tagMap = new Map();
-    articles.forEach(a => (a.tags || []).forEach(t => {
-      const name = t.name || t;
-      const slug = t.slug || name;
-      if (name) tagMap.set(slug, name);
-    }));
-    const select = document.getElementById('filter-tag');
-    tagMap.forEach((name, slug) => {
-      const opt = document.createElement('option');
-      opt.value = slug;
-      opt.textContent = name;
-      select.appendChild(opt);
-    });
-  } catch (_) {}
+function loadStories(params = {}) {
+  document.getElementById('stories-error').classList.add('hidden');
+  let articles = STATIC_HOME_ARTICLES.slice();
+  if (params.category) {
+    articles = articles.filter(a => (a.category || '').toLowerCase() === params.category.toLowerCase());
+  }
+  if (params.sort === 'oldest') {
+    articles.sort((a, b) => new Date(a.published_at) - new Date(b.published_at));
+  } else {
+    articles.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+  }
+  renderGrid(articles);
 }
 
 function getFilterParams() {
@@ -629,8 +597,6 @@ document.getElementById('btn-list').addEventListener('click', () => {
   loadStories(getFilterParams());
 });
 
-loadHero();
-loadTags();
 loadStories();
 </script>
 </body>
