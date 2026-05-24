@@ -1,7 +1,7 @@
 const API_BASE = import.meta?.env?.VITE_API_URL
   || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
       ? 'http://localhost:8000/api/v1'
-      : 'https://YOUR-APP.up.railway.app/api/v1');
+      : 'https://episodic.fly.dev/api/v1');
 
 async function apiFetch(path, options = {}) {
   const token = localStorage.getItem('episodic_token');

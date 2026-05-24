@@ -4,10 +4,13 @@ from sqlalchemy.orm import DeclarativeBase
 from app.config import settings
 
 
+_connect_args = {"ssl": False} if settings.ENVIRONMENT == "production" else {}
+
 engine = create_async_engine(
     settings.DATABASE_URL,
     echo=settings.ENVIRONMENT == "development",
     pool_pre_ping=True,
+    connect_args=_connect_args,
 )
 
 AsyncSessionLocal = async_sessionmaker(
