@@ -1,0 +1,31 @@
+{
+  "name": "episodic",
+  "version": "1.0.0",
+  "description": "A production-ready FastAPI + PostgreSQL backend for **Episodic**, a youth-led chronic illness and disability literary and advocacy magazine.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i frontend/css/input.css -o frontend/css/styles.css --minify",
+    "watch:css": "tailwindcss -i frontend/css/input.css -o frontend/css/styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChelseyMiguel/episodic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ChelseyMiguel/episodic/issues"
+  },
+  "homepage": "https://github.com/ChelseyMiguel/episodic#readme",
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^3.4.19"
+  }
+}
