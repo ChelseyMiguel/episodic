@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>All Stories | Episodic</title>
+<title>Dresses I Couldn't Really Try | Episodic</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -26,34 +26,22 @@
 <style>
   body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
   .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; }
-  .bento-card { background: #ffffff; border: 1px solid #dac1ba; transition: transform 0.3s ease, border-color 0.3s ease; }
-  .bento-card:hover { border-color: #944931; }
-  .form-input { border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #dac1ba; background: transparent; transition: border-color 0.3s ease; }
-  .form-input:focus { outline: none; border-bottom: 1px solid #944931; box-shadow: none; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-  .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
-  .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
-  .filter-chip { cursor: pointer; padding: 0.375rem 1rem; border-radius: 9999px; border: 1px solid #dac1ba; color: #54433e; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; transition: all 0.2s; }
-  .filter-chip.active { background: #944931; color: #ffffff; border-color: #944931; }
-  .filter-chip:not(.active):hover { border-color: #944931; color: #944931; }
-  /* Dark mode */
   .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
   .dark header, .dark .bg-surface { background-color: #242220 !important; }
   .dark footer { background-color: #1a1816 !important; }
-  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
   .dark .bg-surface-container { background-color: #2a2826 !important; }
   .dark .bg-surface-container-low { background-color: #201e1c !important; }
-  .dark .bg-secondary-container { background-color: #2a3840 !important; }
-  .dark .border-outline-variant, .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.4) !important; }
   .dark .text-on-surface { color: #e6e4df !important; }
   .dark .text-on-surface-variant { color: #b8a8a2 !important; }
   .dark .text-outline { color: #6e5c56 !important; }
   .dark .text-primary { color: #ffb59e !important; }
-  .dark .bg-primary { background-color: #944931 !important; }
-  .dark .text-on-primary { color: #fff !important; }
-  .dark .filter-chip { border-color: #503c32; color: #b8a8a2; }
-  .dark .filter-chip.active { background: #944931; color: #fff; border-color: #944931; }
+  .dark .text-secondary { color: #9bbac8 !important; }
   .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+  .dark .art-img { filter: invert(1) opacity(0.85); }
+  .prose-body p { font-family: 'Literata', serif; font-size: 1.15rem; line-height: 1.9; color: #1b1c19; margin-bottom: 1.5rem; }
+  .dark .prose-body p { color: #e6e4df; }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -68,58 +56,107 @@
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
         <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./articles.html">Archive</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
     <div class="flex items-center gap-2">
       <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
         class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
-      <button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
+      <button id="search-btn" class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
       <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
 
-<main class="pt-8 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<main class="pt-10 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 
-  <!-- Header -->
-  <section class="mb-12 mt-8">
-    <h1 class="font-display-lg text-display-lg text-on-surface mb-3">All Stories</h1>
-    <p class="font-body-lg text-on-surface-variant">Poetry, essays, visual art, and interviews from our community of writers and artists.</p>
-  </section>
+  <!-- Back link -->
+  <div class="mb-10">
+    <a href="./articles.html" class="font-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+      <span class="material-symbols-outlined text-sm">arrow_back</span>
+      Back to Archive
+    </a>
+  </div>
 
-  <!-- Filter bar -->
-  <section class="mb-10">
-    <div class="flex flex-wrap gap-3" id="filter-bar">
-      <button class="filter-chip active" data-category="all">All</button>
-      <button class="filter-chip" data-category="Essay">Essay</button>
-      <button class="filter-chip" data-category="Poetry">Poetry</button>
-      <button class="filter-chip" data-category="Visual Art">Visual Art</button>
-      <button class="filter-chip" data-category="Interview">Interview</button>
-      <button class="filter-chip" data-category="Op-Ed">Op-Ed</button>
-      <button class="filter-chip" data-category="Other">Other</button>
+  <div class="max-w-max-width-content mx-auto">
+
+    <!-- Byline & meta -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <span class="font-label-md text-xs bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full uppercase tracking-widest">Visual Art</span>
+      <span class="font-caption text-outline">Invisible Symptoms · May 2026</span>
     </div>
-  </section>
 
-  <!-- Article grid -->
-  <section>
-    <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter"></div>
-    <div id="empty-state" class="hidden text-center py-24">
-      <span class="material-symbols-outlined text-5xl text-outline mb-4 block">search_off</span>
-      <h3 class="font-headline-md text-headline-md text-on-surface mb-2">No stories found</h3>
-      <p class="font-body-md text-on-surface-variant">Try a different category filter, or check back soon.</p>
+    <!-- Title -->
+    <h1 class="font-headline-md text-on-surface mb-4" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15;">Dresses I Couldn't Really Try</h1>
+
+    <!-- Author -->
+    <div class="flex items-center gap-3 mb-12 pb-8 border-b border-outline-variant/30">
+      <img src="./assets/chelsey-headshot.jpg" alt="Chelsey Miguel" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+      <div>
+        <span class="font-label-md text-on-surface block">Chelsey Miguel</span>
+        <span class="font-caption text-outline">Founder &amp; Editor, Episodic</span>
+      </div>
     </div>
-    <div id="articles-error" class="hidden error-banner mt-4"></div>
-  </section>
 
+    <!-- Illustration -->
+    <figure class="mb-12">
+      <img
+        src="./assets/art-dresses.png"
+        alt="Hand-drawn illustration of an artist's wooden mannequin, pencils, a tape measure, a sketch of a dress form, a book of poems, a dress on a hanger, and other creative tools — by Chelsey Miguel"
+        class="art-img w-full max-w-lg mx-auto block rounded-lg"
+      />
+      <figcaption class="text-center font-caption text-outline mt-4 italic">
+        Original illustration by Chelsey Miguel, 2026
+      </figcaption>
+    </figure>
+
+    <!-- Body text -->
+    <div class="prose-body mb-16">
+      <p>There's a small little part in me that loves drawing dresses.</p>
+      <p>I still like drawing them though, but it's that shift of imagining to actually creating that could inspire anyone. When I sketch, I'm not just drawing fabric and form. I'm building something that doesn't yet exist in the world, a silhouette that belongs only to the page.</p>
+      <p>I think a dress conveys an architecture nobody else can see. The way a hem falls, the weight implied by a gathered skirt, the tension in a seam that hasn't been sewn. These are decisions a body makes before a hand ever picks up a needle. And I've always found that fascinating.</p>
+      <p>There were dresses I couldn't really try. Not because they weren't mine to wear, but because the trying felt impossible on certain days. The body has its own language, and chronic illness writes some of those sentences without asking. So I drew instead. And drawing became its own kind of trying.</p>
+      <p>This piece is for anyone who has imagined something beautiful and found the distance between imagination and reality a little longer than expected. The sketch is still real. The vision still counts.</p>
+    </div>
+
+    <!-- Reactions -->
+    <div class="border-t border-outline-variant/30 pt-8 mb-12">
+      <p class="font-label-md text-on-surface-variant text-xs uppercase tracking-widest mb-4">How did this make you feel?</p>
+      <div class="flex flex-wrap gap-3" id="reactions-bar">
+        <button data-reaction="moved" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">favorite</span> Moved
+        </button>
+        <button data-reaction="seen" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">visibility</span> Seen
+        </button>
+        <button data-reaction="powerful" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">auto_awesome</span> Powerful
+        </button>
+        <button data-reaction="informed" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">lightbulb</span> Inspired
+        </button>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="border-t border-outline-variant/30 pt-8 flex flex-col sm:flex-row gap-4 justify-between">
+      <a href="./articles.html" class="font-label-md text-primary hover:underline flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">grid_view</span> All Stories
+      </a>
+      <a href="./issue.html?slug=invisible-symptoms" class="font-label-md text-primary hover:underline flex items-center gap-1">
+        Invisible Symptoms Issue <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+    </div>
+
+  </div>
 </main>
 
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
   <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
-    <div class="space-y-4">
+    <div class="space-y-4 flex-shrink-0 max-w-xs">
       <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
-      <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
+      <p class="font-body-md text-body-md text-on-surface-variant">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
       <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -161,20 +198,20 @@
 </footer>
 
 <script type="module">
-import api from './js/api.js';
 import { updateNavForAuth } from './js/auth.js';
 import { initSearch } from './js/search.js';
-
 updateNavForAuth();
 initSearch();
 
 // Dark mode toggle
 (function() {
   const btn = document.getElementById('dark-mode-btn');
+  if (!btn) return;
   function syncBtn() {
     const isDark = document.documentElement.classList.contains('dark');
     btn.textContent = isDark ? 'light_mode' : 'dark_mode';
     btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    btn.setAttribute('aria-label', btn.title);
   }
   syncBtn();
   btn.addEventListener('click', () => {
@@ -184,152 +221,32 @@ initSearch();
   });
 })();
 
-const colorBlocks = ['bg-primary-container', 'bg-secondary-container', 'bg-tertiary-container'];
-let allArticles = [];
-let activeCategory = 'all';
+// Reactions
+const slug = 'dresses-i-couldnt-try';
+const storageKey = `episodic_reactions_${slug}`;
+const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
-// Static pinned pieces (visual art, etc.) not yet in the backend
-const STATIC_PIECES = [
-  {
-    slug: 'blissful-moments',
-    title: 'Blissful Moments Like These',
-    category: 'Visual Art',
-    byline: 'Chelsey Miguel',
-    excerpt: 'I have always been content with the simple things — not the orderly nature of tech but the brew that goes back.',
-    href: './article-blissful-moments.html',
-    colorClass: 'bg-tertiary-fixed',
-    thumb: './assets/art-place-to-tell-story.png',
-    label: 'Invisible Symptoms · May 2026',
-  },
-  {
-    slug: 'dresses-i-couldnt-try',
-    title: "Dresses I Couldn't Really Try",
-    category: 'Visual Art',
-    byline: 'Chelsey Miguel',
-    excerpt: "There's a small part of me that loves drawing dresses. It's that shift of imagining to actually creating that could inspire anyone. A dress conveys an architecture nobody else can see.",
-    href: './article-dresses.html',
-    colorClass: 'bg-secondary-container',
-    thumb: './assets/art-dresses.png',
-    label: 'Invisible Symptoms · May 2026',
-  },
-  {
-    slug: 'resilient-rhymes',
-    title: 'Resilient Rhymes',
-    category: 'Poetry',
-    byline: 'Chelsey Miguel',
-    excerpt: "A collection of short-form poems about bending without breaking — I'm Here to Mend and Reboot.",
-    href: './issue-resilient-rhymes.html',
-    colorClass: 'bg-tertiary-container',
-    thumb: '',
-    label: 'Resilient Rhymes · May 2026',
-  },
-];
-
-function staticPieceCard(piece) {
-  const thumbImg = piece.thumb
-    ? `<img src="${piece.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover object-top opacity-20 pointer-events-none select-none" />`
-    : '';
-  return `
-    <a href="${piece.href}" class="bento-card rounded-xl overflow-hidden block group" data-static-category="${piece.category}">
-      <div class="${piece.colorClass} h-36 w-full flex items-end justify-between p-4 overflow-hidden relative">
-        ${thumbImg}
-        <span class="relative inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">${piece.category}</span>
-        <span class="relative font-caption text-on-tertiary-fixed-variant text-xs">${piece.label}</span>
-      </div>
-      <div class="p-6">
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">${piece.title}</h3>
-        <p class="font-body-md text-on-surface-variant line-clamp-3 mb-4">${piece.excerpt}</p>
-        <span class="font-label-md text-secondary text-sm">${piece.byline}</span>
-      </div>
-    </a>`;
-}
-
-function articleCard(article, idx) {
-  const color = colorBlocks[idx % 3];
-  const byline = article.byline || 'Anonymous';
-  const cwBadge = article.content_warnings && article.content_warnings.length
-    ? `<span class="text-xs font-label-md bg-error-container text-on-error-container px-2 py-0.5 rounded-full">CW</span>`
-    : '';
-  return `
-    <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="bento-card rounded-xl overflow-hidden block group">
-      <div class="${color} h-36 w-full flex items-end p-4 gap-2">
-        <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">${article.category || 'Essay'}</span>
-        ${cwBadge}
-      </div>
-      <div class="p-6">
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">${article.title}</h3>
-        <p class="font-body-md text-on-surface-variant line-clamp-3 mb-4">${article.excerpt || ''}</p>
-        <span class="font-label-md text-secondary text-sm">${byline}</span>
-      </div>
-    </a>`;
-}
-
-// Normalize for filter matching: lowercase, strip hyphens and spaces
-// e.g. "Op-Ed" → "oped", "Visual Art" → "visualart"
-function normCat(str) {
-  return (str || '').toLowerCase().replace(/[-\s]/g, '');
-}
-
-// Slugs to hide from public archive
-const HIDDEN_SLUGS = new Set(['the-waiting-room']);
-
-function renderArticles() {
-  const grid = document.getElementById('articles-grid');
-  const emptyState = document.getElementById('empty-state');
-  const visible = allArticles.filter(a => !HIDDEN_SLUGS.has(a.slug));
-  const filtered = activeCategory === 'all'
-    ? visible
-    : visible.filter(a => normCat(a.category) === normCat(activeCategory));
-
-  const filteredStatic = activeCategory === 'all'
-    ? STATIC_PIECES
-    : STATIC_PIECES.filter(p => normCat(p.category) === normCat(activeCategory));
-
-  const total = filteredStatic.length + filtered.length;
-  if (total === 0) {
-    grid.innerHTML = '';
-    emptyState.classList.remove('hidden');
-  } else {
-    emptyState.classList.add('hidden');
-    const staticHTML = filteredStatic.map(p => staticPieceCard(p)).join('');
-    const dynamicHTML = filtered.map((a, i) => articleCard(a, i + filteredStatic.length)).join('');
-    grid.innerHTML = staticHTML + dynamicHTML;
+document.querySelectorAll('.reaction-btn').forEach(btn => {
+  const r = btn.dataset.reaction;
+  if (saved[r]) {
+    btn.classList.add('border-primary', 'text-primary', 'bg-primary-fixed/30');
+    btn.classList.remove('border-outline-variant', 'text-on-surface-variant');
   }
-}
-
-function loadArticles() {
-  // ① Show static pieces instantly — zero wait
-  renderArticles();
-
-  // ② Race the API against a 4 s timeout so users are never stuck
-  const fetchWithTimeout = Promise.race([
-    api.articles.list(),
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('timeout')), 4000)
-    ),
-  ]);
-
-  fetchWithTimeout
-    .then(data => {
-      allArticles = (data && data.items) ? data.items : [];
-      renderArticles(); // merge backend articles into the grid
-    })
-    .catch(err => {
-      // Backend is down or slow — static content already visible, nothing to do
-      console.info('Archive: backend unavailable, static-only mode.', err.message);
+  btn.addEventListener('click', () => {
+    const active = btn.classList.contains('border-primary');
+    document.querySelectorAll('.reaction-btn').forEach(b => {
+      b.classList.remove('border-primary', 'text-primary', 'bg-primary-fixed/30');
+      b.classList.add('border-outline-variant', 'text-on-surface-variant');
     });
-}
-
-document.getElementById('filter-bar').addEventListener('click', (e) => {
-  const chip = e.target.closest('[data-category]');
-  if (!chip) return;
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  chip.classList.add('active');
-  activeCategory = chip.dataset.category;
-  renderArticles();
+    if (!active) {
+      btn.classList.add('border-primary', 'text-primary', 'bg-primary-fixed/30');
+      btn.classList.remove('border-outline-variant', 'text-on-surface-variant');
+      localStorage.setItem(storageKey, JSON.stringify({ [r]: true }));
+    } else {
+      localStorage.removeItem(storageKey);
+    }
+  });
 });
-
-loadArticles();
 </script>
 </body>
 </html>
