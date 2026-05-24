@@ -75,7 +75,8 @@
     <div class="flex items-center gap-2">
       <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
         class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
-      <a href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
+      <button id="search-btn" class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
+      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -354,6 +355,12 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+<script type="module">
+import { updateNavForAuth } from './js/auth.js';
+import { initSearch } from './js/search.js';
+updateNavForAuth();
+initSearch();
 </script>
 
 
