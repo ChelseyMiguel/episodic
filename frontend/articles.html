@@ -104,15 +104,7 @@
 
   <!-- Article grid -->
   <section>
-    <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-      <!-- Skeletons -->
-      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-4 w-1/4 rounded-full"></div><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div></div></div>
-      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-4 w-1/4 rounded-full"></div><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div></div></div>
-      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-4 w-1/4 rounded-full"></div><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div></div></div>
-      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-4 w-1/4 rounded-full"></div><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div></div></div>
-      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-4 w-1/4 rounded-full"></div><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div></div></div>
-      <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-4 w-1/4 rounded-full"></div><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-2/3"></div></div></div>
-    </div>
+    <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter"></div>
     <div id="empty-state" class="hidden text-center py-24">
       <span class="material-symbols-outlined text-5xl text-outline mb-4 block">search_off</span>
       <h3 class="font-headline-md text-headline-md text-on-surface mb-2">No stories found</h3>
@@ -124,7 +116,7 @@
 </main>
 
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
-  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+  <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
       <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
@@ -159,9 +151,9 @@
       <div class="space-y-3">
         <span class="font-label-md text-label-md text-primary">Social</span>
         <div class="flex gap-4">
-          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</button>
-          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</button>
-          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</button>
+          <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener" title="Substack" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</a>
+          <a href="mailto:episodicmagazine@gmail.com" title="Email us" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</a>
+          <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener" title="Subscribe on Substack" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</a>
         </div>
       </div>
     </div>
@@ -209,13 +201,27 @@ const STATIC_PIECES = [
     thumb: './assets/art-place-to-tell-story.png',
     label: 'Invisible Symptoms · May 2026',
   },
+  {
+    slug: 'resilient-rhymes',
+    title: 'Resilient Rhymes',
+    category: 'Poetry',
+    byline: 'Chelsey Miguel',
+    excerpt: 'A collection of short-form poems about bending without breaking — I'm Here to Mend and Reboot.',
+    href: './issue-resilient-rhymes.html',
+    colorClass: 'bg-tertiary-container',
+    thumb: '',
+    label: 'Resilient Rhymes · May 2026',
+  },
 ];
 
 function staticPieceCard(piece) {
+  const thumbImg = piece.thumb
+    ? `<img src="${piece.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover object-top opacity-20 pointer-events-none select-none" />`
+    : '';
   return `
     <a href="${piece.href}" class="bento-card rounded-xl overflow-hidden block group" data-static-category="${piece.category}">
       <div class="${piece.colorClass} h-36 w-full flex items-end justify-between p-4 overflow-hidden relative">
-        <img src="${piece.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover object-top opacity-20 pointer-events-none select-none" />
+        ${thumbImg}
         <span class="relative inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">${piece.category}</span>
         <span class="relative font-caption text-on-tertiary-fixed-variant text-xs">${piece.label}</span>
       </div>
@@ -280,17 +286,27 @@ function renderArticles() {
   }
 }
 
-async function loadArticles() {
-  try {
-    const data = await api.articles.list();
-    allArticles = (data && data.items) ? data.items : [];
-    renderArticles();
-  } catch (err) {
-    document.getElementById('articles-grid').innerHTML = '';
-    const el = document.getElementById('articles-error');
-    el.textContent = 'Could not load stories: ' + err.message;
-    el.classList.remove('hidden');
-  }
+function loadArticles() {
+  // ① Show static pieces instantly — zero wait
+  renderArticles();
+
+  // ② Race the API against a 4 s timeout so users are never stuck
+  const fetchWithTimeout = Promise.race([
+    api.articles.list(),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('timeout')), 4000)
+    ),
+  ]);
+
+  fetchWithTimeout
+    .then(data => {
+      allArticles = (data && data.items) ? data.items : [];
+      renderArticles(); // merge backend articles into the grid
+    })
+    .catch(err => {
+      // Backend is down or slow — static content already visible, nothing to do
+      console.info('Archive: backend unavailable, static-only mode.', err.message);
+    });
 }
 
 document.getElementById('filter-bar').addEventListener('click', (e) => {

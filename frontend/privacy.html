@@ -9,16 +9,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script>
   tailwind.config = {
+    darkMode: "class",
     theme: { extend: {
-      colors: {"primary":"#944931","on-primary":"#ffffff","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","primary-container":"#d67d61","on-primary-container":"#551905","secondary":"#4c616c","on-secondary":"#ffffff","secondary-container":"#cce3f0","on-secondary-container":"#506670","tertiary":"#80515e","on-tertiary":"#ffffff","tertiary-fixed":"#ffd9e1","on-tertiary-fixed-variant":"#653a47","tertiary-container":"#bc8694","on-tertiary-container":"#48212d","surface":"#fbf9f4","surface-container-low":"#f5f3ee","surface-container":"#f0eee9","surface-container-high":"#eae8e3","surface-container-highest":"#e4e2dd","on-surface":"#1b1c19","on-surface-variant":"#54433e","outline":"#87736d","outline-variant":"#dac1ba","background":"#fbf9f4","on-background":"#1b1c19"},
-      fontFamily: {"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-md":["Literata"],"label-md":["Plus Jakarta Sans"],"display-lg":["Literata"],"headline-lg":["Literata"]},
-      fontSize: {"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}]},
-      spacing: {"margin-desktop":"64px","margin-mobile":"20px","container-max":"1280px","gutter":"24px"}
+      colors: {"primary":"#944931","on-primary":"#ffffff","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","primary-container":"#d67d61","on-primary-container":"#551905","secondary":"#4c616c","on-secondary":"#ffffff","secondary-container":"#cce3f0","on-secondary-container":"#506670","tertiary":"#80515e","on-tertiary":"#ffffff","tertiary-fixed":"#ffd9e1","on-tertiary-fixed":"#330f1c","on-tertiary-fixed-variant":"#653a47","tertiary-container":"#bc8694","on-tertiary-container":"#48212d","surface":"#fbf9f4","surface-container-low":"#f5f3ee","surface-container":"#f0eee9","surface-container-high":"#eae8e3","surface-container-highest":"#e4e2dd","on-surface":"#1b1c19","on-surface-variant":"#54433e","outline":"#87736d","outline-variant":"#dac1ba","background":"#fbf9f4","on-background":"#1b1c19"},
+      fontFamily: {"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-md":["Literata"],"label-md":["Plus Jakarta Sans"],"caption":["Plus Jakarta Sans"],"display-lg":["Literata"],"headline-lg":["Literata"]},
+      fontSize: {"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}]},
+      spacing: {"margin-desktop":"64px","margin-mobile":"20px","container-max":"1280px","gutter":"24px","max-width-content":"800px"}
     }}
   }
 </script>
-<style>body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; } .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+<style>
+  body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .border-outline-variant\/30, .dark .border-outline-variant\/20 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-on-background { color: #e6e4df !important; }
+  .dark .text-outline { color: #6e5c56 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark .bg-tertiary-fixed\/40 { background-color: rgba(80,40,55,0.3) !important; }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="font-body-md text-body-md">
 
@@ -31,11 +50,15 @@
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <a href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <a href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+    </div>
   </div>
 </header>
 
@@ -56,14 +79,14 @@
 
     <section class="space-y-4">
       <h2 class="font-headline-md text-headline-md text-on-surface">1. What we collect</h2>
-      <p>When you subscribe to our newsletter, we collect your <strong class="text-on-surface">email address</strong> only nothing else. When you submit work, we collect the information you voluntarily provide in the submission form (your name if you choose to give it, contact email, and your writing). We never require your real name; anonymous submissions are always welcome.</p>
+      <p>When you subscribe to our newsletter, we collect your <strong class="text-on-surface">email address</strong> only &mdash; nothing else. When you submit work, we collect the information you voluntarily provide in the submission form (your name if you choose to give it, contact email, and your writing). We never require your real name; anonymous submissions are always welcome.</p>
       <p>Our server logs may record basic request data (IP address, browser type, pages visited) for security and debugging purposes. These logs are not linked to your identity and are deleted periodically.</p>
     </section>
 
     <section class="space-y-4">
       <h2 class="font-headline-md text-headline-md text-on-surface">2. How we use it</h2>
       <ul class="list-none space-y-3">
-        <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-base mt-1 flex-shrink-0">check_circle</span>Newsletter emails are used only to send you Episodic updates never shared with third parties.</li>
+        <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-base mt-1 flex-shrink-0">check_circle</span>Newsletter emails are used only to send Episodic updates and are never shared with third parties.</li>
         <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-base mt-1 flex-shrink-0">check_circle</span>Submission information is used by our editorial team to review and respond to your work.</li>
         <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-base mt-1 flex-shrink-0">check_circle</span>We do not use your data for advertising, profiling, or any commercial purpose.</li>
       </ul>
@@ -71,12 +94,12 @@
 
     <section class="space-y-4">
       <h2 class="font-headline-md text-headline-md text-on-surface">3. Anonymity &amp; your name</h2>
-      <p>Anonymous publishing is a core part of what Episodic stands for. If you submit work, you can choose to publish under a pseudonym, initials, or no name at all. Any byline preference you express will be honored exactly. We will never publish your real name without explicit written consent.</p>
+      <p>Anonymous publishing is a core part of what Episodic stands for. If you submit work, you can choose to publish under a pseudonym, initials, or no name at all. We will make every reasonable effort to honor your byline and anonymity preferences exactly as requested. We will never publish your real name without explicit written consent.</p>
     </section>
 
     <section class="space-y-4">
       <h2 class="font-headline-md text-headline-md text-on-surface">4. Cookies</h2>
-      <p>Episodic does not use tracking cookies, advertising cookies, or analytics platforms that profile you. We may store a session token in your browser's <code class="bg-surface-container px-2 py-0.5 rounded text-sm">localStorage</code> if you log in this is only used to keep you signed in and is cleared when you log out.</p>
+      <p>Episodic does not use tracking cookies, advertising cookies, or analytics platforms that profile you. We may store a session token in your browser's <code class="bg-surface-container px-2 py-0.5 rounded text-sm">localStorage</code> if you log in &mdash; this is only used to keep you signed in and is cleared when you log out.</p>
     </section>
 
     <section class="space-y-4">
@@ -86,11 +109,26 @@
 
     <section class="space-y-4">
       <h2 class="font-headline-md text-headline-md text-on-surface">6. Your rights</h2>
-      <p>You can ask us to delete your email from our newsletter list at any time just email us and we'll remove it within 48 hours. You can ask to see any personal data we hold about you. You can withdraw consent for publication of your work before it is published.</p>
+      <p>You can ask us to delete your email from our newsletter list at any time &mdash; just email us and we'll remove it within 48 hours. You can ask to see any personal data we hold about you. You can withdraw consent for publication of your work before it is published.</p>
     </section>
 
     <section class="space-y-4">
-      <h2 class="font-headline-md text-headline-md text-on-surface">7. Contact</h2>
+      <h2 class="font-headline-md text-headline-md text-on-surface">7. Publication rights</h2>
+      <p>Contributors retain ownership of their work. By submitting to Episodic, you grant us permission to publish the submitted material digitally as part of the magazine and its related platforms. Rights revert fully to the contributor upon publication unless otherwise agreed upon in writing.</p>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="font-headline-md text-headline-md text-on-surface">8. Minors</h2>
+      <p>Episodic welcomes submissions from young writers. However, contributors under 13 should only submit with permission from a parent or guardian. We do not knowingly collect unnecessary personal information from children.</p>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="font-headline-md text-headline-md text-on-surface">9. Sensitive content</h2>
+      <p>Because Episodic publishes personal stories involving illness, disability, grief, trauma, and mental health, some content may be emotionally difficult. Reader discretion is advised. Content warnings are provided where possible.</p>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="font-headline-md text-headline-md text-on-surface">10. Contact</h2>
       <p>Questions about privacy? Email us at <a href="mailto:episodicmagazine@gmail.com" class="text-primary underline underline-offset-2">episodicmagazine@gmail.com</a>. We're a small team and we read every message.</p>
     </section>
 
@@ -103,9 +141,70 @@
 
 </main>
 
-<footer class="border-t border-outline-variant/20 mt-8 py-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-  <p class="text-on-surface-variant font-body-md text-center">© 2026 Episodic Magazine. A Living Literary Magazine.</p>
+<!-- Footer -->
+<footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
+  <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-4 flex-shrink-0 max-w-xs">
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
+      <p class="font-body-md text-body-md text-on-surface-variant">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Magazine</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./resources.html">Resources</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Community</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./advocacy.html">Advocacy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Submit Work</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Support</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./privacy.html">Privacy Policy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./accessibility.html">Accessibility Statement</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./coming-soon.html">Support Us</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Social</span>
+        <div class="flex gap-4">
+          <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener" title="Substack" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</a>
+          <a href="mailto:episodicmagazine@gmail.com" title="Email us" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</a>
+          <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener" title="Subscribe on Substack" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
 
+<script type="module">
+// Dark mode toggle
+(function() {
+  const btn = document.getElementById('dark-mode-btn');
+  if (!btn) return;
+  function syncBtn() {
+    const isDark = document.documentElement.classList.contains('dark');
+    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    btn.setAttribute('aria-label', btn.title);
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+    syncBtn();
+  });
+})();
+</script>
 </body>
 </html>

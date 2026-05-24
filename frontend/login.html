@@ -34,8 +34,24 @@
   .tab-btn { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; padding: 0.75rem 1.5rem; border-bottom: 2px solid transparent; color: #54433e; transition: all 0.2s; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; }
   .tab-btn.active { color: #944931; border-bottom-color: #944931; }
   .tab-btn:not(.active):hover { color: #944931; }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark .bento-card { background-color: #242220; border-color: rgba(80,60,50,0.5); }
+  .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark .form-input { border-bottom-color: rgba(80,60,50,0.6); color: #e6e4df; }
+  .dark .form-input:focus { border-bottom-color: #ffb59e; }
+  .dark .tab-btn { color: #b8a8a2; }
+  .dark .tab-btn.active { color: #ffb59e; border-bottom-color: #ffb59e; }
+  .dark .error-banner { background: #3a0000; border-color: #ba1a1a; color: #ffb4ab; }
   .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="font-body-md text-body-md">
 
@@ -48,12 +64,14 @@
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <div class="flex items-center gap-6">
-      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
-      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <a href="./index.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Home</a>
     </div>
   </div>
 </header>
@@ -63,7 +81,7 @@
 
     <!-- Logo / heading -->
     <div class="text-center mb-10">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-12 w-auto" /></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity inline-block"><img src="./assets/LogoLight.png" alt="Episodic" class="h-32 w-auto object-contain mx-auto" /></a>
       <p class="font-body-md text-on-surface-variant mt-2">A space for your stories.</p>
     </div>
 
@@ -254,6 +272,24 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
     btn.innerHTML = 'Create Account <span class="material-symbols-outlined text-sm">arrow_forward</span>';
   }
 });
+
+// Dark mode toggle
+(function() {
+  const btn = document.getElementById('dark-mode-btn');
+  if (!btn) return;
+  function syncBtn() {
+    const isDark = document.documentElement.classList.contains('dark');
+    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    btn.setAttribute('aria-label', btn.title);
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+    syncBtn();
+  });
+})();
 </script>
 </body>
 </html>

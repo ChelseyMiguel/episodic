@@ -290,19 +290,13 @@
     <section class="fade-up bg-primary-fixed text-on-primary-fixed rounded-[2rem] p-8 md:p-16 text-center relative overflow-hidden">
       <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#3a0b00 1px, transparent 1px); background-size: 20px 20px;"></div>
       <div class="relative z-10 max-w-2xl mx-auto">
-        <h2 class="font-headline-lg text-headline-lg text-on-primary-fixed mb-4">Want these resources in your inbox?</h2>
-        <p class="font-body-md text-body-md text-on-primary-fixed/80 mb-10">Sign up for our monthly digest of advocacy updates, new guides, and stories of resilience from the Episodic community.</p>
-        <div id="newsletter-wrap" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-          <input id="newsletter-email" type="email" placeholder="Enter your email"
-            class="flex-1 bg-white/90 border-none rounded-full px-6 py-3 text-on-surface focus:ring-2 focus:ring-primary outline-none font-body-md" />
-          <button id="newsletter-btn"
-            class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-all">Subscribe</button>
-        </div>
-        <div id="newsletter-success" class="hidden text-center py-2">
-          <span class="material-symbols-outlined text-2xl text-primary block mb-1">check_circle</span>
-          <p class="font-body-md text-on-primary-fixed">You're subscribed!</p>
-        </div>
-        <p id="newsletter-error" class="hidden text-sm text-error mt-3"></p>
+        <h2 class="font-headline-lg text-headline-lg text-on-primary-fixed mb-4">Read Episodic on Substack</h2>
+        <p class="font-body-md text-body-md text-on-primary-fixed/80 mb-10">Get our monthly digest of advocacy updates, new guides, and stories of resilience delivered straight to your inbox.</p>
+        <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener"
+          class="inline-flex items-center gap-3 bg-primary text-on-primary px-10 py-4 rounded-full font-label-md text-label-md hover:opacity-90 transition-all">
+          <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">mail</span>
+          Subscribe on Substack
+        </a>
       </div>
     </section>
 
@@ -311,7 +305,7 @@
 
 <!-- Footer -->
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/20">
-  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+  <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-2">
       <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-on-surface-variant">A Living Literary Magazine.</p>
@@ -362,28 +356,6 @@
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
-<script type="module">
-  import api from './js/api.js';
-
-  document.getElementById('newsletter-btn').addEventListener('click', async () => {
-    const email = document.getElementById('newsletter-email').value.trim();
-    const errEl = document.getElementById('newsletter-error');
-    errEl.classList.add('hidden');
-    if (!email || !email.includes('@')) {
-      errEl.textContent = 'Please enter a valid email address.';
-      errEl.classList.remove('hidden');
-      return;
-    }
-    try {
-      await api.newsletter.subscribe(email);
-      document.getElementById('newsletter-wrap').classList.add('hidden');
-      document.getElementById('newsletter-success').classList.remove('hidden');
-    } catch (err) {
-      errEl.textContent = 'Could not subscribe: ' + err.message;
-      errEl.classList.remove('hidden');
-    }
-  });
-</script>
 
 </body>
 </html>

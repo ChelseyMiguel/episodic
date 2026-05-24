@@ -435,16 +435,12 @@
       <!-- Newsletter Callout -->
       <div class="p-6 bg-surface-container rounded-xl">
         <h5 class="font-headline-md text-headline-md text-on-surface mb-3">Join the Community</h5>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-6">Receive curated essays and advocacy updates twice a month.</p>
-        <div id="newsletter-form-wrap">
-          <input id="newsletter-email" class="w-full bg-transparent border-0 border-b border-outline mb-4 focus:ring-0 focus:border-primary px-0 text-on-surface font-body-md" placeholder="Your email address" type="email"/>
-          <button id="newsletter-btn" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all">Subscribe</button>
-          <div id="newsletter-error" class="hidden error-banner mt-3 text-xs"></div>
-        </div>
-        <div id="newsletter-success" class="hidden text-center py-2">
-          <span class="material-symbols-outlined text-2xl text-secondary block mb-1">check_circle</span>
-          <p class="font-body-md text-body-md text-on-surface-variant text-sm">You're subscribed!</p>
-        </div>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6">Receive curated essays and advocacy updates twice a month — directly in your inbox.</p>
+        <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener"
+          class="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all">
+          <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">mail</span>
+          Subscribe on Substack
+        </a>
       </div>
 
     </aside>
@@ -455,7 +451,7 @@
 
 <!-- Footer -->
 <footer class="bg-surface-container-highest mt-16 full-width border-t border-outline-variant/30">
-  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+  <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
       <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
@@ -490,9 +486,9 @@
       <div class="space-y-3">
         <span class="font-label-md text-label-md text-primary">Social</span>
         <div class="flex gap-4">
-          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</button>
-          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</button>
-          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</button>
+          <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener" title="Substack" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</a>
+          <a href="mailto:episodicmagazine@gmail.com" title="Email us" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</a>
+          <a href="https://open.substack.com/pub/episodicmagazine" target="_blank" rel="noopener" title="Subscribe on Substack" class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</a>
         </div>
       </div>
     </div>
@@ -933,26 +929,6 @@ document.getElementById('reflection-btn').addEventListener('click', () => {
   if (!text) return;
   document.getElementById('reflection-form').classList.add('hidden');
   document.getElementById('reflection-success').classList.remove('hidden');
-});
-
-// ── Newsletter subscribe ──────────────────────────────────────────────────────
-document.getElementById('newsletter-btn').addEventListener('click', async () => {
-  const email = document.getElementById('newsletter-email').value.trim();
-  const errEl = document.getElementById('newsletter-error');
-  errEl.classList.add('hidden');
-  if (!email || !email.includes('@')) {
-    errEl.textContent = 'Please enter a valid email address.';
-    errEl.classList.remove('hidden');
-    return;
-  }
-  try {
-    await api.newsletter.subscribe(email);
-    document.getElementById('newsletter-form-wrap').classList.add('hidden');
-    document.getElementById('newsletter-success').classList.remove('hidden');
-  } catch (err) {
-    errEl.textContent = 'Could not subscribe: ' + err.message;
-    errEl.classList.remove('hidden');
-  }
 });
 
 loadArticle();
