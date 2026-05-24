@@ -41,7 +41,36 @@
   .step-label.inactive { color: #54433e40; }
   .step-label.done { color: #54433e; }
   .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark .bento-card { background-color: #242220; border-color: rgba(80,60,50,0.5); }
+  .dark .form-input { border-bottom-color: rgba(80,60,50,0.6); color: #e6e4df; }
+  .dark .form-input:focus { border-bottom-color: #ffb59e; }
+  .dark .error-banner { background: #3a0000; border-color: #ba1a1a; color: #ffb4ab; }
+  .dark .drop-zone { border-color: rgba(80,60,50,0.5); background: #1c1a18; }
+  .dark .drop-zone.drag-over { border-color: #ffb59e; background: #2a1a10; }
+  .dark .bg-tertiary-fixed\/60 { background-color: rgba(80,40,55,0.4) !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .text-on-tertiary-container { color: #f3b6c6 !important; }
+  .dark select.form-input { background-color: #242220; color: #e6e4df; }
+  .dark .step-label.active { color: #ffb59e; border-bottom-color: #ffb59e; }
+  .dark .step-label.done { color: #b8a8a2; }
+  .dark .step-indicator { border-color: rgba(80,60,50,0.4); }
+  .dark .cw-chip input:checked + span { background: #944931; color: #fff; border-color: #944931; }
 </style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="font-body-md text-body-md">
 
@@ -58,8 +87,10 @@
         <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <div class="flex items-center gap-6">
-      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
       <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
@@ -402,6 +433,24 @@ import api from './js/api.js';
 import { isLoggedIn, getUser, updateNavForAuth } from './js/auth.js';
 
 updateNavForAuth();
+
+// Dark mode toggle
+(function() {
+  const btn = document.getElementById('dark-mode-btn');
+  if (!btn) return;
+  function syncBtn() {
+    const isDark = document.documentElement.classList.contains('dark');
+    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    btn.setAttribute('aria-label', btn.title);
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+    syncBtn();
+  });
+})();
 
 let currentStep = 1;
 let uploadedFile = null;

@@ -100,8 +100,15 @@
             <input id="signin-email" type="email" autocomplete="email" required placeholder="name@example.com" class="form-input py-2 text-body-md font-jakarta" />
           </div>
           <div class="flex flex-col gap-2">
-            <label class="font-label-md text-primary" for="signin-password">Password</label>
-            <input id="signin-password" type="password" autocomplete="current-password" required placeholder="Your password" class="form-input py-2 text-body-md font-jakarta" />
+            <div class="flex justify-between items-center">
+              <label class="font-label-md text-primary" for="signin-password">Password</label>
+              <a href="mailto:episodicmagazine@gmail.com?subject=Password%20Reset%20Request" class="font-body-md text-xs text-on-surface-variant hover:text-primary transition-colors">Forgot password?</a>
+            </div>
+            <div class="relative">
+              <input id="signin-password" type="password" autocomplete="current-password" required placeholder="Your password" class="form-input py-2 text-body-md font-jakarta pr-10" />
+              <button type="button" id="signin-pw-toggle" tabindex="-1" aria-label="Show password"
+                class="absolute right-0 bottom-2 material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[20px] bg-transparent border-none cursor-pointer">visibility</button>
+            </div>
           </div>
           <div id="signin-error" class="hidden error-banner"></div>
           <button type="submit" id="signin-btn" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
@@ -128,7 +135,28 @@
           </div>
           <div class="flex flex-col gap-2">
             <label class="font-label-md text-primary" for="signup-password">Password</label>
-            <input id="signup-password" type="password" autocomplete="new-password" required placeholder="Choose a secure password" class="form-input py-2 text-body-md font-jakarta" />
+            <div class="relative">
+              <input id="signup-password" type="password" autocomplete="new-password" required placeholder="At least 8 characters" class="form-input py-2 text-body-md font-jakarta pr-10" />
+              <button type="button" id="signup-pw-toggle" tabindex="-1" aria-label="Show password"
+                class="absolute right-0 bottom-2 material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[20px] bg-transparent border-none cursor-pointer">visibility</button>
+            </div>
+            <!-- Password strength bar -->
+            <div id="pw-strength-bar" class="flex gap-1 mt-1">
+              <div class="h-1 flex-1 rounded-full bg-outline-variant transition-all" id="ps1"></div>
+              <div class="h-1 flex-1 rounded-full bg-outline-variant transition-all" id="ps2"></div>
+              <div class="h-1 flex-1 rounded-full bg-outline-variant transition-all" id="ps3"></div>
+              <div class="h-1 flex-1 rounded-full bg-outline-variant transition-all" id="ps4"></div>
+            </div>
+            <span id="pw-strength-label" class="text-xs text-on-surface-variant hidden"></span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-md text-primary" for="signup-confirm">Confirm Password</label>
+            <div class="relative">
+              <input id="signup-confirm" type="password" autocomplete="new-password" required placeholder="Re-enter your password" class="form-input py-2 text-body-md font-jakarta pr-10" />
+              <button type="button" id="signup-confirm-toggle" tabindex="-1" aria-label="Show confirm password"
+                class="absolute right-0 bottom-2 material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[20px] bg-transparent border-none cursor-pointer">visibility</button>
+            </div>
+            <span id="pw-match-label" class="text-xs hidden"></span>
           </div>
           <div id="signup-error" class="hidden error-banner"></div>
           <button type="submit" id="signup-btn" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
@@ -194,24 +222,106 @@ function getReturnUrl() {
   return returnTo ? decodeURIComponent(returnTo) : './dashboard.html';
 }
 
-// Sign In
+// ── Show/hide password toggles ──────────────────────────────────────────────
+function wireToggle(inputId, btnId) {
+  const input = document.getElementById(inputId);
+  const btn = document.getElementById(btnId);
+  if (!btn || !input) return;
+  btn.addEventListener('click', () => {
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    btn.textContent = show ? 'visibility_off' : 'visibility';
+    btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+}
+wireToggle('signin-password', 'signin-pw-toggle');
+wireToggle('signup-password', 'signup-pw-toggle');
+wireToggle('signup-confirm', 'signup-confirm-toggle');
+
+// ── Password strength meter ──────────────────────────────────────────────────
+const pwInput = document.getElementById('signup-password');
+const pwLabel = document.getElementById('pw-strength-label');
+const psBars = [document.getElementById('ps1'), document.getElementById('ps2'), document.getElementById('ps3'), document.getElementById('ps4')];
+const strengthColors = ['bg-error', 'bg-error', 'bg-secondary', 'bg-primary'];
+const strengthLabels = ['Too short', 'Weak', 'Fair', 'Strong'];
+
+function calcStrength(pw) {
+  let score = 0;
+  if (pw.length >= 8) score++;
+  if (pw.length >= 12) score++;
+  if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) score++;
+  if (/\d/.test(pw) && /[^A-Za-z0-9]/.test(pw)) score++;
+  return Math.min(score, 4);
+}
+
+pwInput.addEventListener('input', () => {
+  const pw = pwInput.value;
+  if (!pw) { pwLabel.classList.add('hidden'); psBars.forEach(b => b.className = 'h-1 flex-1 rounded-full bg-outline-variant transition-all'); return; }
+  const s = calcStrength(pw);
+  psBars.forEach((b, i) => {
+    b.className = `h-1 flex-1 rounded-full transition-all ${i < s ? strengthColors[s - 1] : 'bg-outline-variant'}`;
+  });
+  pwLabel.textContent = strengthLabels[s - 1] || 'Too short';
+  pwLabel.className = `text-xs transition-colors ${s <= 2 ? 'text-error' : s === 3 ? 'text-secondary' : 'text-primary'}`;
+  pwLabel.classList.remove('hidden');
+});
+
+// ── Confirm password match check ────────────────────────────────────────────
+const confirmInput = document.getElementById('signup-confirm');
+const matchLabel = document.getElementById('pw-match-label');
+confirmInput.addEventListener('input', () => {
+  const match = confirmInput.value === pwInput.value;
+  matchLabel.textContent = match ? '✓ Passwords match' : 'Passwords do not match';
+  matchLabel.className = `text-xs ${match ? 'text-primary' : 'text-error'}`;
+  matchLabel.classList.remove('hidden');
+});
+
+// ── Rate limiting (3 failed attempts → 30 s cooldown) ───────────────────────
+const RATE_KEY = 'episodic_signin_attempts';
+function getRateState() {
+  try { return JSON.parse(localStorage.getItem(RATE_KEY)) || { count: 0, until: 0 }; } catch { return { count: 0, until: 0 }; }
+}
+function setRateState(s) { localStorage.setItem(RATE_KEY, JSON.stringify(s)); }
+function isRateLimited() { const s = getRateState(); return s.count >= 3 && Date.now() < s.until; }
+function rateCooldownSeconds() { return Math.ceil((getRateState().until - Date.now()) / 1000); }
+function recordFailedAttempt() {
+  const s = getRateState();
+  s.count = (s.count || 0) + 1;
+  if (s.count >= 3) s.until = Date.now() + 30000;
+  setRateState(s);
+}
+function resetRateState() { localStorage.removeItem(RATE_KEY); }
+
+// ── Sign In ──────────────────────────────────────────────────────────────────
 document.getElementById('signin-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('signin-error');
   const btn = document.getElementById('signin-btn');
   errEl.classList.add('hidden');
 
+  if (isRateLimited()) {
+    errEl.textContent = `Too many failed attempts. Please wait ${rateCooldownSeconds()} seconds before trying again.`;
+    errEl.classList.remove('hidden');
+    return;
+  }
+
   const email = document.getElementById('signin-email').value.trim();
   const password = document.getElementById('signin-password').value;
 
-  if (!email || !password) {
-    errEl.textContent = 'Please enter your email and password.';
+  // Basic email format check
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  if (!password) {
+    errEl.textContent = 'Please enter your password.';
     errEl.classList.remove('hidden');
     return;
   }
 
   btn.disabled = true;
-  btn.textContent = 'Signing in…';
+  btn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">progress_activity</span> Signing in…';
 
   try {
     const result = await api.auth.login(email, password);
@@ -219,18 +329,27 @@ document.getElementById('signin-form').addEventListener('submit', async (e) => {
     const user = result.user || { email, display_name: result.display_name };
     setToken(token);
     setUser(user);
+    resetRateState();
     window.location.href = getReturnUrl();
   } catch (err) {
-    errEl.textContent = err.status === 401
-      ? 'Incorrect email or password. Please try again.'
-      : 'Sign in failed: ' + err.message;
+    // Clear password on auth failure for security
+    document.getElementById('signin-password').value = '';
+    recordFailedAttempt();
+    const state = getRateState();
+    if (state.count >= 3) {
+      errEl.textContent = `Too many failed attempts. Please wait 30 seconds before trying again.`;
+    } else {
+      errEl.textContent = err.status === 401
+        ? `Incorrect email or password. ${3 - state.count} attempt${3 - state.count !== 1 ? 's' : ''} remaining.`
+        : 'Sign in failed. Please check your connection and try again.';
+    }
     errEl.classList.remove('hidden');
     btn.disabled = false;
     btn.innerHTML = 'Sign In <span class="material-symbols-outlined text-sm">arrow_forward</span>';
   }
 });
 
-// Sign Up
+// ── Sign Up ──────────────────────────────────────────────────────────────────
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('signup-error');
@@ -240,21 +359,31 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   const displayName = document.getElementById('signup-name').value.trim();
   const email = document.getElementById('signup-email').value.trim();
   const password = document.getElementById('signup-password').value;
+  const confirm = document.getElementById('signup-confirm').value;
 
-  if (!displayName || !email || !password) {
+  if (!displayName || !email || !password || !confirm) {
     errEl.textContent = 'Please fill in all fields.';
     errEl.classList.remove('hidden');
     return;
   }
-
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.classList.remove('hidden');
+    return;
+  }
   if (password.length < 8) {
     errEl.textContent = 'Password must be at least 8 characters.';
     errEl.classList.remove('hidden');
     return;
   }
+  if (password !== confirm) {
+    errEl.textContent = 'Passwords do not match. Please re-enter.';
+    errEl.classList.remove('hidden');
+    return;
+  }
 
   btn.disabled = true;
-  btn.textContent = 'Creating account…';
+  btn.innerHTML = '<span class="material-symbols-outlined text-sm">progress_activity</span> Creating account…';
 
   try {
     const result = await api.auth.signup(email, password, displayName);
@@ -265,8 +394,8 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
     window.location.href = './dashboard.html';
   } catch (err) {
     errEl.textContent = err.status === 409
-      ? 'An account with this email already exists.'
-      : 'Account creation failed: ' + err.message;
+      ? 'An account with this email already exists. Try signing in instead.'
+      : 'Account creation failed. Please check your connection and try again.';
     errEl.classList.remove('hidden');
     btn.disabled = false;
     btn.innerHTML = 'Create Account <span class="material-symbols-outlined text-sm">arrow_forward</span>';

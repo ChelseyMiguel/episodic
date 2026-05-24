@@ -273,8 +273,8 @@
       <div class="space-y-3">
         <span class="font-label-md text-label-md text-primary">Support</span>
         <ul class="space-y-2 text-on-surface-variant">
-          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Privacy Policy</a></li>
-          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Accessibility Statement</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./privacy.html">Privacy Policy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./accessibility.html">Accessibility Statement</a></li>
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Support Us</a></li>
         </ul>
       </div>
@@ -339,6 +339,17 @@ function articleCard(article, idx) {
     </a>`;
 }
 
+// Static fallback data for known issues (shown instantly if API is unavailable)
+const STATIC_ISSUES = {
+  'invisible-symptoms': {
+    title: 'Invisible Symptoms',
+    theme_description: 'Our inaugural issue explores the invisible dimensions of chronic illness and disability — the symptoms others can\'t see, the grief of before and after, and the small victories that never make it into a doctor\'s notes.',
+    status: 'open_for_submissions',
+    theme: 'Chronic Illness',
+    published_at: '2026-05-01',
+  },
+};
+
 async function loadIssue() {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get('slug');
@@ -349,6 +360,20 @@ async function loadIssue() {
     err.textContent = 'No issue specified. Please go back to issues.';
     err.classList.remove('hidden');
     return;
+  }
+
+  // Show static content immediately while API loads
+  const staticData = STATIC_ISSUES[slug];
+  if (staticData) {
+    document.title = `${staticData.title} | Episodic`;
+    document.getElementById('issue-skeleton').classList.add('hidden');
+    document.getElementById('issue-content').classList.remove('hidden');
+    document.getElementById('issue-title').textContent = staticData.title;
+    document.getElementById('issue-description').textContent = staticData.theme_description;
+    document.getElementById('theme-chip').textContent = staticData.theme || '';
+    document.getElementById('pub-date').textContent = staticData.published_at
+      ? new Date(staticData.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })
+      : '';
   }
 
   try {
@@ -378,10 +403,13 @@ async function loadIssue() {
     await loadArticles(issue.id);
 
   } catch (err) {
-    document.getElementById('issue-skeleton').classList.add('hidden');
-    const errEl = document.getElementById('issue-error');
-    errEl.textContent = 'Could not load issue: ' + err.message;
-    errEl.classList.remove('hidden');
+    // If we already showed static content, don't show an error — just stay with static
+    if (!staticData) {
+      document.getElementById('issue-skeleton').classList.add('hidden');
+      const errEl = document.getElementById('issue-error');
+      errEl.textContent = 'Could not load issue: ' + err.message;
+      errEl.classList.remove('hidden');
+    }
   }
 }
 
