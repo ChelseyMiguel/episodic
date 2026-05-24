@@ -2,6 +2,7 @@
 <html class="light" lang="en">
 <head>
 <meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="./assets/logo.svg"/><link rel="icon" type="image/png" href="./assets/LogoLight.png"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Dashboard | Episodic</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -341,10 +342,11 @@ async function loadSubmissions() {
   errEl.classList.add('hidden');
 
   try {
-    const subs = await api.submissions.mine();
+    const raw = await api.submissions.mine();
+    const subs = Array.isArray(raw) ? raw : [];
     skeletonEl.classList.add('hidden');
 
-    if (!subs || subs.length === 0) {
+    if (subs.length === 0) {
       emptyEl.classList.remove('hidden');
       return;
     }

@@ -2,6 +2,7 @@
 <html class="light" lang="en">
 <head>
 <meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="./assets/logo.svg"/><link rel="icon" type="image/png" href="./assets/LogoLight.png"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Submit | Episodic A Living Literary Magazine</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -65,6 +66,8 @@
   .dark .bg-surface-container-low { background-color: #201e1c !important; }
   .dark .text-on-tertiary-container { color: #f3b6c6 !important; }
   .dark select.form-input { background-color: #242220; color: #e6e4df; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .animate-spin { animation: spin 1s linear infinite; display: inline-block; }
   .dark .step-label.active { color: #ffb59e; border-bottom-color: #ffb59e; }
   .dark .step-label.done { color: #b8a8a2; }
   .dark .step-indicator { border-color: rgba(80,60,50,0.4); }
@@ -362,11 +365,6 @@
           </label>
         </div>
 
-        <!-- Auth warning (shown if not logged in) -->
-        <div id="auth-warning" class="hidden error-banner mb-6">
-          Please <a href="./login.html" class="underline font-semibold">sign in</a> to submit your work. Your form data will be preserved.
-        </div>
-
         <div id="s3-error" class="hidden error-banner mb-6"></div>
 
         <div class="flex justify-between pt-4">
@@ -558,12 +556,10 @@ document.getElementById('remove-file').addEventListener('click', () => {
   document.getElementById('file-name').classList.add('hidden');
 });
 
-// Submit
+// Submit — sends to Formspree (episodicmagazine@gmail.com) automatically
 document.getElementById('s3-submit').addEventListener('click', async () => {
   const errEl = document.getElementById('s3-error');
-  const authWarn = document.getElementById('auth-warning');
   errEl.classList.add('hidden');
-  authWarn.classList.add('hidden');
 
   if (!document.getElementById('s3-terms').checked) {
     errEl.textContent = 'Please agree to the Terms of Submission before submitting.';
@@ -572,58 +568,60 @@ document.getElementById('s3-submit').addEventListener('click', async () => {
     return;
   }
 
-  if (!isLoggedIn()) {
-    authWarn.classList.remove('hidden');
-    return;
-  }
-
   const btn = document.getElementById('s3-submit');
   btn.disabled = true;
-  btn.textContent = 'Submitting…';
+  btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-base">progress_activity</span> Sending…';
+
+  // Gather all form data
+  const name          = document.getElementById('s1-name').value.trim() || '(not provided)';
+  const email         = document.getElementById('s1-email').value.trim() || '(not provided)';
+  const anonymous     = document.getElementById('s1-anonymous').checked ? 'Yes' : 'No';
+  const cwInputs      = document.querySelectorAll('.cw-chip input:checked');
+  const contentWarn   = Array.from(cwInputs).map(i => i.value).join(', ') || 'None';
+  const title         = document.getElementById('s2-title').value.trim() || '(untitled)';
+  const categoryEl    = document.querySelector('input[name="category"]:checked');
+  const category      = categoryEl ? categoryEl.value : '(not selected)';
+  const issueEl       = document.getElementById('s2-issue');
+  const issue         = issueEl.options[issueEl.selectedIndex]?.text || '(none)';
+  const pieceBody     = document.getElementById('s2-body').value.trim() || '(no body text)';
+  const authorNote    = document.getElementById('s3-note').value.trim() || '(none)';
+  const fileName      = uploadedFile ? uploadedFile.name : '(no file attached — follow up with submitter if needed)';
 
   try {
-    // Gather content warnings
-    const cwInputs = document.querySelectorAll('.cw-chip input:checked');
-    const contentWarnings = Array.from(cwInputs).map(i => i.value);
+    const res = await fetch('https://formspree.io/f/mredlvep', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        // Formspree uses _replyto for reply-to address and _subject for email subject
+        _replyto: email,
+        _subject: `[Episodic Submission] ${title} — ${category} by ${name}`,
 
-    const submissionData = {
-      display_name: document.getElementById('s1-name').value.trim(),
-      email: document.getElementById('s1-email').value.trim(),
-      anonymous: document.getElementById('s1-anonymous').checked,
-      content_warnings: contentWarnings,
-      title: document.getElementById('s2-title').value.trim(),
-      category: document.querySelector('input[name="category"]:checked')?.value,
-      issue_id: document.getElementById('s2-issue').value || null,
-      body: document.getElementById('s2-body').value.trim() || null,
-      author_note: document.getElementById('s3-note').value.trim() || null,
-      status: 'draft',
-    };
+        // All the submission fields shown clearly in the email
+        'Name / Pen Name': name,
+        'Submitter Email': email,
+        'Publish Anonymously': anonymous,
+        'Title': title,
+        'Category': category,
+        'Submitted for Issue': issue,
+        'Content Warnings': contentWarn,
+        'File Attachment': fileName,
+        'Piece / Body Text': pieceBody,
+        "Author's Note": authorNote,
+      }),
+    });
 
-    // 1. Create draft submission
-    const submission = await api.submissions.create(submissionData);
-
-    // 2. Upload file if present
-    if (uploadedFile && submission.id) {
-      try {
-        await api.submissions.uploadFile(submission.id, uploadedFile);
-      } catch (uploadErr) {
-        // Log but don't block submission still proceeds
-        console.warn('File upload failed:', uploadErr.message);
-      }
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error || `Server error (${res.status})`);
     }
 
-    // 3. Submit (change status to submitted)
-    if (submission.id) {
-      await api.submissions.submit(submission.id);
-    }
-
-    // 4. Show success state
+    // Success — show the success state
     document.getElementById('step-3').classList.add('hidden');
     document.getElementById('success-state').classList.remove('hidden');
     document.querySelector('.step-indicator').classList.add('hidden');
 
   } catch (err) {
-    errEl.textContent = 'Submission failed: ' + err.message;
+    errEl.textContent = 'Submission failed: ' + err.message + '. Please email us directly at episodicmagazine@gmail.com.';
     errEl.classList.remove('hidden');
     btn.disabled = false;
     btn.innerHTML = 'Submit My Work <span class="material-symbols-outlined">favorite</span>';

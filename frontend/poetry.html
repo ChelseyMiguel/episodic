@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="./assets/logo.svg"/><link rel="icon" type="image/png" href="./assets/LogoLight.png"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Poetry | Episodic Magazine</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -171,7 +172,7 @@
       <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
         class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
       <button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
-      <a href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
+      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -243,7 +244,7 @@
         </div>
         <div>
           <h3 class="font-headline-md text-headline-md mb-2">Resilient Rhymes</h3>
-          <p class="font-body-md text-body-md opacity-90">Short-form poetry from the Episodic community.</p>
+          <p class="font-body-md text-body-md opacity-90">Poems written from inside the body.</p>
         </div>
       </a>
 
@@ -275,7 +276,7 @@
     <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
       <div>
         <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Verse Archive</h2>
-        <p class="text-on-surface-variant font-body-md mt-2">Browse the complete collection of Episodic poetry.</p>
+        <p class="text-on-surface-variant font-body-md mt-2">All poems from Episodic, in one place.</p>
       </div>
       <div class="flex gap-4">
         <select class="bg-surface-container border border-outline-variant rounded-lg font-label-md text-label-md py-2 px-4 focus:ring-2 focus:ring-primary text-on-surface">
@@ -406,7 +407,9 @@
 <script type="module">
   import api from './js/api.js';
   import { initSearch } from './js/search.js';
+  import { updateNavForAuth } from './js/auth.js';
   initSearch();
+  updateNavForAuth();
 
   // Dark mode toggle
   (function() {

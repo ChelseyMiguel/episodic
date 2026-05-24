@@ -2,6 +2,7 @@
 <html class="light" lang="en">
 <head>
 <meta charset="utf-8"/>
+<link rel="icon" type="image/svg+xml" href="./assets/logo.svg"/><link rel="icon" type="image/png" href="./assets/LogoLight.png"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Article | Episodic</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -382,7 +383,9 @@
         <h4 class="font-headline-md text-headline-md text-primary mb-3">Share Your Voice</h4>
         <p class="font-body-md text-body-md text-on-surface-variant mb-6">How does this story resonate with your own experience? We invite short reflections (up to 100 words) to be featured in our upcoming "Reader's Circle" issue.</p>
         <div id="reflection-form" class="flex flex-col gap-4">
-          <textarea id="reflection-text" class="w-full bg-surface-container-lowest border-outline-variant rounded-lg p-4 focus:ring-primary focus:border-primary font-body-md" placeholder="Write your reflection here..." rows="3"></textarea>
+          <input id="reflection-name" type="text" placeholder="Your name (optional)" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 font-body-md focus:outline-none focus:border-primary" />
+          <textarea id="reflection-text" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-4 focus:outline-none focus:border-primary font-body-md" placeholder="Write your reflection here..." rows="3"></textarea>
+          <div id="reflection-error" class="hidden text-error font-body-md text-sm"></div>
           <button id="reflection-btn" class="self-end bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-all shadow-sm">Submit Reflection</button>
         </div>
         <div id="reflection-success" class="hidden text-center py-4">
@@ -923,12 +926,51 @@ async function loadArticle() {
   }
 }
 
-// ── Reflection submit ─────────────────────────────────────────────────────────
-document.getElementById('reflection-btn').addEventListener('click', () => {
+// ── Reflection submit → Formspree ────────────────────────────────────────────
+document.getElementById('reflection-btn').addEventListener('click', async () => {
   const text = document.getElementById('reflection-text').value.trim();
-  if (!text) return;
-  document.getElementById('reflection-form').classList.add('hidden');
-  document.getElementById('reflection-success').classList.remove('hidden');
+  const name = document.getElementById('reflection-name').value.trim() || 'Anonymous';
+  const errEl = document.getElementById('reflection-error');
+  const btn = document.getElementById('reflection-btn');
+
+  if (!text) {
+    errEl.textContent = 'Please write something before submitting.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  errEl.classList.add('hidden');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  // Get the article title from the page for context in the email
+  const articleTitle = document.getElementById('article-title')?.textContent?.trim() || slug || 'Unknown Article';
+
+  try {
+    const res = await fetch('https://formspree.io/f/xdajdvzl', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: `[Episodic Reflection] "${articleTitle}" — from ${name}`,
+        'Name': name,
+        'Article': articleTitle,
+        'Reflection': text,
+      }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error || `Error ${res.status}`);
+    }
+
+    document.getElementById('reflection-form').classList.add('hidden');
+    document.getElementById('reflection-success').classList.remove('hidden');
+  } catch (err) {
+    errEl.textContent = 'Could not send — please try again or email us at episodicmagazine@gmail.com.';
+    errEl.classList.remove('hidden');
+    btn.disabled = false;
+    btn.textContent = 'Submit Reflection';
+  }
 });
 
 loadArticle();
