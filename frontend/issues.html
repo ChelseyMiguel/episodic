@@ -144,7 +144,6 @@
 </footer>
 
 <script type="module">
-import api from './js/api.js';
 import { updateNavForAuth } from './js/auth.js';
 import { initSearch } from './js/search.js';
 
@@ -199,33 +198,7 @@ function issueCard(issue) {
     </div>`;
 }
 
-// Slugs already shown as static cards — don't duplicate from API
-const STATIC_ISSUE_SLUGS = new Set(['invisible-symptoms']);
-
-function loadIssues() {
-  // Static card already in HTML — show instantly. Fetch API in background.
-  const fetchWithTimeout = Promise.race([
-    api.issues.list(),
-    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000)),
-  ]);
-
-  fetchWithTimeout
-    .then(data => {
-      const issues = (data && data.items) ? data.items : [];
-      // Filter out issues already shown statically
-      const newIssues = issues.filter(i => !STATIC_ISSUE_SLUGS.has(i.slug));
-      if (newIssues.length === 0) return;
-      const grid = document.getElementById('issues-grid');
-      const sorted = [...newIssues].sort((a, b) => new Date(b.publication_date || b.created_at) - new Date(a.publication_date || a.created_at));
-      grid.insertAdjacentHTML('beforeend', sorted.map(issueCard).join(''));
-    })
-    .catch(() => {
-      // Static content already visible — no need to show an error
-      console.info('Issues: backend unavailable, showing static content only.');
-    });
-}
-
-loadIssues();
+// Static only — no API needed
 </script>
 </body>
 </html>
