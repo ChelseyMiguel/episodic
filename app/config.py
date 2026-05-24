@@ -7,7 +7,14 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:5173", "http://localhost:5500", "http://127.0.0.1:5500"]
+    # Override via ALLOWED_ORIGINS env var on Railway for production
+    ALLOWED_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+        "https://episodic-magazine.github.io",
+    ]
     ENVIRONMENT: str = "development"
 
     # File uploads
