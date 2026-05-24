@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Issues | Episodic</title>
+<title>Resilient Rhymes | Episodic</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -26,32 +26,34 @@
 <style>
   body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
   .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; }
-  .bento-card { background: #ffffff; border: 1px solid #dac1ba; transition: transform 0.3s ease, border-color 0.3s ease; }
-  .bento-card:hover { border-color: #944931; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-  .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
-  .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
   /* Dark mode */
   .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
   .dark header, .dark .bg-surface { background-color: #242220 !important; }
   .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
-  .dark .bg-background { background-color: #1c1a18 !important; }
   .dark .bg-surface-container { background-color: #2a2826 !important; }
   .dark .bg-surface-container-low { background-color: #201e1c !important; }
   .dark .bg-surface-container-lowest { background-color: #141210 !important; }
   .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .bg-tertiary-container { background-color: #4a2835 !important; }
+  .dark .bg-tertiary-fixed { background-color: #3a1f28 !important; }
   .dark .border-outline-variant, .dark .border-outline-variant\/30, .dark .border-outline-variant\/20 { border-color: rgba(80,60,50,0.5) !important; }
   .dark .text-on-surface { color: #e6e4df !important; }
   .dark .text-on-surface-variant { color: #b8a8a2 !important; }
-  .dark .text-on-background { color: #e6e4df !important; }
   .dark .text-outline { color: #6e5c56 !important; }
   .dark .text-primary { color: #ffb59e !important; }
   .dark .text-secondary { color: #95bac8 !important; }
-  .dark .skeleton { background: #2e2c2a; }
   .dark .bg-primary { background-color: #944931 !important; }
   .dark .text-on-primary { color: #fff !important; }
-  .dark .bento-card { background-color: #242220; border-color: rgba(80,60,50,0.5); }
   .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+  /* Poem card style */
+  .poem-card {
+    background: #ffffff;
+    border: 1px solid #dac1ba;
+    border-radius: 0.75rem;
+    transition: border-color 0.3s ease;
+  }
+  .poem-card:hover { border-color: #944931; }
+  .dark .poem-card { background-color: #242220; border-color: rgba(80,60,50,0.5); }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -81,50 +83,98 @@
 
 <main class="pt-8 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 
-  <section class="mb-12">
-    <h1 class="font-headline-md text-display-lg text-on-surface mb-3">Issues</h1>
-    <p class="font-body-lg text-on-surface-variant">Every issue is a collection of voices gathered around a theme.</p>
+  <!-- Back link -->
+  <div class="mb-8">
+    <a href="./poetry.html" class="font-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+      <span class="material-symbols-outlined text-sm">arrow_back</span>
+      Back to Poetry
+    </a>
+  </div>
+
+  <!-- Issue header -->
+  <header class="mb-16 max-w-[800px]">
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <span class="font-label-md text-xs text-secondary border border-outline-variant rounded-full px-3 py-1">Poetry Collection</span>
+      <span class="font-label-md text-xs text-on-surface-variant">May 2026</span>
+    </div>
+    <h1 class="font-headline-md font-bold text-on-surface mb-6" style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1;">Resilient Rhymes</h1>
+    <p class="font-body-lg text-on-surface-variant mb-8 max-w-xl">Short-form poetry from the Episodic community — verses that bend without breaking, that find strength in the smallest moments of survival.</p>
+  </header>
+
+  <!-- Poems grid -->
+  <section>
+    <h2 class="font-headline-md text-headline-lg text-on-surface mb-8">In This Collection</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+      <!-- Poem 1: I'm Here to Mend -->
+      <div class="poem-card overflow-hidden">
+        <!-- Color band -->
+        <div class="bg-tertiary-container h-3 w-full"></div>
+        <div class="p-8 md:p-10">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <span class="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-md text-label-md text-xs mb-3">Poetry</span>
+              <h3 class="font-headline-md text-headline-md text-on-surface">I'm Here to Mend</h3>
+              <p class="font-label-md text-label-md text-secondary mt-1">Chelsey Miguel</p>
+            </div>
+            <span class="material-symbols-outlined text-outline opacity-30 text-4xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;">format_quote</span>
+          </div>
+          <div class="font-body-lg text-body-lg text-on-surface leading-loose" style="font-family:'Literata',serif; font-style:italic;">
+            I'm here to mend<br/>
+            They see a fragment,<br/>
+            No maybe a broken line,<br/>
+            But I see something in the grand design&mdash;<br/>
+            But chapters so close the spine can mend,<br/>
+            Every break is a chance to bend.<br/>
+            A bend that can help or to aid<br/>
+            Regardless of what came<br/>
+            You don't have yourself to blame<br/>
+            I'm here to what has to mend<br/>
+            And you, yourself won't have to pretend
+          </div>
+          <p class="font-caption text-caption text-outline mt-6">&mdash; Chelsey Miguel</p>
+        </div>
+      </div>
+
+      <!-- Poem 2: Reboot -->
+      <div class="poem-card overflow-hidden">
+        <!-- Color band -->
+        <div class="bg-secondary-container h-3 w-full"></div>
+        <div class="p-8 md:p-10">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <span class="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-md text-label-md text-xs mb-3">Poetry</span>
+              <h3 class="font-headline-md text-headline-md text-on-surface">Reboot</h3>
+              <p class="font-label-md text-label-md text-secondary mt-1">Chelsey Miguel</p>
+            </div>
+            <span class="material-symbols-outlined text-outline opacity-30 text-4xl" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;">format_quote</span>
+          </div>
+          <div class="font-body-lg text-body-lg text-on-surface leading-loose" style="font-family:'Literata',serif; font-style:italic;">
+            A sudden jolt,<br/>
+            a heavy mist,<br/>
+            A plot twist that I didn't list.<br/>
+            A cry for help or call to see<br/>
+            But I'm the author, I hold the pen,<br/>
+            I'll catch my breath, and start again.
+          </div>
+          <p class="font-caption text-caption text-outline mt-6">&mdash; Chelsey Miguel</p>
+        </div>
+      </div>
+
+    </div>
   </section>
 
-  <div id="issues-error" class="hidden error-banner mb-8"></div>
-
-  <div id="issues-grid" class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-    <!-- Skeletons -->
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
-  </div>
-
-  <div id="empty-state" class="hidden text-center py-24">
-    <span class="material-symbols-outlined text-5xl text-outline mb-4 block">auto_stories</span>
-    <h3 class="font-headline-md text-headline-md text-on-surface mb-2">No issues yet</h3>
-    <p class="font-body-md text-on-surface-variant">Our first issue is in preparation. Check back soon.</p>
-  </div>
+  <!-- Call to submit -->
+  <section class="mt-24 bg-surface-container rounded-xl p-10 md:p-14 border border-outline-variant/30 text-center">
+    <span class="material-symbols-outlined text-primary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;">edit_note</span>
+    <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Add Your Voice</h3>
+    <p class="font-body-lg text-on-surface-variant max-w-md mx-auto mb-6">Resilient Rhymes is a living collection. Submit your short-form poetry for a future edition.</p>
+    <a href="./submit.html" class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all">
+      Submit Your Poem
+      <span class="material-symbols-outlined text-sm">arrow_forward</span>
+    </a>
+  </section>
 
 </main>
 
@@ -175,7 +225,6 @@
 </footer>
 
 <script type="module">
-import api from './js/api.js';
 import { updateNavForAuth } from './js/auth.js';
 import { initSearch } from './js/search.js';
 
@@ -199,61 +248,6 @@ initSearch();
     syncBtn();
   });
 })();
-
-function formatDate(dateStr) {
-  if (!dateStr) return '';
-  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-}
-
-function statusChip(status) {
-  if (status === 'published') {
-    return `<span class="font-label-md text-xs bg-primary text-on-primary px-3 py-1 rounded-full">Published</span>`;
-  }
-  if (status === 'open_for_submissions') {
-    return `<span class="font-label-md text-xs bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full">Open for Submissions</span>`;
-  }
-  return `<span class="font-label-md text-xs bg-surface-container text-on-surface-variant px-3 py-1 rounded-full">${status || 'Draft'}</span>`;
-}
-
-function issueCard(issue) {
-  return `
-    <div class="bento-card rounded-xl p-gutter flex flex-col gap-4">
-      <div class="flex items-center gap-3">
-        ${statusChip(issue.status)}
-        <span class="font-label-md text-on-surface-variant text-xs">${formatDate(issue.published_at || issue.created_at)}</span>
-      </div>
-      <h2 class="font-headline-md text-headline-lg text-on-surface">${issue.title}</h2>
-      <p class="font-body-md text-on-surface-variant flex-1">${issue.theme_description || issue.description || ''}</p>
-      <a href="./issue.html?slug=${encodeURIComponent(issue.slug)}" class="font-label-md text-primary hover:underline flex items-center gap-1 mt-2 self-start">
-        Explore <span class="material-symbols-outlined text-sm">arrow_forward</span>
-      </a>
-    </div>`;
-}
-
-async function loadIssues() {
-  try {
-    const data = await api.issues.list();
-    const issues = (data && data.items) ? data.items : [];
-    const grid = document.getElementById('issues-grid');
-    const emptyState = document.getElementById('empty-state');
-
-    if (issues.length === 0) {
-      grid.innerHTML = '';
-      emptyState.classList.remove('hidden');
-      return;
-    }
-
-    const sorted = [...issues].sort((a, b) => new Date(b.publication_date || b.created_at) - new Date(a.publication_date || a.created_at));
-    grid.innerHTML = sorted.map(issueCard).join('');
-  } catch (err) {
-    document.getElementById('issues-grid').innerHTML = '';
-    const el = document.getElementById('issues-error');
-    el.textContent = 'Could not load issues: ' + err.message;
-    el.classList.remove('hidden');
-  }
-}
-
-loadIssues();
 </script>
 </body>
 </html>

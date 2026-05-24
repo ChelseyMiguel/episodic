@@ -48,7 +48,7 @@
   .dark .bg-primary { background-color: #944931 !important; }
   .dark .text-on-primary { color: #fff !important; }
   .dark .bg-tertiary { background-color: #80515e !important; }
-  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -61,7 +61,7 @@
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
       <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0">
-        <img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" />
+        <img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" />
       </a>
       <nav class="hidden md:flex gap-8 items-center">
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
@@ -75,7 +75,7 @@
     <div class="flex items-center gap-2">
       <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
         class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
-      <a href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+      <a href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -93,125 +93,175 @@
 
   <div class="space-y-24">
 
-    <!-- School & Education -->
+    <!-- School & 504 Resources -->
     <section class="fade-up">
       <div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-8">
-        <h2 class="font-headline-lg text-headline-lg text-on-background">School &amp; Education</h2>
-        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">K-12 &amp; Higher Ed</span>
+        <h2 class="font-headline-lg text-headline-lg text-on-background">School &amp; 504 Resources</h2>
+        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">K–12 &amp; Higher Ed</span>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-        <!-- Card: 504 Plans -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
         <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
-          <div class="h-48 bg-primary-container flex items-center justify-center">
+          <div class="h-40 bg-primary-container flex items-center justify-center">
             <span class="material-symbols-outlined text-6xl text-on-primary-container opacity-30">school</span>
           </div>
           <div class="p-8 flex-1 flex flex-col">
-            <h3 class="font-headline-md text-headline-md mb-3">504 Plans &amp; IEPs</h3>
-            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">A step-by-step guide to securing formal accommodations for students with chronic health conditions in the public school system.</p>
-            <div class="flex gap-4 flex-wrap">
-              <a href="https://www.understood.org/en/articles/the-difference-between-ieps-and-504-plans" target="_blank" rel="noopener"
-                class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2">
-                <span class="material-symbols-outlined text-[18px]">open_in_new</span> Learn More
-              </a>
-              <a href="./advocacy.html" class="border border-outline text-on-surface-variant px-6 py-2.5 rounded-full font-label-md text-label-md hover:bg-surface-container transition-all">Advocacy Page</a>
-            </div>
-          </div>
-        </div>
-        <!-- Card: Higher Ed -->
-        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
-          <div class="h-48 bg-secondary-container flex items-center justify-center">
-            <span class="material-symbols-outlined text-6xl text-on-secondary-container opacity-30">menu_book</span>
-          </div>
-          <div class="p-8 flex-1 flex flex-col">
-            <h3 class="font-headline-md text-headline-md mb-3">Higher Ed Accommodations</h3>
-            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">Navigating Disability Services at the university level. Learn how to advocate for flexible deadlines, attendance policies, and housing needs.</p>
-            <div class="flex gap-4 flex-wrap">
-              <a href="https://adata.org/factsheet/higher-ed" target="_blank" rel="noopener"
-                class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2">
-                <span class="material-symbols-outlined text-[18px]">open_in_new</span> Learn More
-              </a>
-              <a href="./articles.html" class="border border-outline text-on-surface-variant px-6 py-2.5 rounded-full font-label-md text-label-md hover:bg-surface-container transition-all">Read Stories</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Medical Advocacy -->
-    <section class="fade-up">
-      <div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-8">
-        <h2 class="font-headline-lg text-headline-lg text-on-background">Medical Advocacy</h2>
-        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Systems &amp; Navigating Care</span>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
-        <!-- Featured Toolkit -->
-        <div class="lg:col-span-2 group bg-tertiary-container/10 rounded-xl p-8 border border-tertiary-container/30 hover:border-tertiary transition-all flex flex-col md:flex-row gap-8">
-          <div class="w-full md:w-1/3 aspect-square rounded-xl overflow-hidden shrink-0 bg-tertiary-container flex items-center justify-center">
-            <span class="material-symbols-outlined text-7xl text-on-tertiary opacity-40">policy</span>
-          </div>
-          <div class="flex flex-col justify-center gap-4">
-            <div class="flex items-center gap-2 text-tertiary font-label-md text-label-md">
-              <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">verified_user</span>
-              Featured Toolkit
-            </div>
-            <h3 class="font-headline-md text-headline-md text-on-tertiary-container">The Insurance Denial Handbook</h3>
-            <p class="text-on-surface-variant font-body-md leading-relaxed">Don't take no for an answer. Our guide covers how to write appeals, track calls, and understand your rights when insurance denies your claim.</p>
-            <a href="https://www.patientadvocate.org/explore-our-resources/insurance-denial/" target="_blank" rel="noopener"
-              class="self-start bg-tertiary text-on-tertiary px-8 py-3 rounded-full font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all">
-              Get the Full Toolkit
+            <h3 class="font-headline-md text-headline-md mb-3">Navigate Life: Section 504</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">A step-by-step guide to understanding Section 504 plans, eligibility, and how to advocate for accommodations in school.</p>
+            <a href="https://www.navigatelifetexas.org/en/education-schools/section-504" target="_blank" rel="noopener"
+              class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">open_in_new</span> Visit Resource
             </a>
           </div>
         </div>
-        <!-- Doctor-Patient Relations -->
-        <div class="bg-surface-container-highest rounded-xl p-8 border border-outline-variant/30 flex flex-col justify-between">
-          <div class="space-y-4">
-            <span class="material-symbols-outlined text-3xl text-secondary">stethoscope</span>
-            <h3 class="font-headline-md text-headline-md">Doctor-Patient Relations</h3>
-            <p class="text-on-surface-variant font-body-md leading-relaxed">How to prepare for appointments so your voice is heard and your symptoms are validated.</p>
+        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
+          <div class="h-40 bg-secondary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-secondary-container opacity-30">description</span>
           </div>
-          <a href="./article.html?slug=students-chronic-illness-health-education" class="flex items-center gap-2 text-primary font-label-md text-label-md hover:gap-3 transition-all mt-8">
-            Read Chelsey's Op-Ed
-            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-          </a>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline-md text-headline-md mb-3">504 Accommodations Guide</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">A practical, printable PDF for requesting and documenting 504 accommodations for students with chronic health conditions.</p>
+            <a href="https://www.psea.org/contentassets/ac6695903bd94d27aa14e85c3a12d90e/504-accommodations-guide.pdf" target="_blank" rel="noopener"
+              class="bg-secondary text-on-secondary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">download</span> Download PDF
+            </a>
+          </div>
+        </div>
+        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
+          <div class="h-40 bg-tertiary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-tertiary opacity-40">menu_book</span>
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline-md text-headline-md mb-3">National Center for Learning Disabilities</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">Research, tools, and advocacy resources for students with learning and attention issues navigating the education system.</p>
+            <a href="https://ncld.org/" target="_blank" rel="noopener"
+              class="bg-tertiary text-on-tertiary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">open_in_new</span> Visit Resource
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Community & Wellbeing -->
+    <!-- Youth & Family Chronic Illness Support -->
     <section class="fade-up">
       <div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-8">
-        <h2 class="font-headline-lg text-headline-lg text-on-background">Community &amp; Wellbeing</h2>
-        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Peer Groups &amp; Mental Health</span>
+        <h2 class="font-headline-lg text-headline-lg text-on-background">Youth &amp; Family Support</h2>
+        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Chronic Illness &amp; Family</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
+          <div class="h-40 bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-primary-container opacity-30">family_restroom</span>
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline-md text-headline-md mb-3">Family Voices</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">A national organization supporting families of children with special health care needs — advocacy tools, peer networks, and family-led policy work.</p>
+            <a href="https://familyvoices.org/" target="_blank" rel="noopener"
+              class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">open_in_new</span> Visit Resource
+            </a>
+          </div>
+        </div>
+        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
+          <div class="h-40 bg-secondary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-secondary-container opacity-30">pediatrics</span>
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline-md text-headline-md mb-3">HHS: Adolescent Health &amp; Chronic Conditions</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">U.S. Department of Health resources on chronic conditions and disability in developing adolescents, including transition-to-adult care guides.</p>
+            <a href="https://opa.hhs.gov/adolescent-health/physical-health-developing-adolescents/introduction-chronic-conditions-disability/resources" target="_blank" rel="noopener"
+              class="bg-secondary text-on-secondary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">open_in_new</span> Visit Resource
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disability Rights & Advocacy -->
+    <section class="fade-up">
+      <div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-8">
+        <h2 class="font-headline-lg text-headline-lg text-on-background">Disability Rights &amp; Advocacy</h2>
+        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Know Your Rights</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
+          <div class="h-40 bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-primary-container opacity-30">gavel</span>
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline-md text-headline-md mb-3">The Arc</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">The nation's largest disability rights organization, advocating for and with people with intellectual and developmental disabilities.</p>
+            <a href="https://thearc.org/" target="_blank" rel="noopener"
+              class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">open_in_new</span> Visit Resource
+            </a>
+          </div>
+        </div>
+        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
+          <div class="h-40 bg-secondary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-secondary-container opacity-30">account_balance</span>
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline-md text-headline-md mb-3">Stanford: National Disability Organizations</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">A curated directory of national disability organizations and legal resources compiled by Stanford's Office of Accessible Education.</p>
+            <a href="https://oae.stanford.edu/resources/national-disability-organizations-and-resources" target="_blank" rel="noopener"
+              class="bg-secondary text-on-secondary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">open_in_new</span> Visit Resource
+            </a>
+          </div>
+        </div>
+        <div class="group bg-surface-container-lowest rounded-xl overflow-hidden tonal-layer border border-surface-variant hover:border-primary transition-all flex flex-col">
+          <div class="h-40 bg-tertiary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-tertiary opacity-40">policy</span>
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline-md text-headline-md mb-3">ADA National Network</h3>
+            <p class="text-on-surface-variant mb-8 flex-1 font-body-md">Information, guidance, and training on the Americans with Disabilities Act — accommodation rights in schools, workplaces, and public spaces.</p>
+            <a href="https://adata.org/" target="_blank" rel="noopener"
+              class="bg-tertiary text-on-tertiary px-6 py-2.5 rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 self-start">
+              <span class="material-symbols-outlined text-[18px]">open_in_new</span> Visit Resource
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mental Health & Young Adult Support -->
+    <section class="fade-up">
+      <div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-8">
+        <h2 class="font-headline-lg text-headline-lg text-on-background">Mental Health &amp; Young Adult Support</h2>
+        <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Wellbeing &amp; Crisis</span>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <a href="https://www.inspire.com/" target="_blank" rel="noopener"
+        <a href="https://www.activeminds.org/" target="_blank" rel="noopener"
           class="p-6 bg-surface-container rounded-xl border border-outline-variant hover:shadow-lg hover:border-primary transition-all cursor-pointer block">
-          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">groups</span>
-          <h4 class="font-label-md text-label-md mb-2">Peer Support Groups</h4>
-          <p class="text-caption font-caption text-on-surface-variant">Find a virtual community that shares your specific diagnosis or life stage.</p>
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">psychology</span>
+          <h4 class="font-label-md text-label-md mb-2">Active Minds</h4>
+          <p class="text-caption font-caption text-on-surface-variant">Youth-led mental health advocacy and awareness, with campus chapters and resources for young adults.</p>
+        </a>
+        <a href="https://www.mhanational.org/" target="_blank" rel="noopener"
+          class="p-6 bg-surface-container rounded-xl border border-outline-variant hover:shadow-lg hover:border-primary transition-all cursor-pointer block">
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">favorite</span>
+          <h4 class="font-label-md text-label-md mb-2">Mental Health America</h4>
+          <p class="text-caption font-caption text-on-surface-variant">Screening tools, education, and community support for those navigating mental health alongside chronic illness.</p>
         </a>
         <a href="https://www.psychologytoday.com/us/therapists/chronic-illness" target="_blank" rel="noopener"
           class="p-6 bg-surface-container rounded-xl border border-outline-variant hover:shadow-lg hover:border-primary transition-all cursor-pointer block">
-          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">psychology</span>
-          <h4 class="font-label-md text-label-md mb-2">Mental Health Referrals</h4>
-          <p class="text-caption font-caption text-on-surface-variant">A database of therapists specialized in chronic illness and medical trauma.</p>
-        </a>
-        <a href="https://www.caregiver.org/" target="_blank" rel="noopener"
-          class="p-6 bg-surface-container rounded-xl border border-outline-variant hover:shadow-lg hover:border-primary transition-all cursor-pointer block">
-          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">volunteer_activism</span>
-          <h4 class="font-label-md text-label-md mb-2">Caregiver Support</h4>
-          <p class="text-caption font-caption text-on-surface-variant">Resources for those supporting loved ones through chronic health journeys.</p>
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">stethoscope</span>
+          <h4 class="font-label-md text-label-md mb-2">Therapist Finder</h4>
+          <p class="text-caption font-caption text-on-surface-variant">Find therapists who specialize in chronic illness and medical trauma through Psychology Today's database.</p>
         </a>
         <a href="https://988lifeline.org/" target="_blank" rel="noopener"
           class="p-6 bg-surface-container rounded-xl border border-outline-variant hover:shadow-lg hover:border-primary transition-all cursor-pointer block">
-          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">favorite</span>
-          <h4 class="font-label-md text-label-md mb-2">Crisis Resources</h4>
-          <p class="text-caption font-caption text-on-surface-variant">Immediate help and hotlines for times of acute mental or physical distress.</p>
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">emergency</span>
+          <h4 class="font-label-md text-label-md mb-2">988 Crisis Lifeline</h4>
+          <p class="text-caption font-caption text-on-surface-variant">Call or text 988 for free, confidential support during mental health crises. Available 24/7.</p>
         </a>
       </div>
     </section>
 
-    <!-- Lupus-Specific -->
+    <!-- Lupus Resources -->
     <section class="fade-up">
       <div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-8">
         <h2 class="font-headline-lg text-headline-lg text-on-background">Lupus Resources</h2>
@@ -223,7 +273,7 @@
           <h4 class="font-headline-md text-headline-md text-primary mb-2 group-hover:underline">Lupus Foundation of America</h4>
           <p class="text-on-surface-variant font-body-md">Research, resources, and community for people living with lupus.</p>
         </a>
-        <a href="https://article.html?slug=things-that-helped-me-with-lupus"
+        <a href="./article.html?slug=things-that-helped-me-with-lupus"
           class="p-6 bg-primary-fixed/30 border border-primary-container/30 rounded-xl hover:border-primary hover:shadow-lg transition-all block group">
           <h4 class="font-headline-md text-headline-md text-primary mb-2 group-hover:underline">Things That Helped Me With Lupus</h4>
           <p class="text-on-surface-variant font-body-md">Chelsey's personal essay on coping strategies and self-compassion.</p>
@@ -263,7 +313,7 @@
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/20">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-2">
-      <img src="./assets/logo.png" alt="Episodic" class="h-10 w-auto" />
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-on-surface-variant">A Living Literary Magazine.</p>
       <p class="font-caption text-caption text-outline">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>

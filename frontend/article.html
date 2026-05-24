@@ -168,7 +168,7 @@
   /* ── Toast ── */
   #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(60px); background: #1b1c19; color: #fbf9f4; border-radius: 9999px; padding: 0.5rem 1.25rem; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0; transition: opacity 0.25s, transform 0.3s; z-index: 9999; pointer-events: none; white-space: nowrap; }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
 
 <script>
@@ -191,7 +191,7 @@
 <header class="bg-surface border-b border-outline-variant/30 top-0 sticky z-50">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-8">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" /></a>
       <nav class="hidden md:flex items-center gap-6">
         <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="./issues.html">Issues</a>
         <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
@@ -209,7 +209,7 @@
       <button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
         <span class="material-symbols-outlined">search</span>
       </button>
-      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-90 transition-all">Latest Issue</a>
+      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-90 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -296,6 +296,7 @@
       <!-- Metadata row -->
       <div class="flex flex-wrap items-center gap-4 mb-6">
         <span id="article-category-chip" class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-md text-label-md"></span>
+        <a href="./issue.html" id="article-issue-tag" class="hidden bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-md text-label-md hover:opacity-80 transition-opacity"></a>
         <span id="article-read-time" class="text-outline font-label-md text-label-md flex items-center gap-1">
           <span class="material-symbols-outlined text-[18px]">schedule</span> min read
         </span>
@@ -456,9 +457,9 @@
 <footer class="bg-surface-container-highest mt-16 full-width border-t border-outline-variant/30">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
-      <span class="font-headline-md text-headline-md text-on-surface">Episodic</span>
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
-      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div class="space-y-3">
@@ -466,8 +467,8 @@
         <ul class="space-y-2 text-on-surface-variant">
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
-          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./resources.html">Resources</a></li>
         </ul>
       </div>
       <div class="space-y-3">
@@ -808,6 +809,26 @@ async function loadArticle() {
 
     // Category chip
     document.getElementById('article-category-chip').textContent = article.category || 'Essay';
+
+    // Issue tag — map slugs to their issue
+    const SLUG_ISSUE = {
+      'bitter-sweet': 'Invisible Symptoms',
+      'belated': 'Invisible Symptoms',
+      'aftertaste': 'Invisible Symptoms',
+      'my-name-is': 'Invisible Symptoms',
+      'students-chronic-illness-health-education': 'Invisible Symptoms',
+      'things-that-helped-me-with-lupus': 'Invisible Symptoms',
+      'blissful-moments': 'Invisible Symptoms',
+      'beyond-the-diagnosis': 'Invisible Symptoms',
+    };
+    const issueTagEl = document.getElementById('article-issue-tag');
+    if (issueTagEl) {
+      const issueName = SLUG_ISSUE[article.slug];
+      if (issueName) {
+        issueTagEl.textContent = issueName;
+        issueTagEl.classList.remove('hidden');
+      }
+    }
 
     // Date
     document.getElementById('article-date').textContent = formatDate(article.published_at || article.created_at);

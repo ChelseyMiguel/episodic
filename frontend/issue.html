@@ -31,26 +31,50 @@
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
   .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
   .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
-  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-background { background-color: #1c1a18 !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .bg-surface-container-lowest { background-color: #141210 !important; }
+  .dark .bg-secondary-container { background-color: #2a3840 !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30, .dark .border-outline-variant\/20 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-on-background { color: #e6e4df !important; }
+  .dark .text-outline { color: #6e5c56 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .text-secondary { color: #95bac8 !important; }
+  .dark .skeleton { background: #2e2c2a; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark .bento-card { background-color: #242220; border-color: rgba(80,60,50,0.5); }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="font-body-md text-body-md">
 
 <header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" /></a>
       <nav class="hidden md:flex gap-8 items-center">
         <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./issues.html">Issues</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
-    <div class="flex items-center gap-6">
-      <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
-      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <button id="search-btn" class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
+      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -101,6 +125,111 @@
     <!-- Articles in this issue -->
     <section>
       <h2 class="font-headline-md text-headline-lg text-on-surface mb-8">In This Issue</h2>
+
+      <!-- Static pieces from Invisible Symptoms issue -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-gutter">
+
+        <!-- Essay: Beyond the Diagnosis -->
+        <a href="./article-beyond-diagnosis.html" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-primary-container h-36 w-full flex items-end p-4">
+            <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Essay</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">Beyond the Diagnosis: Reclaiming Autonomy in Chronic Care</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4">The radical act of storytelling as survival.</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+        <!-- Poetry: Bitter Sweet -->
+        <a href="./article.html?slug=bitter-sweet" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-secondary-container h-36 w-full flex items-end p-4">
+            <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Poetry</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Bitter Sweet</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4 italic" style="font-family:'Literata',serif;">"The sweetness that turns bitter, awoken to their chatter."</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+        <!-- Poetry: Belated -->
+        <a href="./article.html?slug=belated" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-tertiary-container h-36 w-full flex items-end p-4">
+            <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Poetry</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Belated</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4 italic" style="font-family:'Literata',serif;">"How I wish I could hold her."</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+        <!-- Poetry: Aftertaste -->
+        <a href="./article.html?slug=aftertaste" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-primary-container h-36 w-full flex items-end p-4">
+            <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Poetry</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Aftertaste</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4 italic" style="font-family:'Literata',serif;">"Even though you are surrounded by bleakness, I'm unable to comprehend your laughter."</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+        <!-- Visual Art: Blissful Moments -->
+        <a href="./article-blissful-moments.html" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-tertiary-fixed h-36 w-full flex items-end justify-between p-4 overflow-hidden relative">
+            <img src="./assets/art-place-to-tell-story.png" alt="" class="absolute inset-0 w-full h-full object-cover object-top opacity-20 pointer-events-none select-none" />
+            <span class="relative inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Visual Art</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Blissful Moments Like These</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4 italic" style="font-family:'Literata',serif;">I have always been content with the simple things.</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+        <!-- Op-Ed: Things That Helped Me With Lupus -->
+        <a href="./article.html?slug=things-that-helped-me-with-lupus" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-secondary-container h-36 w-full flex items-end p-4 gap-2">
+            <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Op-Ed</span>
+            <span class="inline-flex items-center bg-error-container text-on-error-container text-xs font-label-md px-2 py-0.5 rounded-full">CW</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">Things That Helped Me With Lupus</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4">General tips on how to mentally survive and reclaim agency over your own well-being.</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+        <!-- Essay: Students With Chronic Illness -->
+        <a href="./article.html?slug=students-chronic-illness-health-education" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-tertiary-container h-36 w-full flex items-end p-4">
+            <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Essay</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">Students With Chronic Illness Shouldn't Have To Choose Between Health And Education</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4">No student should have to grieve who they used to be while also fighting to keep up in school.</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+        <!-- Poetry: My Name Is -->
+        <a href="./article.html?slug=my-name-is" class="bento-card rounded-xl overflow-hidden block group">
+          <div class="bg-primary-container h-36 w-full flex items-end p-4">
+            <span class="inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">Poetry</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">My Name Is...</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-2 mb-4 italic" style="font-family:'Literata',serif;">It's courageous to share your name / Although the classroom is uniform</p>
+            <span class="font-label-md text-secondary text-sm">Chelsey Miguel</span>
+          </div>
+        </a>
+
+
+      </div>
+
       <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
         <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
         <div class="bento-card rounded-xl overflow-hidden"><div class="skeleton h-36 w-full"></div><div class="p-6 space-y-3"><div class="skeleton h-6 w-3/4"></div><div class="skeleton h-4 w-full"></div></div></div>
@@ -120,9 +249,9 @@
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
-      <span class="font-headline-md text-headline-md text-on-surface">Episodic</span>
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
-      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div class="space-y-3">
@@ -164,8 +293,28 @@
 <script type="module">
 import api from './js/api.js';
 import { updateNavForAuth } from './js/auth.js';
+import { initSearch } from './js/search.js';
 
 updateNavForAuth();
+initSearch();
+
+// Dark mode toggle
+(function() {
+  const btn = document.getElementById('dark-mode-btn');
+  if (!btn) return;
+  function syncBtn() {
+    const isDark = document.documentElement.classList.contains('dark');
+    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    btn.setAttribute('aria-label', btn.title);
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+    syncBtn();
+  });
+})();
 
 const colorBlocks = ['bg-primary-container', 'bg-secondary-container', 'bg-tertiary-container'];
 

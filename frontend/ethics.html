@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Submission Ethics | Episodic Magazine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+      colors: {"primary":"#944931","on-primary":"#ffffff","primary-fixed":"#ffdbd0","on-primary-fixed":"#3a0b00","primary-container":"#d67d61","on-primary-container":"#551905","secondary":"#4c616c","on-secondary":"#ffffff","secondary-container":"#cce3f0","on-secondary-container":"#506670","tertiary":"#80515e","on-tertiary":"#ffffff","tertiary-fixed":"#ffd9e1","on-tertiary-fixed-variant":"#653a47","tertiary-container":"#bc8694","on-tertiary-container":"#48212d","surface":"#fbf9f4","surface-container-low":"#f5f3ee","surface-container":"#f0eee9","surface-container-high":"#eae8e3","surface-container-highest":"#e4e2dd","surface-container-lowest":"#ffffff","on-surface":"#1b1c19","on-surface-variant":"#54433e","outline":"#87736d","outline-variant":"#dac1ba","background":"#fbf9f4","on-background":"#1b1c19","primary-fixed-dim":"#ffb59e","on-primary-fixed-variant":"#76321c","error":"#ba1a1a","error-container":"#ffdad6"},
+      fontFamily: {"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-md":["Literata"],"label-md":["Plus Jakarta Sans"],"caption":["Plus Jakarta Sans"],"display-lg":["Literata"],"headline-lg":["Literata"]},
+      fontSize: {"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}]},
+      spacing: {"margin-desktop":"64px","margin-mobile":"20px","container-max":"1280px","gutter":"24px","unit":"8px","max-width-content":"800px"}
+    }}
+  }
+</script>
+<style>
+  body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+  .bento-card { background: #ffffff; border: 1px solid #dac1ba; }
+  /* Dark mode */
+  .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
+  .dark header, .dark .bg-surface { background-color: #242220 !important; }
+  .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
+  .dark .bg-surface-container-low { background-color: #201e1c !important; }
+  .dark .border-outline-variant, .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .text-on-surface { color: #e6e4df !important; }
+  .dark .text-on-surface-variant { color: #b8a8a2 !important; }
+  .dark .text-primary { color: #ffb59e !important; }
+  .dark .text-secondary { color: #95bac8 !important; }
+  .dark .text-tertiary { color: #d4a0ad !important; }
+  .dark .bg-primary { background-color: #944931 !important; }
+  .dark .text-on-primary { color: #fff !important; }
+  .dark .bento-card { background: #242220 !important; border-color: rgba(80,60,50,0.4) !important; }
+  .dark .bg-surface-container { background-color: #2a2826 !important; }
+  .dark .bg-primary-fixed\/40 { background-color: rgba(58,24,0,0.5) !important; }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+</style>
+<script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
+</head>
+<body class="font-body-md text-body-md min-h-screen flex flex-col">
+
+<!-- Nav -->
+<header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
+  <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
+    <div class="flex items-center gap-12">
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0">
+        <img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" />
+      </a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
+        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./submit.html">Submit</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
+        class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
+      <a href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1 max-w-max-width-content mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
+
+  <!-- Back link -->
+  <a href="./submit.html" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-label-md text-label-md mb-10 transition-colors">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back to Submit
+  </a>
+
+  <!-- Header -->
+  <div class="mb-14">
+    <div class="inline-flex items-center gap-2 bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-md text-label-md mb-6 uppercase tracking-widest">
+      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">shield</span>
+      Submission Ethics
+    </div>
+    <h1 class="font-headline-lg text-display-lg text-on-background max-w-2xl mb-6">A space built to protect you.</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+      Our ethics are protective, trauma-informed, and non-corporate. We work with submissions involving medical trauma, minors, grief, identity, and mental health — so this matters a lot.
+    </p>
+  </div>
+
+  <!-- Ethics sections -->
+  <div class="space-y-4">
+
+    <!-- 1 -->
+    <details class="group bento-card rounded-xl" open>
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0">edit_note</span>
+          1. Authenticity &amp; Ownership
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-3 font-body-md text-on-surface-variant">
+        <p>All submitted work must be original or properly credited. Contributors must:</p>
+        <ul class="space-y-1.5 pl-2">
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Own the rights to their work</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Have permission for any collaborative work</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Avoid plagiarism or AI-generated impersonation of lived experiences</li>
+        </ul>
+        <p>We welcome editing assistance and accessibility tools, but we ask contributors to remain truthful to their own experiences and authorship.</p>
+      </div>
+    </details>
+
+    <!-- 2 -->
+    <details class="group bento-card rounded-xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0">groups</span>
+          2. Respect for Vulnerable Communities
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-3 font-body-md text-on-surface-variant">
+        <p>Episodic exists for chronically ill, disabled, neurodivergent, and medically marginalized individuals. We will not publish submissions that:</p>
+        <ul class="space-y-1.5 pl-2 mb-3">
+          <li class="flex items-start gap-2"><span class="text-error mt-1 flex-shrink-0">•</span> Promote hate speech or discriminatory content</li>
+          <li class="flex items-start gap-2"><span class="text-error mt-1 flex-shrink-0">•</span> Mock disability or illness</li>
+          <li class="flex items-start gap-2"><span class="text-error mt-1 flex-shrink-0">•</span> Romanticize self-harm or eating disorders</li>
+          <li class="flex items-start gap-2"><span class="text-error mt-1 flex-shrink-0">•</span> Spread medical misinformation</li>
+          <li class="flex items-start gap-2"><span class="text-error mt-1 flex-shrink-0">•</span> Sensationalize or exploit personal suffering for shock value</li>
+          <li class="flex items-start gap-2"><span class="text-error mt-1 flex-shrink-0">•</span> Encourage harassment or discrimination</li>
+        </ul>
+        <p>We aim to foster authentic storytelling rather than voyeuristic or exploitative portrayals of illness. We prioritize emotional honesty without harming vulnerable readers.</p>
+      </div>
+    </details>
+
+    <!-- 3 -->
+    <details class="group bento-card rounded-xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0">warning</span>
+          3. Trauma &amp; Content Warnings
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-3 font-body-md text-on-surface-variant">
+        <p>Many submissions may involve difficult experiences. Contributors should include relevant content warnings whenever possible. Editors may add or suggest warnings to protect readers.</p>
+        <p class="font-label-md text-on-surface">Topics that require warnings include:</p>
+        <div class="flex flex-wrap gap-2 my-2">
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">medical trauma</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">hospitalization</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">death &amp; grief</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">abuse</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">self-harm</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">psychiatric experiences</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">eating disorders</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full text-sm">ableism</span>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4 -->
+    <details class="group bento-card rounded-xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0">lock</span>
+          4. Privacy &amp; Anonymity
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-3 font-body-md text-on-surface-variant">
+        <p>We understand that many contributors may be minors, may not be publicly "out" about their illness or disability, or may fear stigma from schools, employers, or family. Because of this:</p>
+        <ul class="space-y-1.5 pl-2">
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Pseudonyms are allowed</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Anonymous publication is allowed</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Identifying details may be edited upon request</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Private medical details will never be shared outside editorial review</li>
+        </ul>
+        <p class="font-semibold text-on-surface pt-1">Contributor safety comes before publicity.</p>
+      </div>
+    </details>
+
+    <!-- 5 -->
+    <details class="group bento-card rounded-xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0">block</span>
+          5. No Performative Resilience
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-3 font-body-md text-on-surface-variant">
+        <p>We do not require stories to be uplifting, motivational, or inspirational. You do not need:</p>
+        <ul class="space-y-1.5 pl-2">
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> A happy ending</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> A recovery arc</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> A productivity narrative</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> A lesson learned</li>
+        </ul>
+        <p class="font-semibold text-on-surface pt-1">We value honesty over performative resilience.</p>
+      </div>
+    </details>
+
+    <!-- 6 -->
+    <details class="group bento-card rounded-xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0">edit</span>
+          6. Editorial Care
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-3 font-body-md text-on-surface-variant">
+        <p>Editorial support may provide:</p>
+        <ul class="space-y-1.5 pl-2 mb-3">
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Light grammar and clarity edits</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Structural suggestions</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Feedback for developing ideas</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Formatting and accessibility adjustments</li>
+          <li class="flex items-start gap-2"><span class="text-primary mt-1 flex-shrink-0">•</span> Guidance for first-time contributors</li>
+        </ul>
+        <p>We aim to preserve each contributor's voice and emotional intent. Major edits will not be made without your consent, and emotionally sensitive writing will be handled with care.</p>
+      </div>
+    </details>
+
+    <!-- 7 -->
+    <details class="group bento-card rounded-xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0">medical_information</span>
+          7. Medical Disclaimer
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-3 font-body-md text-on-surface-variant">
+        <p>Episodic is not a substitute for medical, legal, or psychiatric advice. Published stories reflect personal experiences and perspectives only.</p>
+        <p>Readers should consult qualified professionals for medical care and emergencies.</p>
+      </div>
+    </details>
+
+    <!-- 8 -->
+    <details class="group bento-card rounded-xl">
+      <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+        <span class="font-headline-md text-primary flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] flex-shrink-0" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">favorite</span>
+          8. Community Values
+        </span>
+        <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 flex-shrink-0">expand_more</span>
+      </summary>
+      <div class="px-6 pb-6 border-t border-outline-variant/30 pt-4 space-y-4 font-body-md text-on-surface-variant">
+        <p>We believe disabled and chronically ill people deserve:</p>
+        <div class="flex flex-wrap gap-2 my-2">
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">dignity</span>
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">accessibility</span>
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">softness</span>
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">anger</span>
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">complexity</span>
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">rest</span>
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">visibility</span>
+          <span class="px-3 py-1.5 bg-primary-fixed/40 text-on-primary-fixed rounded-full font-label-md text-label-md">survival without performance</span>
+        </div>
+        <p class="font-semibold text-on-surface italic">Episodic exists to document interrupted lives honestly and compassionately.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- CTA back to submit -->
+  <div class="mt-16 text-center">
+    <a href="./submit.html" class="inline-flex items-center gap-3 bg-primary text-on-primary px-10 py-4 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">
+      <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back to Submit Your Work
+    </a>
+    <p class="mt-4 text-on-surface-variant font-body-md">Questions? <a href="mailto:episodicmagazine@gmail.com" class="text-primary underline underline-offset-2">episodicmagazine@gmail.com</a></p>
+  </div>
+
+</main>
+
+<footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/20">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-2">
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
+      <p class="font-body-md text-on-surface-variant">A Living Literary Magazine.</p>
+      <p class="font-caption text-caption text-outline">© 2026 Episodic Magazine. Created for the community, by the community.</p>
+    </div>
+    <nav class="flex flex-wrap gap-x-8 gap-y-3">
+      <a href="./submit.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Submit Work</a>
+      <a href="./resources.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Resources</a>
+      <a href="./privacy.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Privacy Policy</a>
+      <a href="./accessibility.html" class="text-on-surface-variant hover:text-primary transition-colors font-body-md">Accessibility</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('dark-mode-btn');
+  function syncBtn() {
+    const isDark = document.documentElement.classList.contains('dark');
+    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+  syncBtn();
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
+    syncBtn();
+  });
+</script>
+</body>
+</html>

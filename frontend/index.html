@@ -146,7 +146,7 @@
   .dark #toast { background: #e6e4df; color: #1c1a18; }
   #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(60px); background: #1b1c19; color: #fbf9f4; border-radius: 9999px; padding: 0.5rem 1.25rem; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0; transition: opacity 0.25s, transform 0.3s; z-index: 9999; pointer-events: none; white-space: nowrap; }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -156,9 +156,9 @@
 <header class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" /></a>
       <nav class="hidden md:flex gap-8 items-center">
-        <a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-all" href="./issues.html">Issues</a>
+        <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
         <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
         <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
         <a class="text-on-surface-variant dark:text-outline hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
@@ -422,12 +422,15 @@
         </div>
       </div>
       <!-- Photos -->
-      <div class="grid grid-cols-2 gap-4">
-        <div class="rounded-2xl overflow-hidden aspect-[4/5]">
+      <div class="grid grid-cols-3 gap-4">
+        <div class="rounded-2xl overflow-hidden aspect-[3/4]">
           <img src="./assets/chelsey-headshot.jpg" alt="Chelsey Miguel, Founder of Episodic" class="w-full h-full object-cover" />
         </div>
-        <div class="rounded-2xl overflow-hidden aspect-[4/5] mt-8">
-          <img src="./assets/chelsey-science.jpg" alt="Chelsey presenting research" class="w-full h-full object-cover object-top" />
+        <div class="rounded-2xl overflow-hidden aspect-[3/4] mt-6">
+          <img src="./assets/chelsey-photo-1.jpg" alt="Chelsey Miguel" class="w-full h-full object-cover object-top" />
+        </div>
+        <div class="rounded-2xl overflow-hidden aspect-[3/4] mt-12">
+          <img src="./assets/chelsey-photo-2.jpg" alt="Chelsey Miguel" class="w-full h-full object-cover object-top" />
         </div>
       </div>
     </div>
@@ -464,9 +467,9 @@
 <footer class="bg-surface-container-highest dark:bg-inverse-surface full-width bottom-0 mt-16 border-t border-outline-variant/30">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
-      <span class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface">Episodic</span>
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
-      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div class="space-y-3">
@@ -474,8 +477,8 @@
         <ul class="space-y-2 text-on-surface-variant">
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
-          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./resources.html">Resources</a></li>
         </ul>
       </div>
       <div class="space-y-3">
@@ -561,10 +564,6 @@ function articleCard(article, idx) {
     : '';
   const cat = article.category || 'Essay';
   const catIcon = getCategoryIcon(cat);
-  const reactionIcon = idx % 2 === 0 ? 'auto_awesome' : 'favorite';
-  const reactionHover = idx % 2 === 0 ? 'hover:text-primary' : 'hover:text-error';
-  const reactionCount = 100 + (idx * 57 % 200);
-
   return `
     <article class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:translate-y-[-4px] transition-all duration-300 border border-outline-variant/10 group/card">
       <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="h-48 ${color.bg} flex items-center justify-center relative group block">
@@ -576,15 +575,9 @@ function articleCard(article, idx) {
         <a href="./article.html?slug=${encodeURIComponent(article.slug)}">
           <h3 class="font-headline-md text-headline-md leading-snug group-hover/card:text-primary transition-colors cursor-pointer">${article.title}</h3>
         </a>
-        <div class="flex justify-between items-center">
-          <div class="flex items-center gap-2 text-primary">
-            <span class="material-symbols-outlined text-base">${catIcon}</span>
-            <span class="font-label-md text-label-md">${cat}</span>
-          </div>
-          <button class="sparkle-btn flex items-center gap-1.5 text-on-surface-variant ${reactionHover} transition-colors">
-            <span class="material-symbols-outlined text-lg">${reactionIcon}</span>
-            <span class="font-label-md text-label-md">${reactionCount}</span>
-          </button>
+        <div class="flex items-center gap-2 text-primary">
+          <span class="material-symbols-outlined text-base">${catIcon}</span>
+          <span class="font-label-md text-label-md">${cat}</span>
         </div>
       </div>
     </article>`;
@@ -611,8 +604,11 @@ async function loadHero() {
 
 let isListView = false;
 
+const HOME_HIDDEN_SLUGS = new Set([]);
+
 function renderGrid(articles) {
   const grid = document.getElementById('stories-grid');
+  articles = articles.filter(a => !HOME_HIDDEN_SLUGS.has(a.slug));
   if (articles.length === 0) {
     grid.innerHTML = '<p class="col-span-2 text-on-surface-variant font-body-md text-center py-12">No stories match these filters.</p>';
     return;

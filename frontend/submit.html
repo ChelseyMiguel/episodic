@@ -40,7 +40,7 @@
   .step-label.active { color: #944931; border-bottom: 2px solid #944931; }
   .step-label.inactive { color: #54433e40; }
   .step-label.done { color: #54433e; }
-  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
 </head>
 <body class="font-body-md text-body-md">
@@ -48,19 +48,19 @@
 <header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" /></a>
       <nav class="hidden md:flex gap-8 items-center">
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
-        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./submit.html">Submit</a>
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
+        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./submit.html">Submit</a>
       </nav>
     </div>
     <div class="flex items-center gap-6">
       <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
-      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -73,6 +73,11 @@
     <h1 class="font-headline-md text-display-lg text-primary mb-6">Your Voice is our Living Record.</h1>
     <p class="font-body-lg text-on-surface-variant">We seek poetry, prose, and visual art that navigates the intersections of chronic illness, disability, and the human condition. Whether your work is a quiet observation or a loud advocacy, we want to hold space for your story.</p>
   </section>
+
+  <!-- Visual Art -->
+  <div class="max-w-max-width-content mx-auto mb-10 flex justify-center">
+    <img src="./assets/art-place-to-tell-story.png" alt="A hand-drawn illustration of a journal, books, magnifying glass, and coffee — the tools of a storyteller" class="w-full max-w-md opacity-80 dark:opacity-60 select-none pointer-events-none" />
+  </div>
 
   <!-- "No perfect writing" reassurance banner -->
   <section class="max-w-max-width-content mx-auto mb-16">
@@ -90,9 +95,10 @@
     <div class="md:col-span-7 bento-card rounded-xl p-gutter overflow-hidden flex flex-col justify-between">
       <div>
         <h3 class="font-headline-md text-primary mb-4">Submission Ethics</h3>
-        <p class="font-body-md text-on-surface-variant mb-6">We prioritize submissions from individuals with lived experience of chronic illness and disability. We value intellectual dignity and artistic resilience. You don't have to write perfectly you just have to write honestly.</p>
+        <p class="font-body-md text-on-surface-variant mb-6">We prioritize submissions from individuals with lived experience of chronic illness and disability. Our ethics are trauma-informed, protective, and non-corporate. You don't have to write perfectly — you just have to write honestly.</p>
+        <a href="./ethics.html" class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:gap-3 transition-all">Read full ethics <span class="material-symbols-outlined text-[16px]">open_in_new</span></a>
       </div>
-      <div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/30">
+      <div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/30 mt-6">
         <p class="font-body-md text-primary italic">"Art is the only way to run away without leaving home."</p>
       </div>
     </div>
@@ -110,10 +116,15 @@
       <h4 class="font-label-md text-primary mb-2">Free to Submit</h4>
       <p class="text-on-surface-variant font-body-md">Submitting is completely free. This is a community space we exist to amplify your voice, not profit from it.</p>
     </div>
-    <div class="md:col-span-4 bento-card rounded-xl p-8 text-center">
-      <span class="material-symbols-outlined text-4xl text-secondary mb-4">edit_note</span>
-      <h4 class="font-label-md text-primary mb-2">Editorial Support</h4>
-      <p class="text-on-surface-variant font-body-md">Our team works closely with authors on accessibility-focused editing and formatting.</p>
+    <div class="md:col-span-4 bento-card rounded-xl p-8">
+      <span class="material-symbols-outlined text-4xl text-secondary mb-4 block">edit_note</span>
+      <h4 class="font-label-md text-primary mb-3">Editorial Support</h4>
+      <ul class="space-y-1.5 text-on-surface-variant font-body-md text-sm">
+        <li class="flex items-start gap-2"><span class="text-primary flex-shrink-0">•</span> Light grammar &amp; clarity edits</li>
+        <li class="flex items-start gap-2"><span class="text-primary flex-shrink-0">•</span> Structural suggestions</li>
+        <li class="flex items-start gap-2"><span class="text-primary flex-shrink-0">•</span> Accessibility adjustments</li>
+        <li class="flex items-start gap-2"><span class="text-primary flex-shrink-0">•</span> Guidance for first-time contributors</li>
+      </ul>
     </div>
     <div class="md:col-span-4 bento-card rounded-xl p-8 text-center">
       <span class="material-symbols-outlined text-4xl text-secondary mb-4">schedule</span>
@@ -345,9 +356,9 @@
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
-      <span class="font-headline-md text-headline-md text-on-surface">Episodic</span>
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
-      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div class="space-y-3">

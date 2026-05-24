@@ -53,7 +53,7 @@
   .dark .text-on-primary { color: #fff !important; }
   .dark .filter-chip { border-color: #503c32; color: #b8a8a2; }
   .dark .filter-chip.active { background: #944931; color: #fff; border-color: #944931; }
-  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -62,7 +62,7 @@
 <header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" /></a>
       <nav class="hidden md:flex gap-8 items-center">
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
@@ -76,7 +76,7 @@
       <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
         class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
       <button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
-      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+      <a id="nav-cta" href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -126,9 +126,9 @@
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
-      <span class="font-headline-md text-headline-md text-on-surface">Episodic</span>
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
-      <p class="font-caption text-caption text-outline-variant">© 2024 Episodic Magazine. Created for the community, by the community.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div class="space-y-3">
@@ -136,8 +136,8 @@
         <ul class="space-y-2 text-on-surface-variant">
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
-          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./resources.html">Resources</a></li>
         </ul>
       </div>
       <div class="space-y-3">
@@ -196,6 +196,37 @@ const colorBlocks = ['bg-primary-container', 'bg-secondary-container', 'bg-terti
 let allArticles = [];
 let activeCategory = 'all';
 
+// Static pinned pieces (visual art, etc.) not yet in the backend
+const STATIC_PIECES = [
+  {
+    slug: 'blissful-moments',
+    title: 'Blissful Moments Like These',
+    category: 'Visual Art',
+    byline: 'Chelsey Miguel',
+    excerpt: 'I have always been content with the simple things — not the orderly nature of tech but the brew that goes back.',
+    href: './article-blissful-moments.html',
+    colorClass: 'bg-tertiary-fixed',
+    thumb: './assets/art-place-to-tell-story.png',
+    label: 'Invisible Symptoms · May 2026',
+  },
+];
+
+function staticPieceCard(piece) {
+  return `
+    <a href="${piece.href}" class="bento-card rounded-xl overflow-hidden block group" data-static-category="${piece.category}">
+      <div class="${piece.colorClass} h-36 w-full flex items-end justify-between p-4 overflow-hidden relative">
+        <img src="${piece.thumb}" alt="" class="absolute inset-0 w-full h-full object-cover object-top opacity-20 pointer-events-none select-none" />
+        <span class="relative inline-flex items-center bg-white/80 text-on-surface text-xs font-label-md px-3 py-1 rounded-full">${piece.category}</span>
+        <span class="relative font-caption text-on-tertiary-fixed-variant text-xs">${piece.label}</span>
+      </div>
+      <div class="p-6">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">${piece.title}</h3>
+        <p class="font-body-md text-on-surface-variant line-clamp-3 mb-4">${piece.excerpt}</p>
+        <span class="font-label-md text-secondary text-sm">${piece.byline}</span>
+      </div>
+    </a>`;
+}
+
 function articleCard(article, idx) {
   const color = colorBlocks[idx % 3];
   const byline = article.byline || 'Anonymous';
@@ -216,19 +247,36 @@ function articleCard(article, idx) {
     </a>`;
 }
 
+// Normalize for filter matching: lowercase, strip hyphens and spaces
+// e.g. "Op-Ed" → "oped", "Visual Art" → "visualart"
+function normCat(str) {
+  return (str || '').toLowerCase().replace(/[-\s]/g, '');
+}
+
+// Slugs to hide from public archive
+const HIDDEN_SLUGS = new Set(['the-waiting-room']);
+
 function renderArticles() {
   const grid = document.getElementById('articles-grid');
   const emptyState = document.getElementById('empty-state');
+  const visible = allArticles.filter(a => !HIDDEN_SLUGS.has(a.slug));
   const filtered = activeCategory === 'all'
-    ? allArticles
-    : allArticles.filter(a => (a.category || '').toLowerCase() === activeCategory.toLowerCase());
+    ? visible
+    : visible.filter(a => normCat(a.category) === normCat(activeCategory));
 
-  if (filtered.length === 0) {
+  const filteredStatic = activeCategory === 'all'
+    ? STATIC_PIECES
+    : STATIC_PIECES.filter(p => normCat(p.category) === normCat(activeCategory));
+
+  const total = filteredStatic.length + filtered.length;
+  if (total === 0) {
     grid.innerHTML = '';
     emptyState.classList.remove('hidden');
   } else {
     emptyState.classList.add('hidden');
-    grid.innerHTML = filtered.map((a, i) => articleCard(a, i)).join('');
+    const staticHTML = filteredStatic.map(p => staticPieceCard(p)).join('');
+    const dynamicHTML = filtered.map((a, i) => articleCard(a, i + filteredStatic.length)).join('');
+    grid.innerHTML = staticHTML + dynamicHTML;
   }
 }
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Issues | Episodic</title>
+<title>Beyond the Diagnosis: Reclaiming Autonomy in Chronic Care | Episodic</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -26,44 +26,42 @@
 <style>
   body { background-color: #fbf9f4; color: #1b1c19; -webkit-font-smoothing: antialiased; }
   .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; }
-  .bento-card { background: #ffffff; border: 1px solid #dac1ba; transition: transform 0.3s ease, border-color 0.3s ease; }
-  .bento-card:hover { border-color: #944931; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-  .skeleton { background: #e4e2dd; border-radius: 4px; animation: pulse 1.5s infinite; }
-  .error-banner { background: #ffdad6; border: 1px solid #ba1a1a; color: #93000a; border-radius: 0.5rem; padding: 0.75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; }
-  /* Dark mode */
   .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
   .dark header, .dark .bg-surface { background-color: #242220 !important; }
   .dark footer, .dark .bg-surface-container-highest { background-color: #1a1816 !important; }
-  .dark .bg-background { background-color: #1c1a18 !important; }
   .dark .bg-surface-container { background-color: #2a2826 !important; }
   .dark .bg-surface-container-low { background-color: #201e1c !important; }
-  .dark .bg-surface-container-lowest { background-color: #141210 !important; }
-  .dark .bg-secondary-container { background-color: #2a3840 !important; }
-  .dark .border-outline-variant, .dark .border-outline-variant\/30, .dark .border-outline-variant\/20 { border-color: rgba(80,60,50,0.5) !important; }
+  .dark .border-outline-variant\/30 { border-color: rgba(80,60,50,0.4) !important; }
   .dark .text-on-surface { color: #e6e4df !important; }
   .dark .text-on-surface-variant { color: #b8a8a2 !important; }
-  .dark .text-on-background { color: #e6e4df !important; }
   .dark .text-outline { color: #6e5c56 !important; }
   .dark .text-primary { color: #ffb59e !important; }
-  .dark .text-secondary { color: #95bac8 !important; }
-  .dark .skeleton { background: #2e2c2a; }
-  .dark .bg-primary { background-color: #944931 !important; }
-  .dark .text-on-primary { color: #fff !important; }
-  .dark .bento-card { background-color: #242220; border-color: rgba(80,60,50,0.5); }
+  .dark .text-secondary { color: #9bbac8 !important; }
+  .dark .bg-primary-container { background-color: #5c2a18 !important; }
   .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+  .prose-essay p {
+    font-family: 'Literata', serif;
+    font-size: 1.125rem;
+    line-height: 1.9;
+    color: #1b1c19;
+    margin-bottom: 1.5rem;
+  }
+  .dark .prose-essay p { color: #e6e4df; }
+  .reading-bar { height: 3px; background: #944931; position: fixed; top: 0; left: 0; z-index: 200; transition: width 0.1s ease-out; }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
 <body class="font-body-md text-body-md">
+
+<div class="reading-bar" id="reading-bar"></div>
 
 <header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
       <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" /></a>
       <nav class="hidden md:flex gap-8 items-center">
-        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./issues.html">Issues</a>
-        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
+        <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
+        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./poetry.html">Poetry</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./articles.html">Archive</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
@@ -79,61 +77,94 @@
   </div>
 </header>
 
-<main class="pt-8 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<main class="pt-10 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 
-  <section class="mb-12">
-    <h1 class="font-headline-md text-display-lg text-on-surface mb-3">Issues</h1>
-    <p class="font-body-lg text-on-surface-variant">Every issue is a collection of voices gathered around a theme.</p>
-  </section>
-
-  <div id="issues-error" class="hidden error-banner mb-8"></div>
-
-  <div id="issues-grid" class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-    <!-- Skeletons -->
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
-    <div class="bento-card rounded-xl p-gutter space-y-4">
-      <div class="skeleton h-4 w-24 rounded-full"></div>
-      <div class="skeleton h-8 w-2/3"></div>
-      <div class="skeleton h-4 w-full"></div>
-      <div class="skeleton h-4 w-3/4"></div>
-      <div class="skeleton h-4 w-1/3 mt-4"></div>
-    </div>
+  <!-- Back -->
+  <div class="mb-10">
+    <a href="./advocacy.html" class="font-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+      <span class="material-symbols-outlined text-sm">arrow_back</span>
+      Back to Advocacy
+    </a>
   </div>
 
-  <div id="empty-state" class="hidden text-center py-24">
-    <span class="material-symbols-outlined text-5xl text-outline mb-4 block">auto_stories</span>
-    <h3 class="font-headline-md text-headline-md text-on-surface mb-2">No issues yet</h3>
-    <p class="font-body-md text-on-surface-variant">Our first issue is in preparation. Check back soon.</p>
-  </div>
+  <div class="max-w-max-width-content mx-auto">
 
+    <!-- Meta -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <span class="font-label-md text-xs bg-primary-container text-on-primary-container px-3 py-1 rounded-full uppercase tracking-widest">Essay</span>
+      <span class="font-label-md text-xs bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full uppercase tracking-widest">Advocacy</span>
+      <span class="font-caption text-outline">Invisible Symptoms · May 2026</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="font-headline-md text-on-surface mb-4" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15;">
+      Beyond the Diagnosis: Reclaiming Autonomy in Chronic Care
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="font-body-lg text-on-surface-variant italic mb-8" style="font-family: 'Literata', serif;">
+      A seminal exploration of how systemic healthcare gaps are being filled by patient-led grassroots movements, and the radical act of storytelling as survival.
+    </p>
+
+    <!-- Author -->
+    <div class="flex items-center gap-3 mb-12 pb-8 border-b border-outline-variant/30">
+      <img src="./assets/chelsey-headshot.jpg" alt="Chelsey Miguel" class="w-10 h-10 rounded-full object-cover flex-shrink-0" />
+      <div>
+        <span class="font-label-md text-on-surface block">Chelsey Miguel</span>
+        <span class="font-caption text-outline">Founder &amp; Editor, Episodic</span>
+      </div>
+    </div>
+
+    <!-- Pull quote -->
+    <blockquote class="border-l-4 border-primary pl-6 mb-12 py-2">
+      <p class="font-headline-md text-headline-md text-primary" style="font-family: 'Literata', serif; font-style: italic; line-height: 1.5;">
+        "The struggle isn't always medical — it is political as well."
+      </p>
+    </blockquote>
+
+    <!-- Body -->
+    <div class="prose-essay mb-16">
+      <p>When a life is constantly interrupted by chronic pain or illness, the struggle isn't always medical, it is political as well. Autonomy is defined as the right to self-governance and for us, the storytelling is evidence. It is the sharing of different lived experiences that fills the gaps and affirms ourselves and our community.</p>
+      <p>By sharing the specific, lived, and sometimes scary truth, we can show that we matter, that the architecture can be built by us and for us.</p>
+    </div>
+
+    <!-- Reactions -->
+    <div class="border-t border-outline-variant/30 pt-8 mb-12">
+      <p class="font-label-md text-on-surface-variant text-xs uppercase tracking-widest mb-4">How did this make you feel?</p>
+      <div class="flex flex-wrap gap-3">
+        <button data-reaction="moved" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">favorite</span> Moved
+        </button>
+        <button data-reaction="seen" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">visibility</span> Seen
+        </button>
+        <button data-reaction="powerful" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">auto_awesome</span> Powerful
+        </button>
+        <button data-reaction="informed" class="reaction-btn flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md text-on-surface-variant">
+          <span class="material-symbols-outlined text-base">lightbulb</span> Informed
+        </button>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="border-t border-outline-variant/30 pt-8 flex flex-col sm:flex-row gap-4 justify-between">
+      <a href="./advocacy.html" class="font-label-md text-primary hover:underline flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">campaign</span> More Advocacy
+      </a>
+      <a href="./articles.html" class="font-label-md text-primary hover:underline flex items-center gap-1">
+        All Stories <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+    </div>
+
+  </div>
 </main>
 
-<!-- Footer -->
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
-  <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
-    <div class="space-y-4 flex-shrink-0 max-w-xs">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-4">
       <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
-      <p class="font-body-md text-body-md text-on-surface-variant">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
+      <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
       <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -159,7 +190,7 @@
         <ul class="space-y-2 text-on-surface-variant">
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./privacy.html">Privacy Policy</a></li>
           <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./accessibility.html">Accessibility Statement</a></li>
-          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./coming-soon.html">Support Us</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="#">Support Us</a></li>
         </ul>
       </div>
       <div class="space-y-3">
@@ -175,85 +206,42 @@
 </footer>
 
 <script type="module">
-import api from './js/api.js';
 import { updateNavForAuth } from './js/auth.js';
-import { initSearch } from './js/search.js';
-
 updateNavForAuth();
-initSearch();
 
-// Dark mode toggle
-(function() {
-  const btn = document.getElementById('dark-mode-btn');
-  if (!btn) return;
-  function syncBtn() {
-    const isDark = document.documentElement.classList.contains('dark');
-    btn.textContent = isDark ? 'light_mode' : 'dark_mode';
-    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
-    btn.setAttribute('aria-label', btn.title);
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('reading-bar').style.width = Math.min(pct, 100) + '%';
+});
+
+// Reactions
+const slug = 'beyond-the-diagnosis';
+const storageKey = `episodic_reactions_${slug}`;
+const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+document.querySelectorAll('.reaction-btn').forEach(btn => {
+  const r = btn.dataset.reaction;
+  if (saved[r]) {
+    btn.classList.add('border-primary', 'text-primary', 'bg-primary-fixed/30');
+    btn.classList.remove('border-outline-variant', 'text-on-surface-variant');
   }
-  syncBtn();
   btn.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
-    syncBtn();
-  });
-})();
-
-function formatDate(dateStr) {
-  if (!dateStr) return '';
-  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-}
-
-function statusChip(status) {
-  if (status === 'published') {
-    return `<span class="font-label-md text-xs bg-primary text-on-primary px-3 py-1 rounded-full">Published</span>`;
-  }
-  if (status === 'open_for_submissions') {
-    return `<span class="font-label-md text-xs bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full">Open for Submissions</span>`;
-  }
-  return `<span class="font-label-md text-xs bg-surface-container text-on-surface-variant px-3 py-1 rounded-full">${status || 'Draft'}</span>`;
-}
-
-function issueCard(issue) {
-  return `
-    <div class="bento-card rounded-xl p-gutter flex flex-col gap-4">
-      <div class="flex items-center gap-3">
-        ${statusChip(issue.status)}
-        <span class="font-label-md text-on-surface-variant text-xs">${formatDate(issue.published_at || issue.created_at)}</span>
-      </div>
-      <h2 class="font-headline-md text-headline-lg text-on-surface">${issue.title}</h2>
-      <p class="font-body-md text-on-surface-variant flex-1">${issue.theme_description || issue.description || ''}</p>
-      <a href="./issue.html?slug=${encodeURIComponent(issue.slug)}" class="font-label-md text-primary hover:underline flex items-center gap-1 mt-2 self-start">
-        Explore <span class="material-symbols-outlined text-sm">arrow_forward</span>
-      </a>
-    </div>`;
-}
-
-async function loadIssues() {
-  try {
-    const data = await api.issues.list();
-    const issues = (data && data.items) ? data.items : [];
-    const grid = document.getElementById('issues-grid');
-    const emptyState = document.getElementById('empty-state');
-
-    if (issues.length === 0) {
-      grid.innerHTML = '';
-      emptyState.classList.remove('hidden');
-      return;
+    const active = btn.classList.contains('border-primary');
+    document.querySelectorAll('.reaction-btn').forEach(b => {
+      b.classList.remove('border-primary', 'text-primary', 'bg-primary-fixed/30');
+      b.classList.add('border-outline-variant', 'text-on-surface-variant');
+    });
+    if (!active) {
+      btn.classList.add('border-primary', 'text-primary', 'bg-primary-fixed/30');
+      btn.classList.remove('border-outline-variant', 'text-on-surface-variant');
+      localStorage.setItem(storageKey, JSON.stringify({ [r]: true }));
+    } else {
+      localStorage.removeItem(storageKey);
     }
-
-    const sorted = [...issues].sort((a, b) => new Date(b.publication_date || b.created_at) - new Date(a.publication_date || a.created_at));
-    grid.innerHTML = sorted.map(issueCard).join('');
-  } catch (err) {
-    document.getElementById('issues-grid').innerHTML = '';
-    const el = document.getElementById('issues-error');
-    el.textContent = 'Could not load issues: ' + err.message;
-    el.classList.remove('hidden');
-  }
-}
-
-loadIssues();
+  });
+});
 </script>
 </body>
 </html>

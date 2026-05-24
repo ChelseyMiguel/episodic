@@ -24,6 +24,33 @@ const MODAL_HTML = `
   </div>
 </div>`;
 
+// Known author names by slug — fallback when API doesn't return a byline
+const KNOWN_AUTHORS = {
+  'bitter-sweet': 'Chelsey Miguel',
+  'belated': 'Chelsey Miguel',
+  'aftertaste': 'Chelsey Miguel',
+  'blissful-moments': 'Chelsey Miguel',
+  'beyond-the-diagnosis': 'Chelsey Miguel',
+  'students-chronic-illness-health-education': 'Chelsey Miguel',
+  'invisible-symptoms': 'Chelsey Miguel',
+  'my-name-is': 'Chelsey Miguel',
+};
+
+// Static pieces not yet in the backend
+const STATIC_SEARCH = [
+  { slug: 'blissful-moments', title: 'Blissful Moments Like These', category: 'Visual Art', href: './article-blissful-moments.html' },
+  { slug: 'beyond-the-diagnosis', title: 'Beyond the Diagnosis: Reclaiming Autonomy in Chronic Care', category: 'Essay', href: './article-beyond-diagnosis.html' },
+];
+
+function getAuthor(a) {
+  return a.byline || KNOWN_AUTHORS[a.slug] || 'Chelsey Miguel';
+}
+
+function getHref(a) {
+  if (a.href) return a.href;
+  return `./article.html?slug=${encodeURIComponent(a.slug)}`;
+}
+
 function renderResults(articles, query) {
   const el = document.getElementById('search-results');
   if (!articles.length) {
@@ -32,14 +59,14 @@ function renderResults(articles, query) {
   }
   el.innerHTML = articles.map(a => {
     const cat = a.category || 'essay';
-    const catIcons = { essay:'article', poetry:'auto_stories', op_ed:'diversity_3', interview:'mic', visual_art:'palette' };
-    const icon = catIcons[cat] || 'auto_awesome';
+    const catIcons = { essay:'article', poetry:'auto_stories', 'op-ed':'diversity_3', 'op_ed':'diversity_3', interview:'mic', 'visual art':'palette', visual_art:'palette' };
+    const icon = catIcons[cat.toLowerCase()] || 'auto_awesome';
     return `
-      <a href="./article.html?slug=${encodeURIComponent(a.slug)}" class="flex items-start gap-4 p-5 hover:bg-surface-container-low transition-colors group">
+      <a href="${getHref(a)}" class="flex items-start gap-4 p-5 hover:bg-surface-container-low transition-colors group">
         <span class="material-symbols-outlined text-primary mt-0.5">${icon}</span>
         <div class="flex-1 min-w-0">
           <p class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors truncate">${a.title}</p>
-          <p class="text-caption font-caption text-outline mt-1">${(cat).replace('_',' ')} · Anonymous</p>
+          <p class="text-caption font-caption text-outline mt-1">${cat} · ${getAuthor(a)}</p>
         </div>
         <span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity mt-0.5">arrow_forward</span>
       </a>`;
@@ -52,8 +79,14 @@ let debounceTimer = null;
 async function prefetch() {
   try {
     const data = await api.articles.list();
-    allArticles = (data && data.items) ? data.items : [];
-  } catch (_) {}
+    const apiItems = (data && data.items) ? data.items : [];
+    // Merge static pieces, deduplicate by slug
+    const slugsSeen = new Set(apiItems.map(a => a.slug));
+    const extras = STATIC_SEARCH.filter(s => !slugsSeen.has(s.slug));
+    allArticles = [...apiItems, ...extras];
+  } catch (_) {
+    allArticles = [...STATIC_SEARCH];
+  }
 }
 
 function openModal() {

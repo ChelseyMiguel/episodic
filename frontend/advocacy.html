@@ -126,7 +126,7 @@
   .dark .text-primary { color: #ffb59e !important; }
   .dark .bg-primary { background-color: #944931 !important; }
   .dark .text-on-primary { color: #fff !important; }
-  .dark img[src="./assets/logo.png"] { content: url("./assets/logo-dark.png"); }
+  .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -136,7 +136,7 @@
 <header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/logo.png" alt="Episodic" class="h-40 w-auto" /></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png" alt="Episodic" class="h-36 w-auto" /></a>
       <nav class="hidden md:flex gap-8 items-center">
         <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
         <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
@@ -150,7 +150,7 @@
       <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
         class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
       <button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
-      <a href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+      <a href="./login.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Sign In</a>
     </div>
   </div>
 </header>
@@ -165,7 +165,7 @@
         <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background mb-8 leading-tight">Beyond the Diagnosis: Reclaiming Autonomy in Chronic Care.</h1>
         <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl">A seminal exploration of how systemic healthcare gaps are being filled by patient-led grassroots movements, and the radical act of storytelling as survival.</p>
         <div class="flex flex-wrap gap-4">
-          <button class="min-h-[44px] px-8 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:brightness-110 transition-all">Read the Essay</button>
+          <a href="./article-beyond-diagnosis.html" class="inline-flex items-center min-h-[44px] px-8 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:brightness-110 transition-all">Read the Essay</a>
           <a href="./coming-soon.html" class="inline-block min-h-[44px] px-8 border-2 border-outline text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-surface-container transition-all leading-[40px]">Support the Author</a>
         </div>
       </div>
@@ -198,64 +198,70 @@
       <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
         <div class="max-w-xl">
           <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Action Center</h2>
-          <p class="font-body-md text-body-md text-on-surface-variant">Tangible resources designed to empower your voice. From legislative guides to community organizing frameworks, we provide the tools for change.</p>
+          <p class="font-body-md text-body-md text-on-surface-variant">Practical tools, real rights, and community power — built for young people navigating chronic illness and disability.</p>
         </div>
-        <button class="flex items-center gap-2 text-primary font-label-md text-label-md group hover:gap-3 transition-all">
+        <a href="./resources.html" class="flex items-center gap-2 text-primary font-label-md text-label-md group hover:gap-3 transition-all">
           View All Resources <span class="material-symbols-outlined">arrow_forward</span>
-        </button>
+        </a>
       </div>
 
       <!-- Bento Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
 
-        <!-- Card 1: Comprehensive Guide (wide) -->
-        <div class="md:col-span-2 group overflow-hidden rounded-xl border border-outline-variant/30 hover:shadow-lg transition-all duration-500">
+        <!-- Card 1: 504 Accommodations (wide) -->
+        <a href="https://www.navigatelifetexas.org/en/education-schools/section-504" target="_blank" rel="noopener"
+          class="md:col-span-2 group overflow-hidden rounded-xl border border-outline-variant/30 hover:shadow-lg hover:border-primary transition-all duration-500">
           <div class="h-64 bg-secondary-container overflow-hidden">
             <img
-              alt="Resource Guide"
+              alt="Student with notebook, school accommodations"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa_w06nW697swWuh2f0j9PwFchoofqeF4D1fvgWgxiqE15LB_Ery1NsmOLZC1sZyUIAzzF2K2Zk4HJeoEmDZsREZXi97LBp9JJZ4pGiHIHgHXWaTM12mkLyVEoXXwgPEK3nDV3dClnYMm0UfXDo3O7n6e5F9Sz39nbPATjxbMfQlq3msWI6qZNpn2FaFNRSXMpwIFWzM2hgiTJSN3ETF4CJot4ix3whhTDNc8GKkUKm5gsPVopMCNqk9o7n5mgsdztCHKLSZ-04nK9"
             />
           </div>
           <div class="p-8 bg-surface-container-lowest">
-            <span class="text-secondary font-label-md text-label-md mb-2 block">Comprehensive Guide</span>
-            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Navigating Insurance Appeals: A Patient Handbook</h3>
-            <p class="font-body-md text-body-md text-on-surface-variant mb-6">A step-by-step breakdown of the appeals process, including letter templates and legal rights for chronic illness patients.</p>
-            <a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md border-b border-primary/20 pb-1" href="#">Download PDF</a>
+            <span class="text-secondary font-label-md text-label-md mb-2 block uppercase tracking-widest">504 &amp; School Accommodations</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">504 &amp; School Accommodations Starter Guide</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">Many students don't realize they can request flexibility around attendance, deadlines, or medical absences. This guide explains what a 504 plan is and how to ask for one in language families and teens can actually understand.</p>
+            <span class="inline-flex items-center gap-2 text-primary font-label-md text-label-md border-b border-primary/20 pb-1">Navigate Life Texas <span class="material-symbols-outlined text-[16px]">open_in_new</span></span>
           </div>
-        </div>
+        </a>
 
-        <!-- Card 2: Petition -->
-        <div class="group overflow-hidden rounded-xl bg-tertiary-container text-on-tertiary-container flex flex-col justify-between p-8 hover:shadow-lg transition-all">
+        <!-- Card 2: Know Your Rights -->
+        <a href="https://adata.org/" target="_blank" rel="noopener"
+          class="group overflow-hidden rounded-xl bg-tertiary-container text-on-tertiary-container flex flex-col justify-between p-8 hover:shadow-lg hover:brightness-105 transition-all">
           <div>
-            <span class="material-symbols-outlined text-4xl mb-6 block">edit_square</span>
-            <h3 class="font-headline-md text-headline-md mb-4">Urgent: Support House Bill 402</h3>
-            <p class="font-body-md text-body-md mb-8 opacity-90">Join 5,000 others in demanding equitable access to innovative telehealth solutions for rural communities.</p>
+            <span class="material-symbols-outlined text-4xl mb-6 block">policy</span>
+            <h3 class="font-headline-md text-headline-md mb-4">Know Your Disability Rights</h3>
+            <p class="font-body-md text-body-md mb-8 opacity-90">When you're young and chronically ill, you're often told to "be grateful" instead of being told you have rights. The ADA National Network breaks down what access you're legally entitled to in school, work, and public spaces.</p>
           </div>
-          <a href="./coming-soon.html" class="block w-full min-h-[44px] bg-on-tertiary-container text-tertiary-container rounded-lg font-label-md text-label-md hover:bg-white transition-colors text-center leading-[44px]">Sign Petition</a>
-        </div>
+          <span class="block w-full min-h-[44px] bg-on-tertiary-container text-tertiary-container rounded-lg font-label-md text-label-md text-center leading-[44px]">ADA National Network ↗</span>
+        </a>
 
-        <!-- Card 3: Community Circles -->
-        <div class="group overflow-hidden rounded-xl border border-outline-variant/30 hover:shadow-lg transition-all duration-500">
-          <div class="h-48 bg-primary-container"></div>
-          <div class="p-8 bg-surface-container-lowest -mt-12 mx-4 rounded-lg shadow-sm border border-outline-variant/10 mb-8">
-            <span class="material-symbols-outlined text-primary mb-4 block">groups</span>
-            <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Community Circles</h3>
-            <p class="font-body-md text-body-md text-on-surface-variant mb-4">Launch or join a local advocacy chapter in your city.</p>
-            <a class="text-primary font-label-md text-label-md" href="./coming-soon.html">Learn More</a>
+        <!-- Card 3: Family Support -->
+        <a href="https://familyvoices.org/" target="_blank" rel="noopener"
+          class="group overflow-hidden rounded-xl border border-outline-variant/30 hover:shadow-lg hover:border-primary transition-all duration-500">
+          <div class="h-48 bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-6xl text-on-primary-container opacity-30">family_restroom</span>
           </div>
-        </div>
+          <div class="p-8 bg-surface-container-lowest">
+            <span class="material-symbols-outlined text-primary mb-4 block">volunteer_activism</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Family Support for Complex Health</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-4">Family Voices connects families of children with special health care needs to peer support and policy tools — so you don't have to navigate systems alone.</p>
+            <span class="text-primary font-label-md text-label-md inline-flex items-center gap-1">Family Voices <span class="material-symbols-outlined text-[16px]">open_in_new</span></span>
+          </div>
+        </a>
 
-        <!-- Card 4: Legislative Tracker (wide) -->
+        <!-- Card 4: Legislative Tracker (wide) — coming soon -->
         <div class="md:col-span-2 group overflow-hidden rounded-xl border border-outline-variant/30 flex flex-col md:flex-row hover:shadow-lg transition-all duration-500">
           <div class="md:w-1/2 p-8 bg-surface-container-low flex flex-col justify-center">
+            <span class="inline-flex items-center gap-2 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-md text-label-md mb-4 w-fit text-xs uppercase tracking-widest">Coming Soon</span>
             <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Legislative Tracker</h3>
-            <p class="font-body-md text-body-md text-on-surface-variant mb-6">Real-time monitoring of healthcare-related bills moving through parliament. Stay informed on what matters most.</p>
-            <a href="./coming-soon.html" class="inline-block min-h-[44px] px-6 border-2 border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all leading-[40px]">Open Tracker</a>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">Real-time monitoring of Hawaiʻi and federal bills touching disability, youth mental health, education, and healthcare access — curated for the Episodic community.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeDQmwg1411TInv_b5XhGmAZ09Mx-mk38FktGWY_fVhb5Jalg/viewform?usp=publish-editor" target="_blank" rel="noopener" class="inline-block min-h-[44px] px-6 border-2 border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all leading-[40px]">Notify Me When Live</a>
           </div>
           <div class="md:w-1/2 bg-surface-dim overflow-hidden min-h-[200px]">
             <img
-              alt="Policy Building"
+              alt="Policy and legislation"
               class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 transition-all duration-1000"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOCS6dM-JjYLm-Q1OliNFWckaCf3MWkt8SulUCxRWlkvjIj8APkZQEZVu-jHmp9cxOLYe67H4JXTPJfD-sAIPGbTOL0iAkmRMYsyYIW9VQjJnqXQVoIMuG0wkMm2RBnfWydEjsjFY_lkAxtbEdnRLXSvFWqrahjWvP2kn5YQeYZZM_qgls8gHU-dzOZz7whgrJbFUrNnQ5jl_nQReL0X5wOSkma4WyDxQ7Sq8nTWPGyyXfAN1dVgDS1p1C3-w47r5Tu-W6LI9PMd1X"
             />
@@ -266,6 +272,78 @@
     </div>
   </section>
 
+  <!-- Advocacy & Action -->
+  <section class="px-margin-mobile md:px-margin-desktop py-16 bg-surface-container-low">
+    <div class="max-w-container-max mx-auto">
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Advocacy &amp; Action</h2>
+      <p class="font-body-md text-on-surface-variant mb-12 max-w-2xl">Stories are power — and so is knowing where to direct them. These are the tools and spaces where chronic illness advocacy meets real policy.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <a href="./submit.html" class="p-6 bg-surface-container-lowest rounded-xl border border-primary/30 hover:border-primary hover:shadow-lg transition-all block group">
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">auto_stories</span>
+          <h4 class="font-label-md text-label-md text-on-surface mb-2 group-hover:text-primary transition-colors">Share Your Story</h4>
+          <p class="text-caption font-caption text-on-surface-variant">Submit to Episodic — personal narratives are some of the most powerful testimony that exists. Your words can reach legislators, editors, and communities.</p>
+        </a>
+
+        <a href="https://dredf.org/" target="_blank" rel="noopener" class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant hover:border-primary hover:shadow-lg transition-all block group">
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">gavel</span>
+          <h4 class="font-label-md text-label-md text-on-surface mb-2 group-hover:text-primary transition-colors">Disability Rights Education &amp; Defense Fund</h4>
+          <p class="text-caption font-caption text-on-surface-variant">A disability civil rights law and policy center with tools for understanding your rights and following major disability legislation.</p>
+        </a>
+
+        <a href="https://www.capitol.hawaii.gov/" target="_blank" rel="noopener" class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant hover:border-primary hover:shadow-lg transition-all block group">
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">account_balance</span>
+          <h4 class="font-label-md text-label-md text-on-surface mb-2 group-hover:text-primary transition-colors">Hawaiʻi Legislature</h4>
+          <p class="text-caption font-caption text-on-surface-variant">Search and track bills, submit testimony, and follow deadlines — powerful for local youth who want to testify on disability, health, and education bills in Hawaiʻi.</p>
+        </a>
+
+        <a href="https://www.congress.gov/" target="_blank" rel="noopener" class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant hover:border-primary hover:shadow-lg transition-all block group">
+          <span class="material-symbols-outlined text-primary mb-4 text-3xl block">public</span>
+          <h4 class="font-label-md text-label-md text-on-surface mb-2 group-hover:text-primary transition-colors">Congress.gov — U.S. Federal Bills</h4>
+          <p class="text-caption font-caption text-on-surface-variant">Search federal bills by topic — "chronic illness," "Medicaid," "youth mental health" — and track what's actually moving in Congress.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Crisis & Immediate Support -->
+  <section class="px-margin-mobile md:px-margin-desktop py-16 bg-background">
+    <div class="max-w-container-max mx-auto">
+      <div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl p-6 md:p-10 mb-10 text-center">
+        <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">If reading Episodic brings up memories or feelings that feel too heavy to hold alone, these are places you can reach out right now.</p>
+      </div>
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Crisis &amp; Immediate Support</h2>
+      <p class="font-body-md text-on-surface-variant mb-10 max-w-2xl">Free, confidential, available now.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <a href="https://988lifeline.org/" target="_blank" rel="noopener"
+          class="p-6 bg-primary-fixed/30 border border-primary-container/30 rounded-xl hover:border-primary hover:shadow-lg transition-all block group">
+          <span class="material-symbols-outlined text-primary mb-3 text-3xl block" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">emergency</span>
+          <h4 class="font-headline-md text-headline-md text-primary mb-1 group-hover:underline">988 Suicide &amp; Crisis Lifeline</h4>
+          <p class="font-body-md text-on-surface-variant mb-3">24/7 free, confidential support for suicidal thoughts, mental health crises, or substance use–related distress.</p>
+          <p class="font-label-md text-label-md text-primary">Call or text 988</p>
+        </a>
+
+        <a href="https://www.crisistextline.org/" target="_blank" rel="noopener"
+          class="p-6 bg-secondary-container/40 border border-secondary-container/60 rounded-xl hover:border-primary hover:shadow-lg transition-all block group">
+          <span class="material-symbols-outlined text-secondary mb-3 text-3xl block" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">chat</span>
+          <h4 class="font-headline-md text-headline-md text-on-surface mb-1 group-hover:text-primary transition-colors">Crisis Text Line</h4>
+          <p class="font-body-md text-on-surface-variant mb-3">Free, 24/7 text-based support from trained crisis counselors for anyone in emotional distress.</p>
+          <p class="font-label-md text-label-md text-secondary">Text HOME to 741741</p>
+        </a>
+
+        <a href="https://www.thetrevorproject.org/get-help/" target="_blank" rel="noopener"
+          class="p-6 bg-tertiary-fixed/40 border border-tertiary-fixed/60 rounded-xl hover:border-primary hover:shadow-lg transition-all block group">
+          <span class="material-symbols-outlined text-tertiary mb-3 text-3xl block" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">favorite</span>
+          <h4 class="font-headline-md text-headline-md text-on-surface mb-1 group-hover:text-primary transition-colors">The Trevor Project</h4>
+          <p class="font-body-md text-on-surface-variant mb-3">24/7 crisis support specifically for LGBTQ+ young people navigating suicidal thoughts, depression, or family rejection.</p>
+          <p class="font-label-md text-label-md text-tertiary">thetrevorproject.org/get-help</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
   <!-- About the Creator / Personal Mission -->
   <section class="px-margin-mobile md:px-margin-desktop py-24">
     <div class="max-w-container-max mx-auto">
@@ -321,31 +399,46 @@
 </main>
 
 <!-- Footer -->
-<footer class="w-full py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-start gap-gutter max-w-container-max mx-auto border-t border-outline-variant/20 bg-surface-container-low">
-  <div class="flex flex-col gap-6">
-    <img src="./assets/logo.png" alt="Episodic" class="h-16 w-auto" />
-    <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">© Episodic. A Living Literary Magazine. Nurturing the intersection of art and advocacy.</p>
-  </div>
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
-    <div class="flex flex-col gap-4">
-      <p class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Magazine</p>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./issues.html">Issues</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./poetry.html">Poetry</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./articles.html">Archive</a>
-        <a class="text-on-surface-variant hover:text-primary transition-all font-label-md text-label-md" href="./resources.html">Resources</a>
+<footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
+  <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="space-y-4 flex-shrink-0 max-w-xs">
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-24 w-auto object-contain" />
+      <p class="font-body-md text-body-md text-on-surface-variant">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
+      <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
-    <div class="flex flex-col gap-4">
-      <p class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Support</p>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./submit.html">Submit</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./advocacy.html">Advocacy</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./accessibility.html">Accessibility</a>
-    </div>
-    <div class="flex flex-col gap-4">
-      <p class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Legal</p>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="./privacy.html">Privacy</a>
-      <div class="flex gap-4 mt-2">
-        <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">share</span>
-        <span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">mail</span>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Magazine</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./issues.html">Issues</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./poetry.html">Poetry</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./articles.html">Archive</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./resources.html">Resources</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Community</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./advocacy.html">Advocacy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Submit Work</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./submit.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Support</span>
+        <ul class="space-y-2 text-on-surface-variant">
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./privacy.html">Privacy Policy</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./accessibility.html">Accessibility Statement</a></li>
+          <li><a class="hover:text-primary hover:pl-1 transition-all font-body-md text-body-md" href="./coming-soon.html">Support Us</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <span class="font-label-md text-label-md text-primary">Social</span>
+        <div class="flex gap-4">
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">share</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">mail</button>
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary hover:scale-110 transition-transform">rss_feed</button>
+        </div>
       </div>
     </div>
   </div>
