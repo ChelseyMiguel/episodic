@@ -63,6 +63,28 @@
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
 
+<!-- Mobile nav drawer -->
+<div id="mobile-nav" class="fixed inset-0 z-[200] pointer-events-none">
+  <div id="mobile-nav-overlay" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300"></div>
+  <div id="mobile-nav-drawer" class="absolute top-0 right-0 h-full w-72 bg-surface shadow-2xl translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant/30">
+      <img src="./assets/LogoLight.png" alt="Episodic" class="h-28 w-auto" />
+      <button id="mobile-nav-close" aria-label="Close menu" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-2xl">close</button>
+    </div>
+    <nav class="flex flex-col gap-1 px-4 py-6 flex-1">
+      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./issues.html">Issues</a>
+      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./advocacy.html">Advocacy</a>
+      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./poetry.html">Poetry</a>
+      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./articles.html">Archive</a>
+      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./resources.html">Resources</a>
+      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./submit.html">Submit</a>
+    </nav>
+    <div class="px-4 pb-8">
+      <a id="nav-cta-mobile" href="./login.html" class="block text-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:brightness-110 transition-all">Sign In</a>
+    </div>
+  </div>
+</div>
+
 <!-- TopAppBar -->
 <header class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
@@ -80,31 +102,55 @@
     <div class="flex items-center gap-2">
       <button id="dark-mode-btn" title="Switch to dark mode" aria-label="Switch to dark mode"
         class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container material-symbols-outlined">dark_mode</button>
-      <button id="search-btn" class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">search</button>
-      <a id="nav-cta" href="./issues.html" class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+      <button id="search-btn" class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors md:inline-flex">search</button>
+      <a id="nav-cta" href="./issues.html" class="hidden md:inline-flex bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all">Latest Issue</a>
+      <button id="hamburger-btn" aria-label="Open menu" class="md:hidden material-symbols-outlined p-2 text-on-surface-variant hover:text-primary transition-colors">menu</button>
     </div>
   </div>
 </header>
+
+<script>
+(function() {
+  var drawer = document.getElementById('mobile-nav-drawer');
+  var overlay = document.getElementById('mobile-nav-overlay');
+  var nav = document.getElementById('mobile-nav');
+  function openNav() {
+    nav.style.pointerEvents = 'auto';
+    overlay.style.opacity = '1';
+    drawer.style.transform = 'translateX(0)';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    nav.style.pointerEvents = 'none';
+    overlay.style.opacity = '0';
+    drawer.style.transform = 'translateX(100%)';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('hamburger-btn').addEventListener('click', openNav);
+  document.getElementById('mobile-nav-close').addEventListener('click', closeNav);
+  overlay.addEventListener('click', closeNav);
+})();
+</script>
 
 <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop space-y-16 mt-8">
 
   <!-- Hero Section: Latest Issue -->
   <section class="relative rounded-xl overflow-hidden group border border-outline-variant/20" id="hero-section">
     <!-- Hero: image is always visible; text overlay updates from API -->
-    <div id="hero-content" class="aspect-[21/9] w-full relative">
+    <div id="hero-content" class="min-h-[420px] md:aspect-[21/9] w-full relative">
       <img
         src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1600&q=80"
         alt="Open literary magazine on a warm surface"
-        class="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-1000"
+        class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-1000"
         id="hero-bg"
       />
-      <div class="absolute inset-0 bg-on-background/50"></div>
-      <div class="absolute bottom-0 left-0 p-12 w-full md:w-2/3">
-        <span id="hero-volume-chip" class="inline-block bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-label-md text-label-md mb-4 shadow-sm">Episodic</span>
-        <h1 id="hero-title" class="font-display-lg text-display-lg text-white mb-6 leading-tight drop-shadow-md">Stories from the intersection of chronic illness and creativity.</h1>
-        <div class="flex gap-4">
-          <a id="hero-read-btn" href="./issues.html" class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:shadow-xl hover:brightness-110 transition-all active:scale-95">Read the Issue</a>
-          <a href="./articles.html" class="bg-white/10 backdrop-blur-md text-white border border-white/30 px-8 py-3 rounded-lg font-label-md text-label-md hover:bg-white hover:text-on-background transition-all active:scale-95">About the Authors</a>
+      <div class="absolute inset-0 bg-on-background/60"></div>
+      <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-12 md:w-2/3">
+        <span id="hero-volume-chip" class="inline-block bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-label-md text-label-md mb-3 shadow-sm self-start">Episodic</span>
+        <h1 id="hero-title" class="font-display-lg text-2xl md:text-display-lg text-white mb-5 leading-tight drop-shadow-md">Stories from the intersection of chronic illness and creativity.</h1>
+        <div class="flex flex-wrap gap-3">
+          <a id="hero-read-btn" href="./issues.html" class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md hover:shadow-xl hover:brightness-110 transition-all active:scale-95">Read the Issue</a>
+          <a href="./articles.html" class="bg-white/10 backdrop-blur-md text-white border border-white/30 px-6 py-2.5 rounded-lg font-label-md text-label-md hover:bg-white hover:text-on-background transition-all active:scale-95">Archive</a>
         </div>
       </div>
     </div>
