@@ -43,28 +43,6 @@
 </head>
 <body class="font-body-md text-body-md">
 
-<!-- Mobile nav drawer -->
-<div id="mobile-nav" class="fixed inset-0 z-[200] pointer-events-none">
-  <div id="mobile-nav-overlay" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300"></div>
-  <div id="mobile-nav-drawer" class="absolute top-0 right-0 h-full w-72 bg-surface shadow-2xl translate-x-full transition-transform duration-300 flex flex-col">
-    <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant/30">
-      <img src="./assets/LogoLight.png" alt="Episodic" class="h-28 w-auto" />
-      <button id="mobile-nav-close" aria-label="Close menu" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-2xl">close</button>
-    </div>
-    <nav class="flex flex-col gap-1 px-4 py-6 flex-1">
-      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./issues.html">Issues</a>
-      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./advocacy.html">Advocacy</a>
-      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./poetry.html">Poetry</a>
-      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./articles.html">Archive</a>
-      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./resources.html">Resources</a>
-      <a class="text-on-surface font-label-md text-label-md px-4 py-3 rounded-lg hover:bg-surface-container hover:text-primary transition-all" href="./submit.html">Submit</a>
-    </nav>
-    <div class="px-4 pb-8">
-      <a href="./login.html" class="block text-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:brightness-110 transition-all">Sign In</a>
-    </div>
-  </div>
-</div>
-
 <header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
@@ -228,30 +206,6 @@
     localStorage.setItem('episodic_dark_mode', isDark ? 'dark' : 'light');
     syncBtn();
   });
-})();
-</script>
-<script>
-(function() {
-  var drawer = document.getElementById('mobile-nav-drawer');
-  var overlay = document.getElementById('mobile-nav-overlay');
-  var nav = document.getElementById('mobile-nav');
-  function openNav() {
-    nav.style.pointerEvents = 'auto';
-    overlay.style.opacity = '1';
-    drawer.style.transform = 'translateX(0)';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeNav() {
-    nav.style.pointerEvents = 'none';
-    overlay.style.opacity = '0';
-    drawer.style.transform = 'translateX(100%)';
-    document.body.style.overflow = '';
-  }
-  var hbtn = document.getElementById('hamburger-btn');
-  var cbtn = document.getElementById('mobile-nav-close');
-  if (hbtn) hbtn.addEventListener('click', openNav);
-  if (cbtn) cbtn.addEventListener('click', closeNav);
-  if (overlay) overlay.addEventListener('click', closeNav);
 })();
 </script>
 </body>
