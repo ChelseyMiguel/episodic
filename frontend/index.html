@@ -58,6 +58,20 @@
   #toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(60px); background: #1b1c19; color: #fbf9f4; border-radius: 9999px; padding: 0.5rem 1.25rem; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0; transition: opacity 0.25s, transform 0.3s; z-index: 9999; pointer-events: none; white-space: nowrap; }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+  /* ── Mobile-only fixes ── */
+  @media (max-width: 767px) {
+    /* Hero: override the 21/9 aspect ratio so text isn't squished */
+    #hero-content { aspect-ratio: auto !important; min-height: 400px; }
+    /* Reduce padding so text has room */
+    #hero-content > div.absolute { padding: 1.25rem !important; }
+    /* Smaller title text on mobile */
+    #hero-title { font-size: 1.5rem !important; line-height: 1.2 !important; margin-bottom: 0.75rem !important; }
+    /* Stack the two hero buttons vertically */
+    #hero-content .flex.gap-4 { flex-direction: column; gap: 0.5rem; }
+    #hero-content .flex.gap-4 a { text-align: center; padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    /* Ticker: shrink the pill label so the quotes aren't cut off */
+    #hero-section + section .shrink-0 { font-size: 12px; padding-left: 0.625rem; padding-right: 0.625rem; margin-right: 0.75rem; }
+  }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
