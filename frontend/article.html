@@ -686,6 +686,41 @@ async function loadRelated(currentSlug) {
   }
 }
 
+// ── Static article data (no API needed) ──────────────────────────────────────
+
+const STATIC_ARTICLES = {
+  'bitter-sweet': {
+    title: 'Bitter Sweet',
+    slug: 'bitter-sweet',
+    category: 'Poetry',
+    byline: 'Chelsey Miguel',
+    published_at: '2026-05-01',
+    excerpt: 'I hear the flare of bad news / From whoever tells the tale',
+    body_html: "<p style='font-style:italic; line-height:2;'>I hear the flare of bad news<br/>From whoever tells the tale-<br/>The sweetness that turns bitter<br/>Awoken to their chatter<br/>On a monotone platter<br/>How can I even bother<br/>When the sounds of their concern matter?<br/>Well, what can I do? I can muster nothing but laughter.</p>",
+    tags: [{ name: 'poetry' }, { name: 'chronic illness' }, { name: 'grief' }],
+  },
+  'belated': {
+    title: 'Belated',
+    slug: 'belated',
+    category: 'Poetry',
+    byline: 'Chelsey Miguel',
+    published_at: '2026-05-02',
+    excerpt: 'Somewhere at the beginning of time / I see her face hidden behind a postcard',
+    body_html: "<p style='font-style:italic; line-height:2;'>Somewhere at the beginning of time<br/>I see her face hidden behind a postcard<br/>Her smile before the journeys arrived<br/>How I wish I was closer<br/>To take her hand to say she'll be fine<br/>And soothe her worries in before the night<br/>\"Shh it will be okay\"<br/>These words would rhyme when I saw her<br/>Her softness and laughter<br/>How I wish I could hold her</p>",
+    tags: [{ name: 'poetry' }, { name: 'grief' }, { name: 'family' }],
+  },
+  'aftertaste': {
+    title: 'Aftertaste',
+    slug: 'aftertaste',
+    category: 'Poetry',
+    byline: 'Chelsey Miguel',
+    published_at: '2026-05-03',
+    excerpt: 'All I\'ve ever wanted / Was to see her amongst the toneless walls',
+    body_html: "<p style='font-style:italic; line-height:2;'>All I've ever wanted<br/>Was to see her amongst the toneless walls<br/>Her heart beating faster<br/>\"Mom! I'm getting taller!\"<br/>Even amidst those repetitive patterns<br/>Those flat beds and desks<br/>Those repeatable beeps and squeaks<br/>My want becomes stronger<br/>Even though you are surrounded by bleakness<br/>I'm unable to comprehend your laughter</p>",
+    tags: [{ name: 'poetry' }, { name: 'family' }, { name: 'hospital' }],
+  },
+};
+
 // ── Load Article ──────────────────────────────────────────────────────────────
 
 async function loadArticle() {
@@ -706,7 +741,8 @@ async function loadArticle() {
   initReactions(slug);
 
   try {
-    const article = await api.articles.get(slug);
+    // Use static data first, fall back to API for future articles
+    const article = STATIC_ARTICLES[slug] || await api.articles.get(slug);
 
     document.title = `${article.title} | Episodic`;
 
