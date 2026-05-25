@@ -40,6 +40,7 @@
   .dark .filter-chip { border-color: #503c32; color: #b8a8a2; }
   .dark .filter-chip.active { background: #944931; color: #fff; border-color: #944931; }
   .dark img[src="./assets/LogoLight.png"] { content: url("./assets/logo-dark.png"); }
+  @media (max-width: 767px) { body { padding-bottom: 4.5rem; } }
 </style>
 <script>(function(){ if(localStorage.getItem('episodic_dark_mode')==='dark') document.documentElement.classList.add('dark'); })();</script>
 </head>
@@ -350,5 +351,28 @@ document.getElementById('filter-bar').addEventListener('click', (e) => {
 
 loadArticles();
 </script>
+<!-- Mobile bottom nav bar — md:hidden so desktop sees nothing -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/30 flex md:hidden safe-area-inset-bottom">
+  <a href="./issues.html" class="flex-1 flex flex-col items-center py-2 gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+    <span class="material-symbols-outlined" style="font-size:20px">auto_stories</span>
+    <span style="font-size:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600">Issues</span>
+  </a>
+  <a href="./poetry.html" class="flex-1 flex flex-col items-center py-2 gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+    <span class="material-symbols-outlined" style="font-size:20px">format_quote</span>
+    <span style="font-size:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600">Poetry</span>
+  </a>
+  <a href="./advocacy.html" class="flex-1 flex flex-col items-center py-2 gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+    <span class="material-symbols-outlined" style="font-size:20px">campaign</span>
+    <span style="font-size:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600">Advocacy</span>
+  </a>
+  <a href="./resources.html" class="flex-1 flex flex-col items-center py-2 gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+    <span class="material-symbols-outlined" style="font-size:20px">bookmark</span>
+    <span style="font-size:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600">Resources</span>
+  </a>
+  <a href="./submit.html" class="flex-1 flex flex-col items-center py-2 gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+    <span class="material-symbols-outlined" style="font-size:20px">edit_note</span>
+    <span style="font-size:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600">Submit</span>
+  </a>
+</nav>
 </body>
 </html>
