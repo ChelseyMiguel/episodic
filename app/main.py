@@ -64,6 +64,12 @@ app.add_middleware(
 )
 
 
+@app.get("/", include_in_schema=False)
+async def root():
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/docs")
+
+
 @app.get("/health", tags=["Health"])
 async def health_check() -> dict:
     return {"status": "ok", "environment": settings.ENVIRONMENT}
