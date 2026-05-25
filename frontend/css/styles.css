@@ -17,36 +17,3 @@
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)) !important;
   }
 }
-
-/* ── Mobile navbar: compact header on small screens only ── */
-@media (max-width: 767px) {
-  /* Shrink the header row height */
-  header > div {
-    height: 56px !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  /* Scale logo down to fit compact header */
-  header img[src*="LogoLight"] {
-    height: 30px !important;
-    width: auto !important;
-  }
-  /* CTA pill button: smaller padding + no line break */
-  header a#nav-cta {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-    padding-top: 0.375rem !important;
-    padding-bottom: 0.375rem !important;
-    font-size: 0.7rem !important;
-    white-space: nowrap !important;
-    line-height: 1.2 !important;
-  }
-  /* Icon buttons: tighter tap targets */
-  header button.material-symbols-outlined {
-    padding: 0.25rem !important;
-  }
-  /* Tighten gap between logo and right-side icons */
-  header > div > div:last-child {
-    gap: 0.25rem !important;
-  }
-}
