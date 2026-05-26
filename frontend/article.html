@@ -196,6 +196,14 @@
     <!-- Main Article Column -->
     <article class="lg:col-span-7 lg:col-start-2 relative">
 
+      <!-- Back to Archive -->
+      <div class="mb-8">
+        <a href="./articles.html" id="back-link" class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md group">
+          <span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+          Back to Archive
+        </a>
+      </div>
+
       <!-- Content Warning Banner -->
       <div id="cw-banner" class="hidden mb-8 bg-surface-container rounded-xl p-6 border border-outline-variant cursor-pointer" role="button" tabindex="0">
         <div class="flex items-start gap-3">
@@ -674,19 +682,18 @@ function relatedCard(article, colorClass) {
     </a>`;
 }
 
-async function loadRelated(currentSlug) {
-  try {
-    const articles = await api.articles.list();
-    const others = ((articles && articles.items) ? articles.items : []).filter(a => a.slug !== currentSlug).slice(0, 2);
-    const relEl = document.getElementById('related-stories');
-    const colors = ['bg-secondary-container', 'bg-primary-container'];
-    if (others.length === 0) {
-      relEl.innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant">No related stories found.</p>';
-    } else {
-      relEl.innerHTML = others.map((a, i) => relatedCard(a, colors[i % 2])).join('');
-    }
-  } catch (_) {
-    document.getElementById('related-stories').innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant">Could not load related stories.</p>';
+function loadRelated(currentSlug) {
+  const relEl = document.getElementById('related-stories');
+  const colors = ['bg-secondary-container', 'bg-primary-container'];
+
+  // Pull from static articles — filter out the current one, pick up to 2
+  const all = Object.values(STATIC_ARTICLES);
+  const others = all.filter(a => a.slug !== currentSlug).slice(0, 2);
+
+  if (others.length === 0) {
+    relEl.innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant">No related stories found.</p>';
+  } else {
+    relEl.innerHTML = others.map((a, i) => relatedCard(a, colors[i % 2])).join('');
   }
 }
 
@@ -758,6 +765,23 @@ const STATIC_ARTICLES = {
 };
 
 // ── Load Article ──────────────────────────────────────────────────────────────
+
+// ── Smart back link ───────────────────────────────────────────────────────────
+(function() {
+  const ref = document.referrer;
+  const backLink = document.getElementById('back-link');
+  if (!backLink) return;
+  if (ref.includes('poetry.html')) {
+    backLink.href = './poetry.html';
+    backLink.querySelector('span + span, span ~ *') && (backLink.lastChild.textContent = ' Back to Poetry');
+    backLink.innerHTML = '<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span> Back to Poetry';
+  } else if (ref.includes('issues.html') || ref.includes('issue.html') || ref.includes('issue-')) {
+    backLink.href = ref;
+    backLink.innerHTML = '<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span> Back to Issue';
+  } else {
+    backLink.innerHTML = '<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span> Back to Archive';
+  }
+})();
 
 async function loadArticle() {
   const params = new URLSearchParams(window.location.search);
