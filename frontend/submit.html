@@ -26,7 +26,7 @@
   .step-label.active { color: #944931; border-bottom: 2px solid #944931; }
   .step-label.inactive { color: #54433e40; }
   .step-label.done { color: #54433e; }
-  .dark .episodic-logo .word, .dark .episodic-logo .dot { fill: #e6e4df !important; }
+  .dark img[src="./assets/LogoLight.png?v=5"] { content: url("./assets/logo-dark.png"); }
   /* Dark mode */
   .dark body, .dark { background-color: #1c1a18; color: #e6e4df; }
   .dark header, .dark .bg-surface { background-color: #242220 !important; }
@@ -66,22 +66,7 @@
 <header class="bg-surface top-0 sticky z-50 border-b border-outline-variant/30">
   <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-2 h-40">
     <div class="flex items-center gap-12">
-      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="200" height="49" role="img" aria-label="Episodic" class="episodic-logo">
-  <defs><style>
-    .leaf{fill:#d4756a}.stem{fill:none;stroke:#d4756a;stroke-width:1.6;stroke-linecap:round}
-    .word{font-family:'Literata',Georgia,serif;font-size:36px;fill:#1b1c19;font-weight:300;letter-spacing:-0.01em}
-    .dot{fill:#1b1c19}
-  </style></defs>
-  <path class="stem" d="M 53 50 C 50 42, 44 34, 40 22 C 37 12, 42 4, 50 6"/>
-  <path class="stem" d="M 45 36 C 38 32, 33 28, 32 22"/>
-  <path class="leaf" d="M 50 6 C 46 0, 38 -2, 40 8 C 42 16, 52 14, 50 6 Z"/>
-  <path class="leaf" d="M 52 10 C 58 2, 66 4, 62 12 C 58 18, 50 16, 52 10 Z"/>
-  <path class="leaf" d="M 44 20 C 36 14, 28 18, 32 26 C 35 32, 46 28, 44 20 Z"/>
-  <path class="leaf" d="M 38 30 C 30 26, 24 30, 28 38 C 30 42, 40 38, 38 30 Z"/>
-  <ellipse class="leaf" cx="44" cy="5" rx="4" ry="6" transform="rotate(-30 44 5)"/>
-  <path class="stem" d="M 53 50 C 56 54, 60 56, 62 53 C 64 50, 62 46, 58 47"/>
-  <text class="word" x="56" y="52">episodic.</text>
-</svg></a>
+      <a href="./index.html" class="hover:opacity-80 transition-opacity flex-shrink-0"><img src="./assets/LogoLight.png?v=5" alt="Episodic" class="h-36 w-auto" fetchpriority="high" decoding="sync" width="216" height="144" /></a>
       <nav class="hidden md:flex gap-8 items-center">
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./issues.html">Issues</a>
         <a class="text-on-surface-variant hover:text-primary hover:translate-y-[-1px] transition-all font-label-md text-label-md" href="./advocacy.html">Advocacy</a>
@@ -386,22 +371,7 @@
 <footer class="bg-surface-container-highest mt-16 border-t border-outline-variant/30">
   <div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
     <div class="space-y-4">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="200" height="49" role="img" aria-label="Episodic" class="episodic-logo">
-  <defs><style>
-    .leaf{fill:#d4756a}.stem{fill:none;stroke:#d4756a;stroke-width:1.6;stroke-linecap:round}
-    .word{font-family:'Literata',Georgia,serif;font-size:36px;fill:#1b1c19;font-weight:300;letter-spacing:-0.01em}
-    .dot{fill:#1b1c19}
-  </style></defs>
-  <path class="stem" d="M 53 50 C 50 42, 44 34, 40 22 C 37 12, 42 4, 50 6"/>
-  <path class="stem" d="M 45 36 C 38 32, 33 28, 32 22"/>
-  <path class="leaf" d="M 50 6 C 46 0, 38 -2, 40 8 C 42 16, 52 14, 50 6 Z"/>
-  <path class="leaf" d="M 52 10 C 58 2, 66 4, 62 12 C 58 18, 50 16, 52 10 Z"/>
-  <path class="leaf" d="M 44 20 C 36 14, 28 18, 32 26 C 35 32, 46 28, 44 20 Z"/>
-  <path class="leaf" d="M 38 30 C 30 26, 24 30, 28 38 C 30 42, 40 38, 38 30 Z"/>
-  <ellipse class="leaf" cx="44" cy="5" rx="4" ry="6" transform="rotate(-30 44 5)"/>
-  <path class="stem" d="M 53 50 C 56 54, 60 56, 62 53 C 64 50, 62 46, 58 47"/>
-  <text class="word" x="56" y="52">episodic.</text>
-</svg>
+      <img src="./assets/LogoLight.png?v=5" alt="Episodic" class="h-24 w-auto object-contain" />
       <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A digital sanctuary for chronic illness advocacy, literary arts, and community resilience.</p>
       <p class="font-caption text-caption text-outline-variant">© 2026 Episodic Magazine. Created for the community, by the community.</p>
     </div>
