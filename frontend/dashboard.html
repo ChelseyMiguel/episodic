@@ -75,34 +75,26 @@
   <!-- General error -->
   <div id="page-error" class="hidden error-banner mb-8"></div>
 
-  <!-- Apply to Contribute card (shown if not yet a contributor) -->
-  <div id="apply-section" class="hidden mb-12">
+  <!-- Apply to be an Active Member -->
+  <div class="mb-12">
     <div class="bento-card rounded-xl p-gutter md:p-10">
-      <div class="flex items-start gap-4 mb-8">
-        <span class="material-symbols-outlined text-3xl text-secondary mt-1">edit_note</span>
+      <div class="flex items-start gap-4 mb-6">
+        <span class="material-symbols-outlined text-3xl text-secondary mt-1">group</span>
         <div>
-          <h2 class="font-headline-md text-headline-lg text-on-surface mb-2">Apply to Contribute</h2>
-          <p class="font-body-md text-on-surface-variant">Tell us a little about yourself to join our contributor community and unlock the ability to submit work.</p>
+          <h2 class="font-headline-md text-headline-lg text-on-surface mb-2">Apply to Be an Active Member</h2>
+          <p class="font-body-md text-on-surface-variant max-w-xl">Anyone can submit work to Episodic — no application needed. But if you want to go deeper, apply to become an active community member. Active members shape the direction of the magazine, collaborate on projects, and help build this space together.</p>
         </div>
       </div>
-      <form id="apply-form" class="space-y-8 max-w-lg" novalidate>
-        <div class="flex flex-col gap-2">
-          <label class="font-label-md text-primary" for="apply-bio">Short Bio</label>
-          <textarea id="apply-bio" rows="4" placeholder="A sentence or two about you and your connection to chronic illness or disability…" class="form-input py-2 text-body-md resize-none"></textarea>
-        </div>
-        <div class="flex flex-col gap-2">
-          <label class="font-label-md text-primary" for="apply-pronouns">Pronouns <span class="font-body-md text-on-surface-variant font-normal">(optional)</span></label>
-          <input id="apply-pronouns" type="text" placeholder="e.g. she/her, they/them" class="form-input py-2 text-body-md" />
-        </div>
-        <div id="apply-error" class="hidden error-banner"></div>
-        <div id="apply-success" class="hidden bg-surface-container rounded-xl p-4 font-body-md text-on-surface-variant">
-          <span class="material-symbols-outlined text-secondary align-middle mr-1">check_circle</span>
-          Application submitted! Our team will review it shortly.
-        </div>
-        <button type="submit" id="apply-btn" class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
-          Submit Application <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </button>
-      </form>
+      <div class="flex flex-wrap gap-4 mt-6">
+        <a href="mailto:episodicmagazine@gmail.com?subject=Active Member Application"
+          class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-md hover:brightness-110 transition-colors inline-flex items-center gap-2">
+          Apply to Join <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+        <a href="./submit.html"
+          class="border border-primary text-primary px-8 py-3 rounded-lg font-label-md hover:bg-primary hover:text-on-primary transition-colors inline-flex items-center gap-2">
+          Submit Work Instead <span class="material-symbols-outlined text-sm">edit_note</span>
+        </a>
+      </div>
     </div>
   </div>
 
