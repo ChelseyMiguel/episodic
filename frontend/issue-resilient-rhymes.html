@@ -92,7 +92,7 @@
   </header>
 
   <!-- Poems grid -->
-  <section>
+  <section class="fade-up">
     <h2 class="font-headline-md text-headline-lg text-on-surface mb-8">In This Collection</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
@@ -156,7 +156,7 @@
   </section>
 
   <!-- Call to submit -->
-  <section class="mt-24 bg-surface-container rounded-xl p-10 md:p-14 border border-outline-variant/30 text-center">
+  <section class="fade-up mt-24 bg-surface-container rounded-xl p-10 md:p-14 border border-outline-variant/30 text-center">
     <span class="material-symbols-outlined text-primary text-4xl mb-4 block" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;">edit_note</span>
     <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Add Your Voice</h3>
     <p class="font-body-lg text-on-surface-variant max-w-md mx-auto mb-6">Resilient Rhymes is a living collection. Submit your short-form poetry for a future edition.</p>
@@ -238,6 +238,19 @@ initSearch();
     syncBtn();
   });
 })();
+
+  // Fade-up on scroll
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+  })();
 </script>
 <!-- Mobile bottom nav bar — md:hidden so desktop sees nothing -->
 <nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/30 flex md:hidden safe-area-inset-bottom">

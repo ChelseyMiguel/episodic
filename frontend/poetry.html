@@ -91,7 +91,7 @@
 <main class="pt-8 pb-24">
 
   <!-- Hero: Featured Poem -->
-  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32 mt-12">
+  <section class="fade-up max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32 mt-12">
     <div class="flex flex-col lg:flex-row gap-12 items-start">
 
       <!-- Left column: meta -->
@@ -132,7 +132,7 @@
   </section>
 
   <!-- Curated Collections (Bento Grid) -->
-  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32">
+  <section class="fade-up max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32">
     <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-12 text-on-background border-b border-outline-variant/30 pb-4">Curated Collections</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:h-[600px]">
@@ -188,7 +188,7 @@
   </section>
 
   <!-- Verse Archive -->
-  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+  <section class="fade-up max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
     <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
       <div>
         <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Verse Archive</h2>
@@ -410,6 +410,19 @@
     progressBar.style.width = pct + '%';
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
+
+  // Fade-up on scroll
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+  })();
 </script>
 <!-- Mobile bottom nav bar — md:hidden so desktop sees nothing -->
 <nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/30 flex md:hidden safe-area-inset-bottom">

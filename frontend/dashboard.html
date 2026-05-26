@@ -59,7 +59,7 @@
 <main class="pt-8 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 
   <!-- Page header -->
-  <section class="mb-12 flex flex-col md:flex-row md:items-center justify-between gap-4">
+  <section class="fade-up mb-12 flex flex-col md:flex-row md:items-center justify-between gap-4">
     <div>
       <h1 id="welcome-heading" class="font-headline-md text-display-lg text-on-surface mb-2">Dashboard</h1>
       <div id="contributor-badge-wrap" class="hidden flex items-center gap-2"></div>
@@ -102,7 +102,7 @@
   </div>
 
   <!-- My Submissions -->
-  <section>
+  <section class="fade-up">
     <h2 class="font-headline-md text-headline-lg text-on-surface mb-6">My Submissions</h2>
 
     <!-- Skeleton -->
@@ -382,6 +382,19 @@ document.getElementById('apply-form').addEventListener('submit', async (e) => {
 // Load everything
 loadContributorStatus();
 loadSubmissions();
+
+  // Fade-up on scroll
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+  })();
 </script>
 <!-- Mobile bottom nav bar — md:hidden so desktop sees nothing -->
 <nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/30 flex md:hidden safe-area-inset-bottom">

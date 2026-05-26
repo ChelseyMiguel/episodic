@@ -113,7 +113,7 @@
     </header>
 
     <!-- Articles in this issue -->
-    <section>
+    <section class="fade-up">
       <h2 class="font-headline-md text-headline-lg text-on-surface mb-8">In This Issue</h2>
 
       <!-- Static pieces from Invisible Symptoms issue -->
@@ -440,6 +440,19 @@ async function loadArticles(issueId) {
 }
 
 loadIssue();
+
+  // Fade-up on scroll
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+  })();
 </script>
 <!-- Mobile bottom nav bar — md:hidden so desktop sees nothing -->
 <nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/30 flex md:hidden safe-area-inset-bottom">

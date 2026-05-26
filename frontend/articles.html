@@ -74,13 +74,13 @@
 <main class="pt-8 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 
   <!-- Header -->
-  <section class="mb-12 mt-8">
+  <section class="fade-up mb-12 mt-8">
     <h1 class="font-display-lg text-display-lg text-on-surface mb-3">All Stories</h1>
     <p class="font-body-lg text-on-surface-variant">Every piece here belongs to someone who found words when the body couldn't explain itself.</p>
   </section>
 
   <!-- Filter bar -->
-  <section class="mb-10">
+  <section class="fade-up mb-10">
     <div class="flex flex-wrap gap-3" id="filter-bar">
       <button class="filter-chip active" data-category="all">All</button>
       <button class="filter-chip" data-category="Essay">Essay</button>
@@ -93,7 +93,7 @@
   </section>
 
   <!-- Article grid -->
-  <section>
+  <section class="fade-up">
     <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter"></div>
     <div id="empty-state" class="hidden text-center py-24">
       <span class="material-symbols-outlined text-5xl text-outline mb-4 block">search_off</span>
@@ -386,6 +386,19 @@ document.getElementById('filter-bar').addEventListener('click', (e) => {
 });
 
 loadArticles();
+
+  // Fade-up on scroll
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+  })();
 </script>
 <!-- Mobile bottom nav bar — md:hidden so desktop sees nothing -->
 <nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/30 flex md:hidden safe-area-inset-bottom">

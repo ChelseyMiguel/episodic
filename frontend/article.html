@@ -301,7 +301,7 @@
       </div>
 
       <!-- Share Your Voice CTA -->
-      <section class="mt-12 p-8 bg-primary-container/10 rounded-xl border border-primary-container/20" id="reflection-section">
+      <section class="fade-up mt-12 p-8 bg-primary-container/10 rounded-xl border border-primary-container/20" id="reflection-section">
         <h4 class="font-headline-md text-headline-md text-primary mb-3">Share Your Voice</h4>
         <p class="font-body-md text-body-md text-on-surface-variant mb-6">How does this story resonate with your own experience? We invite short reflections (up to 100 words) to be featured in our upcoming "Reader's Circle" issue.</p>
         <div id="reflection-form" class="flex flex-col gap-4">
@@ -317,7 +317,7 @@
       </section>
 
       <!-- Author Bio -->
-      <section class="mt-20 pt-12 border-t border-outline-variant" id="author-bio-section">
+      <section class="fade-up mt-20 pt-12 border-t border-outline-variant" id="author-bio-section">
         <div class="flex flex-col md:flex-row gap-8 items-start">
           <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 bg-surface-container-highest flex items-center justify-center">
             <span class="material-symbols-outlined text-4xl text-outline">person</span>
@@ -965,6 +965,19 @@ document.getElementById('reflection-btn').addEventListener('click', async () => 
 });
 
 loadArticle();
+
+  // Fade-up on scroll
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry, i) {
+        if (entry.isIntersecting) {
+          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+  })();
 </script>
 <!-- Mobile bottom nav bar — md:hidden so desktop sees nothing -->
 <nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-outline-variant/30 flex md:hidden safe-area-inset-bottom">
