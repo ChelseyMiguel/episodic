@@ -148,6 +148,12 @@
             </div>
             <span id="pw-match-label" class="text-xs hidden"></span>
           </div>
+          <div class="flex items-start gap-3 mt-2">
+            <input id="signup-newsletter" type="checkbox" checked class="mt-0.5 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" />
+            <label for="signup-newsletter" class="font-body-md text-body-md text-on-surface-variant cursor-pointer leading-snug">
+              I'd like to receive future letters from Episodic
+            </label>
+          </div>
           <div id="signup-error" class="hidden error-banner"></div>
           <button type="submit" id="signup-btn" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2">
             Create Account
@@ -375,12 +381,18 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   btn.disabled = true;
   btn.innerHTML = '<span class="material-symbols-outlined text-sm">progress_activity</span> Creating account…';
 
+  const wantsNewsletter = document.getElementById('signup-newsletter').checked;
+
   try {
     const result = await api.auth.signup(email, password, displayName);
     const token = result.access_token || result.token;
     const user = result.user || { email, display_name: displayName };
     setToken(token);
     setUser(user);
+    if (wantsNewsletter) {
+      // Open Substack in a new tab, then send user to dashboard
+      window.open('https://open.substack.com/pub/episodicmagazine?utm_source=site_signup', '_blank', 'noopener');
+    }
     window.location.href = './dashboard.html';
   } catch (err) {
     errEl.textContent = err.status === 409
