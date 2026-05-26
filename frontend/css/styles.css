@@ -17,3 +17,6 @@
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom)) !important;
   }
 }
+
+/* Prevent layout shift on images */
+img { display: block; }
