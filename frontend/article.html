@@ -668,35 +668,6 @@ function initShare() {
   });
 }
 
-// ── Related Stories ───────────────────────────────────────────────────────────
-
-function relatedCard(article, colorClass) {
-  const cat = article.category || 'Essay';
-  return `
-    <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="group cursor-pointer block">
-      <div class="h-32 w-full ${colorClass} rounded-t-lg mb-3 overflow-hidden flex items-center justify-center">
-        <span class="material-symbols-outlined text-4xl opacity-40 text-on-surface">article</span>
-      </div>
-      <span class="text-caption font-caption text-tertiary uppercase">${cat}</span>
-      <h6 class="font-headline-md text-[18px] leading-[24px] text-on-surface group-hover:text-primary transition-colors mt-1 line-clamp-2">${article.title}</h6>
-    </a>`;
-}
-
-function loadRelated(currentSlug) {
-  const relEl = document.getElementById('related-stories');
-  const colors = ['bg-secondary-container', 'bg-primary-container'];
-
-  // Pull from static articles — filter out the current one, pick up to 2
-  const all = Object.values(STATIC_ARTICLES);
-  const others = all.filter(a => a.slug !== currentSlug).slice(0, 2);
-
-  if (others.length === 0) {
-    relEl.innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant">No related stories found.</p>';
-  } else {
-    relEl.innerHTML = others.map((a, i) => relatedCard(a, colors[i % 2])).join('');
-  }
-}
-
 // ── Static article data (no API needed) ──────────────────────────────────────
 
 const STATIC_ARTICLES = {
@@ -764,24 +735,38 @@ const STATIC_ARTICLES = {
   },
 };
 
-// ── Load Article ──────────────────────────────────────────────────────────────
+// ── Related Stories ───────────────────────────────────────────────────────────
 
-// ── Smart back link ───────────────────────────────────────────────────────────
-(function() {
-  const ref = document.referrer;
-  const backLink = document.getElementById('back-link');
-  if (!backLink) return;
-  if (ref.includes('poetry.html')) {
-    backLink.href = './poetry.html';
-    backLink.querySelector('span + span, span ~ *') && (backLink.lastChild.textContent = ' Back to Poetry');
-    backLink.innerHTML = '<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span> Back to Poetry';
-  } else if (ref.includes('issues.html') || ref.includes('issue.html') || ref.includes('issue-')) {
-    backLink.href = ref;
-    backLink.innerHTML = '<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span> Back to Issue';
+function relatedCard(article, colorClass) {
+  const cat = article.category || 'Essay';
+  const byline = article.byline || 'Chelsey Miguel';
+  return `
+    <a href="./article.html?slug=${encodeURIComponent(article.slug)}" class="group cursor-pointer block">
+      <div class="h-28 w-full ${colorClass} rounded-t-lg overflow-hidden flex items-center justify-center">
+        <span class="material-symbols-outlined text-4xl opacity-30 text-on-surface">format_quote</span>
+      </div>
+      <div class="bg-surface-container-low p-4 rounded-b-lg border border-t-0 border-outline-variant/20">
+        <span class="text-caption font-caption text-primary uppercase tracking-widest">${cat}</span>
+        <h6 class="font-headline-sm text-[16px] leading-snug text-on-surface group-hover:text-primary transition-colors mt-1 line-clamp-2">${article.title}</h6>
+        <p class="text-caption font-caption text-on-surface-variant mt-1">${byline}</p>
+      </div>
+    </a>`;
+}
+
+function loadRelated(currentSlug) {
+  const relEl = document.getElementById('related-stories');
+  if (!relEl) return;
+  const colors = ['bg-secondary-container', 'bg-primary-container'];
+  const all = Object.values(STATIC_ARTICLES);
+  const others = all.filter(a => a.slug !== currentSlug).slice(0, 2);
+  if (others.length === 0) {
+    relEl.innerHTML = '<p class="font-body-md text-body-md text-on-surface-variant">No related stories found.</p>';
   } else {
-    backLink.innerHTML = '<span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span> Back to Archive';
+    relEl.innerHTML = others.map((a, i) => relatedCard(a, colors[i % 2])).join('');
   }
-})();
+}
+
+// ── Load Article ──────────────────────────────────────────────────────────────
 
 async function loadArticle() {
   const params = new URLSearchParams(window.location.search);
