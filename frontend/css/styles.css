@@ -28,3 +28,6 @@ img { display: block; }
 }
 .fade-up { opacity: 0; }
 .fade-up.visible { animation: fadeUp 0.6s ease forwards; }
+
+/* Page transitions */
+html.page-ready { transition: opacity 0.22s ease; }

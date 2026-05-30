@@ -37,7 +37,7 @@
   .dark img[src="./assets/LogoLight.png?v=5"] { content: url("./assets/logo-dark.png"); }
   @media (max-width: 767px) { body { padding-bottom: 4.5rem; } }
 </style>
-<script>(function(){if(localStorage.getItem('episodic_dark_mode')==='dark')document.documentElement.classList.add('dark');document.documentElement.style.opacity='0';window.addEventListener('DOMContentLoaded',function(){document.documentElement.style.transition='opacity 0.3s';document.documentElement.style.opacity='1';});})();</script>
+<script>(function(){if(localStorage.getItem('episodic_dark_mode')==='dark')document.documentElement.classList.add('dark');document.documentElement.style.opacity='0';window.addEventListener('DOMContentLoaded',function(){document.documentElement.classList.add('page-ready');document.documentElement.style.opacity='1';});})();</script>
 </head>
 <body class="font-body-md text-body-md overflow-x-hidden">
 
